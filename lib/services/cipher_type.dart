@@ -1,0 +1,4 @@
+enum CipherType {
+  encode,
+  decode
+}
