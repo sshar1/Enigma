@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/services/character_card_manager.dart';
+import 'package:myapp/services/ciphers/aristocrat_manager.dart';
 
 import '../../../services/character_list.dart';
 
@@ -12,7 +13,15 @@ class AristocratEncode extends StatefulWidget {
 
 class _AristocratEncodeState extends State<AristocratEncode> {
 
-  String quote = "I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin but by the content of their character.";
+  void setupAristocrat() async {
+    await AristocratManager.nextAristocrat();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setupAristocrat();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +45,7 @@ class _AristocratEncodeState extends State<AristocratEncode> {
             textColor: Colors.grey[100],
           ),
           const SizedBox(height: 20),
-          CharacterCardManager(text: quote, marginTotal: 100),
+          CharacterCardManager(marginTotal: 100),
           const SizedBox(height: 50),
           const CharacterList()
         ],

@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/services/ciphers/aristocrat_manager.dart';
 
 class CharacterCardManager extends StatefulWidget {
 
-  final String text;
-  final double marginTotal;
+  final int marginTotal;
 
-  const CharacterCardManager({super.key, required this.text, required this.marginTotal});
+  const CharacterCardManager({super.key, required this.marginTotal});
 
   @override
-  State<CharacterCardManager> createState() => _CharacterCardManagerState();
+  State<CharacterCardManager> createState() => _CharacterCardManagerState(marginTotal: marginTotal);
 }
 
 class _CharacterCardManagerState extends State<CharacterCardManager> {
 
-  static const double cardWidth = 25; 
+  static const double cardWidth = 25;
+  int? marginTotal;
+  
+  _CharacterCardManagerState({required int marginTotal}); 
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +79,7 @@ class _CharacterCardManagerState extends State<CharacterCardManager> {
   }
 
   List getRows() {
-    String quote = "I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin, but by the content of their character.".toUpperCase();
+    String quote = AristocratManager.ciphertext;
     int width = MediaQuery.of(context).size.width.toInt();
     int marginTotal = 100;
   
