@@ -13,13 +13,23 @@ class CharacterCardManager extends StatefulWidget {
 
 class _CharacterCardManagerState extends State<CharacterCardManager> {
 
+  static Map textControllers = {};
+  static String focusedLetter = '';
+
   static const double cardWidth = 25;
   int? marginTotal;
   
   _CharacterCardManagerState({required int marginTotal}); 
 
   @override
+  void initState() {
+    super.initState();
+    addControllers();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print(focusedLetter);
     return Column(
       children: getRows().map((line) => Row(
         children: line.split('').map<Widget>((character) => Column(
@@ -47,13 +57,15 @@ class _CharacterCardManagerState extends State<CharacterCardManager> {
               margin: const EdgeInsets.only(bottom: 20),
               color: character.contains(RegExp(r'^[a-zA-Z]+$')) ? Colors.grey[850] : Colors.grey[900],
               elevation: character.contains(RegExp(r'^[a-zA-Z]+$')) ? 2 : 0,
+              shape: character == focusedLetter ? LinearBorder.bottom(side: const BorderSide(color: Colors.blue)) : null,
               child: SizedBox(
                 width: cardWidth,
                 height: 30,
                 child: Center(
                   child: TextField(
+                    controller: textControllers.containsKey(character) ? textControllers[character] : null,
                     enabled: character.contains(RegExp(r'^[a-zA-Z]+$')) ? true : false,
-                    // showCursor: false,
+                    showCursor: false,
                     textAlign: TextAlign.center,
                     maxLength: 1,
                     decoration: const InputDecoration(
@@ -66,8 +78,15 @@ class _CharacterCardManagerState extends State<CharacterCardManager> {
                       fontWeight: FontWeight.bold,
                     ),
                     onChanged: (txt) {
-                      print(txt);
+                      // if (!txt.contains(RegExp(r'^[a-zA-Z]+$'))) {
+
+                      // }
                     },
+                    onTap: () {
+                      setState(() {
+                        focusedLetter = character;
+                      });
+                    }
                   )
                 )
               )
@@ -110,4 +129,32 @@ class _CharacterCardManagerState extends State<CharacterCardManager> {
   
     return rows;
   }
+
+  static void addControllers() {
+    for (int i = 65; i <= 90; ++i) {
+      TextEditingController controller = TextEditingController();
+
+      controller.addListener(() {
+        final String text = controller.text.contains(RegExp(r'^[a-zA-Z]+$')) ? controller.text.toUpperCase() : '';
+        controller.value = controller.value.copyWith(
+          text: text,
+          selection:
+              TextSelection(baseOffset: text.length, extentOffset: text.length),
+          composing: TextRange.empty,
+        );
+      });
+
+      textControllers[String.fromCharCode(i)] = controller;
+    }
+  }
+
+  // static Color? getCardColor(String character) {
+  //   if (!character.contains(RegExp(r'^[a-zA-Z]+$'))) {
+  //     return Colors.grey[900];
+  //   }
+  //   if (character == focusedLetter) {
+  //     return Colors.blue;
+  //   }
+  //   return Colors.grey[850];
+  // }
 }

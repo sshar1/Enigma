@@ -78,12 +78,4 @@ class _CharacterListState extends State<CharacterList> {
       )).toList()
     );
   }
-
-  // List getLetters() {
-  //   List result = [];
-  //   for(int i = 65; i <= 90; i++){
-  //     result.add(String.fromCharCode(i));
-  //   }
-  //   return result;
-  // }
 }
