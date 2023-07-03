@@ -6,10 +6,10 @@ class CharacterList extends StatefulWidget {
   const CharacterList({super.key});
 
   @override
-  State<CharacterList> createState() => _CharacterListState();
+  State<CharacterList> createState() => CharacterListState();
 }
 
-class _CharacterListState extends State<CharacterList> {
+class CharacterListState extends State<CharacterList> {
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,8 @@ class _CharacterListState extends State<CharacterList> {
                 height: 30,
                 child: Center(
                   child: Text(
-                    AristocratManager.key.keys.firstWhere((k) => AristocratManager.key[k] == letter, orElse: () => ''),
+                    AristocratManager.userKey[letter],
+                    //AristocratManager.cipherToPlain(letter),
                     style: TextStyle(
                       color: Colors.grey[100],
                       fontWeight: FontWeight.bold

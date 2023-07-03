@@ -1,18 +1,26 @@
 import 'dart:math';
 
 class AristocratManager {
-  static final List letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-  static Map key = {}; // Key: plaintext, Value: ciphertext
+  static const List letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  static final Map _key = {}; // Key: plaintext, Value: ciphertext
+  static Map userKey = {}; // Key: ciphertext, Value: plaintext
 
   static String plaintext = "I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin, but by the content of their character.".toUpperCase();
   static String ciphertext = "";
   static Map frequencies = {}; // Key: ciphertext letter, Value: its frequency in the plaintext
 
   static Future<void> nextAristocrat() async {
+    _resetUserKey();
     _randomizePlaintext();
     _randomizeKey();
     _updateCiphertext();
     _updateFrequencies();
+  }
+
+  static void _resetUserKey() {
+    for (String str in letters) {
+      userKey[str] = '';
+    }
   }
 
   static void _randomizePlaintext() {
@@ -23,10 +31,10 @@ class AristocratManager {
     List temp = List.from(letters);
     for(String letter in letters) {
       String val = temp.removeAt(_random(0, temp.length));
-      key[letter] = val;
+      _key[letter] = val;
 
-      if (key[letter] == letter) {
-        key[letter] = temp.removeAt(_random(0, temp.length));
+      if (_key[letter] == letter) {
+        _key[letter] = temp.removeAt(_random(0, temp.length));
         temp.add(val);
       }
     }
@@ -35,11 +43,11 @@ class AristocratManager {
   static void _updateCiphertext() {
     ciphertext = "";
     for (String letter in plaintext.split('')) {
-      if (!key.containsKey(letter)) {
+      if (!_key.containsKey(letter)) {
         ciphertext += letter;
       }
       else {
-        ciphertext += key[letter];
+        ciphertext += _key[letter];
       }
     }
   }
@@ -60,6 +68,16 @@ class AristocratManager {
         frequencies[letter] = 0;
       }
     }
+  }
+
+  // Converts plaintext to ciphertext
+  static String plainToCipher(String plain) {
+    return _key[plain];
+  }
+
+  // Converts ciphertext to plaintext
+  static String cipherToPlain(String cipher) {
+    return _key.keys.firstWhere((k) => AristocratManager._key[k] == cipher, orElse: () => '');
   }
 
   // From min to max-1

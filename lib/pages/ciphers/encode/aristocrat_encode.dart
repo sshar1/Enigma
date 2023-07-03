@@ -4,27 +4,16 @@ import 'package:myapp/services/ciphers/aristocrat_manager.dart';
 
 import '../../../services/character_list.dart';
 
-class AristocratEncode extends StatefulWidget {
+class AristocratEncode extends StatelessWidget {
   const AristocratEncode({super.key});
-
-  @override
-  State<AristocratEncode> createState() => _AristocratEncodeState();
-}
-
-class _AristocratEncodeState extends State<AristocratEncode> {
 
   void setupAristocrat() async {
     await AristocratManager.nextAristocrat();
   }
 
   @override
-  void initState() {
-    super.initState();
-    setupAristocrat();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    setupAristocrat();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
@@ -45,7 +34,7 @@ class _AristocratEncodeState extends State<AristocratEncode> {
             textColor: Colors.grey[100],
           ),
           const SizedBox(height: 20),
-          CharacterCardManager(marginTotal: 100),
+          const CharacterCardManager(marginTotal: 100),
           const SizedBox(height: 50),
           const CharacterList()
         ],

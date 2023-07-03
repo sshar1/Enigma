@@ -1,37 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/services/ciphers/aristocrat_manager.dart';
 
-class CharacterCardManager extends StatefulWidget {
-
+class CharacterCardManager extends StatelessWidget {
   final int marginTotal;
-
   const CharacterCardManager({super.key, required this.marginTotal});
 
-  @override
-  State<CharacterCardManager> createState() => _CharacterCardManagerState(marginTotal: marginTotal);
-}
-
-class _CharacterCardManagerState extends State<CharacterCardManager> {
-
   static Map textControllers = {};
-  static String focusedLetter = '';
+  static Map textCards = {};
+  static FocusedLetter focusedLetter = FocusedLetter(letter: '');
 
   static const double cardWidth = 25;
-  int? marginTotal;
-  
-  _CharacterCardManagerState({required int marginTotal}); 
-
-  @override
-  void initState() {
-    super.initState();
-    addControllers();
-  }
 
   @override
   Widget build(BuildContext context) {
-    print(focusedLetter);
+    focusedLetter.letter = '';
+    addControllers();
+
     return Column(
-      children: getRows().map((line) => Row(
+      children: getRows(context).map((line) => Row(
         children: line.split('').map<Widget>((character) => Column(
           children: [
             Card(
@@ -53,51 +39,32 @@ class _CharacterCardManagerState extends State<CharacterCardManager> {
               )
             ),
             const SizedBox(height: 5),
-            Card(
-              margin: const EdgeInsets.only(bottom: 20),
-              color: character.contains(RegExp(r'^[a-zA-Z]+$')) ? Colors.grey[850] : Colors.grey[900],
-              elevation: character.contains(RegExp(r'^[a-zA-Z]+$')) ? 2 : 0,
-              shape: character == focusedLetter ? LinearBorder.bottom(side: const BorderSide(color: Colors.blue)) : null,
-              child: SizedBox(
-                width: cardWidth,
-                height: 30,
-                child: Center(
-                  child: TextField(
-                    controller: textControllers.containsKey(character) ? textControllers[character] : null,
-                    enabled: character.contains(RegExp(r'^[a-zA-Z]+$')) ? true : false,
-                    showCursor: false,
-                    textAlign: TextAlign.center,
-                    maxLength: 1,
-                    decoration: const InputDecoration(
-                      border: UnderlineInputBorder(),
-                      contentPadding: EdgeInsets.only(bottom: 15, left: 2), // padding of 2 because it doesn't center for some reason
-                      counterText: ''
-                    ), 
-                    style: TextStyle(
-                      color: Colors.grey[100],
-                      fontWeight: FontWeight.bold,
-                    ),
-                    onChanged: (txt) {
-                      // if (!txt.contains(RegExp(r'^[a-zA-Z]+$'))) {
-
-                      // }
-                    },
-                    onTap: () {
-                      setState(() {
-                        focusedLetter = character;
-                      });
-                    }
-                  )
-                )
-              )
-            ),
+            TextCard(character: character, focusedLetter: focusedLetter, textControllers: textControllers, textCards: textCards)
           ],
         )).toList()
       )).toList()
     );
   }
 
-  List getRows() {
+  static void addControllers() {
+    for (int i = 65; i <= 90; ++i) {
+      TextEditingController controller = TextEditingController();
+
+      controller.addListener(() {
+        final String text = controller.text.contains(RegExp(r'^[a-zA-Z]+$')) ? controller.text.toUpperCase() : '';
+        controller.value = controller.value.copyWith(
+          text: text,
+          selection:
+              TextSelection(baseOffset: text.length, extentOffset: text.length),
+          composing: TextRange.empty,
+        );
+      });
+
+      textControllers[String.fromCharCode(i)] = controller;
+    }
+  }
+
+  List getRows(BuildContext context) {
     String quote = AristocratManager.ciphertext;
     int width = MediaQuery.of(context).size.width.toInt();
     int marginTotal = 100;
@@ -129,32 +96,86 @@ class _CharacterCardManagerState extends State<CharacterCardManager> {
   
     return rows;
   }
+}
 
-  static void addControllers() {
-    for (int i = 65; i <= 90; ++i) {
-      TextEditingController controller = TextEditingController();
+class TextCard extends StatefulWidget {
+  final String character;
+  final FocusedLetter focusedLetter;
+  final Map textControllers;
+  final Map textCards;
 
-      controller.addListener(() {
-        final String text = controller.text.contains(RegExp(r'^[a-zA-Z]+$')) ? controller.text.toUpperCase() : '';
-        controller.value = controller.value.copyWith(
-          text: text,
-          selection:
-              TextSelection(baseOffset: text.length, extentOffset: text.length),
-          composing: TextRange.empty,
-        );
-      });
+  const TextCard({super.key, required this.character, required this.focusedLetter, required this.textControllers, required this.textCards});
 
-      textControllers[String.fromCharCode(i)] = controller;
-    }
+  @override
+  State<TextCard> createState() => _TextCardState();
+}
+
+class _TextCardState extends State<TextCard> {
+
+  void callback() {
+  if (!mounted) return;
+    setState(() {
+      widget.focusedLetter.letter = widget.character;
+    });
   }
 
-  // static Color? getCardColor(String character) {
-  //   if (!character.contains(RegExp(r'^[a-zA-Z]+$'))) {
-  //     return Colors.grey[900];
-  //   }
-  //   if (character == focusedLetter) {
-  //     return Colors.blue;
-  //   }
-  //   return Colors.grey[850];
-  // }
+  @override
+  Widget build(BuildContext context) {
+    Widget card = Card(
+      margin: const EdgeInsets.only(bottom: 20),
+      color: widget.character.contains(RegExp(r'^[a-zA-Z]+$')) ? Colors.grey[850] : Colors.grey[900],
+      elevation: widget.character.contains(RegExp(r'^[a-zA-Z]+$')) ? 2 : 0,
+      shape: widget.character == widget.focusedLetter.letter ? LinearBorder.bottom(side: const BorderSide(color: Colors.blue)) : null,
+      child: SizedBox(
+        width: 25,
+        height: 30,
+        child: Center(
+          child: TextField(
+            controller: widget.textControllers.containsKey(widget.character) ? widget.textControllers[widget.character] : null,
+            enabled: widget.character.contains(RegExp(r'^[a-zA-Z]+$')) ? true : false,
+            showCursor: false,
+            textAlign: TextAlign.center,
+            maxLength: 1,
+            decoration: const InputDecoration(
+              border: UnderlineInputBorder(),
+              contentPadding: EdgeInsets.only(bottom: 15, left: 2), // padding of 2 because it doesn't center for some reason
+              counterText: ''
+            ), 
+            style: TextStyle(
+              color: Colors.grey[100],
+              fontWeight: FontWeight.bold,
+            ),
+            onChanged: (characterEntered) {
+              AristocratManager.userKey[widget.character] = characterEntered;
+            },
+            onTap: () {
+              if (widget.focusedLetter.letter.contains(RegExp(r'^[a-zA-Z]+$'))) {
+                for (_TextCardState textCard in widget.textCards[widget.focusedLetter.letter]) {
+                  textCard.callback();
+                }
+              }
+              for (_TextCardState textCard in widget.textCards[widget.character]) {
+                textCard.callback();
+              }
+            }
+          )
+        )
+      )
+    );
+
+    if (widget.textCards.containsKey(widget.character)) {
+      widget.textCards[widget.character].add(this);
+    }
+    else {
+      widget.textCards[widget.character] = [this,];
+    }
+
+    return card;
+  }
+}
+
+// Wrapper to pass focusedletter 
+class FocusedLetter {
+  String letter;
+  FocusedLetter({required this.letter});
 }

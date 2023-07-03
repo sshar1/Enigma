@@ -6,8 +6,8 @@ import 'package:myapp/pages/loading.dart';
 void main() => runApp(MaterialApp(
   initialRoute: '/',
   routes: {
-    '/' : (context) => Loading(),
-    '/home' : (context) => Home(),
-    '/cipherpage' : (context) => CipherPage()
+    '/' : (context) => const Loading(),
+    '/home' : (context) => const Home(),
+    '/cipherpage' : (context) => const CipherPage()
   }
 ));
