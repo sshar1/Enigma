@@ -112,11 +112,33 @@ class TextCard extends StatefulWidget {
 
 class _TextCardState extends State<TextCard> {
 
+  bool? borderRed;
+
+  @override
+  void initState() {
+    super.initState();
+    borderRed = false;
+  }
+
   void callback() {
   if (!mounted) return;
     setState(() {
       widget.focusedLetter.letter = widget.character;
     });
+  }
+
+  void redBorder(bool enable) {
+    if (!mounted) return;
+
+    if (enable) {
+      setState(() {
+        borderRed = true;
+      });
+    } else {
+      setState(() {
+        borderRed = false;
+      });
+    }
   }
 
   @override
@@ -125,7 +147,7 @@ class _TextCardState extends State<TextCard> {
       margin: const EdgeInsets.only(bottom: 20),
       color: widget.character.contains(RegExp(r'^[a-zA-Z]+$')) ? Colors.grey[850] : Colors.grey[900],
       elevation: widget.character.contains(RegExp(r'^[a-zA-Z]+$')) ? 2 : 0,
-      shape: widget.character == widget.focusedLetter.letter ? LinearBorder.bottom(side: const BorderSide(color: Colors.blue)) : null,
+      shape: widget.character == widget.focusedLetter.letter ? LinearBorder.bottom(side: BorderSide(color: getBorderColor())) : null,
       child: SizedBox(
         width: 25,
         height: 30,
@@ -139,14 +161,33 @@ class _TextCardState extends State<TextCard> {
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               contentPadding: EdgeInsets.only(bottom: 15, left: 2), // padding of 2 because it doesn't center for some reason
-              counterText: ''
+              counterText: '',
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.blue)
+              )
             ), 
             style: TextStyle(
               color: Colors.grey[100],
               fontWeight: FontWeight.bold,
             ),
             onChanged: (characterEntered) {
-              AristocratManager.userKey[widget.character] = characterEntered;
+              if (characterEntered == '') {
+                AristocratManager.userKey[widget.character] = '';
+                for (_TextCardState textCard in widget.textCards[widget.character]) {
+                  textCard.redBorder(false);
+                }
+                return;
+              }
+              if (AristocratManager.userKey.containsValue(characterEntered)) {
+                for (_TextCardState textCard in widget.textCards[widget.character]) {
+                  textCard.redBorder(true);
+                }
+              } else {
+                AristocratManager.userKey[widget.character] = characterEntered;
+                for (_TextCardState textCard in widget.textCards[widget.character]) {
+                  textCard.redBorder(false);
+                }
+              }
             },
             onTap: () {
               if (widget.focusedLetter.letter.contains(RegExp(r'^[a-zA-Z]+$'))) {
@@ -172,9 +213,14 @@ class _TextCardState extends State<TextCard> {
 
     return card;
   }
+
+  Color getBorderColor() {
+    if (borderRed!) return Colors.red;
+    return Colors.blue;
+  }
 }
 
-// Wrapper to pass focusedletter 
+// Wrapper to pass focusedletter by reference
 class FocusedLetter {
   String letter;
   FocusedLetter({required this.letter});
