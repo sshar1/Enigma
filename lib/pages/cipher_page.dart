@@ -30,7 +30,46 @@ class _CipherPageState extends State<CipherPage> {
         ),
         elevation: 0,
       ),
-      body: data['page']
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 50),
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.access_time),
+                    title: const Text(
+                      "3:24",
+                      style: TextStyle(
+                        fontFamily: 'Ysabeau',
+                        fontSize: 20
+                      ),
+                    ),
+                    tileColor: Colors.transparent,
+                    iconColor: Colors.grey[100],
+                    textColor: Colors.grey[100],
+                  ),
+                ),
+                ElevatedButton(
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
+                  ),
+                  onPressed: () {
+                    print('test');
+                  },
+                  child: const Text("Submit"),
+                )
+              ],
+            ),
+            const SizedBox(height: 20),
+            data['page']
+          ],
+        )
+      )
     );
   }
 }
