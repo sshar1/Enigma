@@ -3,7 +3,7 @@ import 'dart:math';
 class AristocratManager {
   static const List letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   static final Map _key = {}; // Key: plaintext, Value: ciphertext
-  static Map userKey = {}; // Key: ciphertext, Value: plaintext
+  static Map userKey = {}; // Key: plaintext, Value: list of ciphertexts
 
   static String plaintext = "I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin, but by the content of their character.".toUpperCase();
   static String ciphertext = "";
@@ -19,7 +19,7 @@ class AristocratManager {
 
   static void _resetUserKey() {
     for (String str in letters) {
-      userKey[str] = '';
+      userKey[str] = [];
     }
   }
 

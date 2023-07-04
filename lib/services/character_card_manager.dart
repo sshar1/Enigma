@@ -115,11 +115,13 @@ class TextCard extends StatefulWidget {
 class _TextCardState extends State<TextCard> {
 
   bool? borderRed;
+  String? prevCharacter;
 
   @override
   void initState() {
     super.initState();
     borderRed = false;
+    prevCharacter = '';
   }
 
   void callback() {
@@ -174,22 +176,31 @@ class _TextCardState extends State<TextCard> {
             ),
             onChanged: (characterEntered) {
               if (characterEntered == '') {
-                AristocratManager.userKey[widget.character] = '';
+                String? temp = prevCharacter;
+                AristocratManager.userKey[prevCharacter].remove(widget.character);
                 CharacterList.replacementCardStates[widget.character].callback();
                 for (_TextCardState textCard in widget.textCards[widget.character]) {
+                  textCard.prevCharacter = characterEntered;
+                  textCard.redBorder(false);
+                }
+                if (AristocratManager.userKey[temp].length == 0) return;
+                CharacterList.replacementCardStates[AristocratManager.userKey[temp][0]].callback();
+                for (_TextCardState textCard in widget.textCards[AristocratManager.userKey[temp][0]]) {
                   textCard.redBorder(false);
                 }
                 return;
               }
-              if (AristocratManager.userKey.containsValue(characterEntered)) {
+
+              AristocratManager.userKey[characterEntered].add(widget.character);
+              CharacterList.replacementCardStates[widget.character].callback();
+              for (_TextCardState textCard in widget.textCards[widget.character]) {
+                textCard.prevCharacter = characterEntered;
+              }
+
+              if (AristocratManager.userKey[characterEntered].length > 1) {
                 for (_TextCardState textCard in widget.textCards[widget.character]) {
+                  textCard.prevCharacter = characterEntered;
                   textCard.redBorder(true);
-                }
-              } else {
-                AristocratManager.userKey[widget.character] = characterEntered;
-                CharacterList.replacementCardStates[widget.character].callback();
-                for (_TextCardState textCard in widget.textCards[widget.character]) {
-                  textCard.redBorder(false);
                 }
               }
             },

@@ -66,7 +66,7 @@ class CharacterList extends StatelessWidget {
 }
 
 class Replacement extends StatefulWidget {
-  final String letter;
+  final String letter; // Ciphertext letter
   const Replacement({super.key, required this.letter});
 
   @override
@@ -77,7 +77,7 @@ class ReplacementState extends State<Replacement> {
 
   void callback() {
     setState(() {
-      print('test ${widget.letter}');
+      // print('test ${widget.letter}');
     });
   }
 
@@ -93,7 +93,7 @@ class ReplacementState extends State<Replacement> {
           height: 30,
           child: Center(
             child: Text(
-              AristocratManager.userKey[widget.letter],
+              getText(),
               style: TextStyle(
                 color: Colors.grey[100],
                 fontWeight: FontWeight.bold
@@ -106,5 +106,16 @@ class ReplacementState extends State<Replacement> {
     CharacterList.replacementCardStates[widget.letter] = this;
 
     return card;
+  }
+
+  String getText() {
+    for (String plaintext in AristocratManager.userKey.keys) {
+      if (AristocratManager.userKey[plaintext].length == 0) continue;
+
+      if (AristocratManager.userKey[plaintext][0] == widget.letter) {
+        return plaintext;
+      }
+    }
+    return '';
   }
 }
