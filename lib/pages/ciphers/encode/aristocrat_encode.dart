@@ -14,6 +14,7 @@ class AristocratEncode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     setupAristocrat();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(

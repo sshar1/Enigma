@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/services/ciphers/aristocrat_manager.dart';
 
+import 'character_list.dart';
+
 class CharacterCardManager extends StatelessWidget {
   final int marginTotal;
   const CharacterCardManager({super.key, required this.marginTotal});
@@ -173,6 +175,7 @@ class _TextCardState extends State<TextCard> {
             onChanged: (characterEntered) {
               if (characterEntered == '') {
                 AristocratManager.userKey[widget.character] = '';
+                CharacterList.replacementCardStates[widget.character].callback();
                 for (_TextCardState textCard in widget.textCards[widget.character]) {
                   textCard.redBorder(false);
                 }
@@ -184,6 +187,7 @@ class _TextCardState extends State<TextCard> {
                 }
               } else {
                 AristocratManager.userKey[widget.character] = characterEntered;
+                CharacterList.replacementCardStates[widget.character].callback();
                 for (_TextCardState textCard in widget.textCards[widget.character]) {
                   textCard.redBorder(false);
                 }
