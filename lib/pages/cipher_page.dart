@@ -59,7 +59,7 @@ class _CipherPageState extends State<CipherPage> {
                     backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
                   ),
                   onPressed: () {
-                    print('test');
+                    print(data['checkWin']());
                   },
                   child: const Text("Submit"),
                 )

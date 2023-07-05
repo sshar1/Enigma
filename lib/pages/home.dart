@@ -14,6 +14,7 @@ import 'package:myapp/pages/ciphers/encode/xenocrypt_encode.dart';
 import 'package:myapp/services/cipher_type.dart';
 
 import '../services/cipher_info.dart';
+import '../services/ciphers/aristocrat_manager.dart';
 import 'ciphers/decode/xenocrypt_decode.dart';
 
 class Home extends StatefulWidget {
@@ -25,6 +26,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  // TODO temporariily everything has been given an AristocratManager win check function
   List<CipherInfo> ciphers = [
     CipherInfo(
       name: 'Aristocrat', 
@@ -32,7 +34,8 @@ class _HomeState extends State<Home> {
       description: 'A simple monoalphabetic substitution cipher where each ciphertext letter corresponds to a plaintext letter. '
       'A ciphertext letter cannot correspond to the same plaintext letter.', 
       color: Colors.grey[850]!,
-      pages: {CipherType.encode : const AristocratEncode(), CipherType.decode : const AristocratDecode()}
+      pages: {CipherType.encode : const AristocratEncode(), CipherType.decode : const AristocratDecode()},
+      checkWin: AristocratManager.keysMatch
     ),
     CipherInfo(
       name: 'Patristocrat', 
@@ -40,7 +43,8 @@ class _HomeState extends State<Home> {
       description: 'The same encryption pattern as the aristocrat cipher, but spaces in the ciphertext do not correspond to '
       'spaces in the plaintext. A space in the ciphertext is shown every 5 characters.', 
       color: Colors.grey[850]!,
-      pages: {CipherType.encode : const PatristocratEncode(), CipherType.decode : const PatristocratDecode()}
+      pages: {CipherType.encode : const PatristocratEncode(), CipherType.decode : const PatristocratDecode()},
+      checkWin: AristocratManager.keysMatch
     ),
     CipherInfo(
       name: 'Xenocrypt', 
@@ -48,7 +52,8 @@ class _HomeState extends State<Home> {
       description: 'The sample encryption pattern as the aristocrat cipher, but the plaintext is in Spanish. There is an additional '
       'letter: ñ', 
       color: Colors.grey[850]!,
-      pages: {CipherType.encode : const XenocryptEncode(), CipherType.decode : const XenocryptDecode()}
+      pages: {CipherType.encode : const XenocryptEncode(), CipherType.decode : const XenocryptDecode()},
+      checkWin: AristocratManager.keysMatch
     ),
     CipherInfo(
       name: 'Pollux', 
@@ -56,21 +61,24 @@ class _HomeState extends State<Home> {
       description: 'A cipher in which the plaintext is converted into a string of numbers 0-9. Each number corresponds to x, ., or - '
       'in morse code.', 
       color: Colors.grey[850]!,
-      pages: {CipherType.encode : const PolluxEncode(), CipherType.decode : const PolluxDecode()}
+      pages: {CipherType.encode : const PolluxEncode(), CipherType.decode : const PolluxDecode()},
+      checkWin: AristocratManager.keysMatch
     ),
     CipherInfo(
       name: 'Morbit', 
       image: 'cork2.png', 
       description: 'The sample encryption patter as the pollux cipher, but each number corresponds to 2 morse characters (eg. x- or .-).', 
       color: Colors.grey[850]!,
-      pages: {CipherType.encode : const MorbitEncode(), CipherType.decode : const MorbitDecode()}
+      pages: {CipherType.encode : const MorbitEncode(), CipherType.decode : const MorbitDecode()},
+      checkWin: AristocratManager.keysMatch
     ),
     CipherInfo(
       name: 'Hill', 
       image: 'cork2.png', 
       description: 'A cipher that is solved using a key 2x2 matrix. The rules are complex so read the sci oly wiki page for more info.', 
       color: Colors.grey[850]!,
-      pages: {CipherType.encode : const HillEncode(), CipherType.decode : const HillDecode()}
+      pages: {CipherType.encode : const HillEncode(), CipherType.decode : const HillDecode()},
+      checkWin: AristocratManager.keysMatch
       ),
   ];
 
@@ -133,13 +141,14 @@ class _HomeState extends State<Home> {
                   child: ListTile(
                     onTap: () {
                       Widget page = _encoding ? ciphers[index].pages[CipherType.encode] : ciphers[index].pages[CipherType.decode];
-                      Navigator.pushNamed(context, '/cipherpage', arguments: {'name' : ciphers[index].name, 'encoding' : _encoding, 'page' : page});
+                      Navigator.pushNamed(context, '/cipherpage', arguments: {'name' : ciphers[index].name, 'encoding' : _encoding, 'page' : page, 'checkWin' : ciphers[index].checkWin});
                     },
                     title: Text(
                       ciphers[index].name,
                       style: TextStyle(
                         color: Colors.grey[100],
                         fontWeight: FontWeight.bold,
+                        fontSize: 20,
                         fontFamily: 'Ysabeau'
                       )
                     ),

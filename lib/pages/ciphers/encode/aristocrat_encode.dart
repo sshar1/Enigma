@@ -8,7 +8,7 @@ class AristocratEncode extends StatelessWidget {
   const AristocratEncode({super.key});
 
   void setupAristocrat() async {
-    await AristocratManager.nextAristocrat();
+    await AristocratManager.next();
   }
 
   @override

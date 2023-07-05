@@ -1,6 +1,8 @@
 import 'dart:math';
 
-class AristocratManager {
+import '../cipher_manager.dart';
+
+class AristocratManager implements CipherManager {
   static const List letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   static final Map _key = {}; // Key: plaintext, Value: ciphertext
   static Map userKey = {}; // Key: plaintext, Value: list of ciphertexts
@@ -9,7 +11,7 @@ class AristocratManager {
   static String ciphertext = "";
   static Map frequencies = {}; // Key: ciphertext letter, Value: its frequency in the plaintext
 
-  static Future<void> nextAristocrat() async {
+  static Future<void> next() async {
     _resetUserKey();
     _randomizePlaintext();
     _randomizeKey();
@@ -68,6 +70,17 @@ class AristocratManager {
         frequencies[letter] = 0;
       }
     }
+  }
+
+  static bool keysMatch() {
+    for (String letter in _key.keys) {
+      if (frequencies[_key[letter]] == 0) continue;
+
+      if (userKey[letter].length == 0 || _key[letter] != userKey[letter][0]) {
+        return false;
+      }
+    }
+    return true;
   }
 
   // Converts plaintext to ciphertext
