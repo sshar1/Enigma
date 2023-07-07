@@ -10,9 +10,50 @@ class CharacterCardManager extends StatelessWidget {
 
   static Map textControllers = {};
   static Map textCards = {};
+  static List focusNodes = [];
   static FocusedLetter focusedLetter = FocusedLetter(letter: '');
 
   static const double cardWidth = 25;
+
+  void nextNode(FocusNode current) {
+    if (!hasNextFocusableNode(current)) return;
+    FocusNode nextNode = focusNodes[focusNodes.indexOf(current)+1];
+    if (!nextNode.canRequestFocus) {
+      nextNode = focusNodes[focusNodes.indexOf(current)+2];
+    }
+    nextNode.requestFocus();
+  }
+
+  void previousNode(FocusNode current) {
+    if (!hasPreviousFocusableNode(current)) return;
+    FocusNode previousNode = focusNodes[focusNodes.indexOf(current)-1];
+    if (!previousNode.canRequestFocus) {
+      previousNode = focusNodes[focusNodes.indexOf(current)-2];
+    }
+    previousNode.requestFocus();
+  }
+
+  bool hasNextFocusableNode(FocusNode current) {
+    for (int i = focusNodes.indexOf(current); i < focusNodes.length; ++i) {
+      if (focusNodes[i].canRequestFocus) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool hasPreviousFocusableNode(FocusNode current) {
+    return (focusNodes.indexOf(current) != 0);
+  }
+
+  FocusNode getCurrentFocused() {
+    for (FocusNode node in focusNodes) {
+      if (node.hasFocus) {
+        return node;
+      }
+    }
+    return focusNodes[0];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,49 +61,55 @@ class CharacterCardManager extends StatelessWidget {
     addControllers();
 
     // ignore: invalid_use_of_visible_for_testing_member
-    // TODO this is the starting code for auto focus with arrow keys, which I did not start
-    // ServicesBinding.instance.keyboard.clearState();
-    // ServicesBinding.instance.keyboard.addHandler((KeyEvent event) {
-    //   final key = event.logicalKey.keyLabel;
+    ServicesBinding.instance.keyboard.clearState();
+    ServicesBinding.instance.keyboard.addHandler((KeyEvent event) {
+      final key = event.logicalKey.keyLabel;
 
-    //   if (event is KeyDownEvent) {
-    //     if (key == 'Arrow Right') {
-    //       print('move right');
-    //     }
-    //     if (key == 'Arrow Left') {
-    //       print('move left');
-    //     }
-    //   }
-    //   return false;
-    // });
+      if (event is KeyDownEvent) {
+        if (key == 'Arrow Right') {
+          nextNode(getCurrentFocused());
+        }
+        if (key == 'Arrow Left') {
+          previousNode(getCurrentFocused());
+        }
+      }
+      return false;
+    });
 
-    return Column(
-      children: getRows(context).map((line) => Row(
-        children: line.split('').map<Widget>((character) => Column(
-          children: [
-            Card(
-              margin: const EdgeInsets.only(),
-              color: character.contains(RegExp(r'^[a-zA-Z]+$')) ? Colors.grey[850] : Colors.grey[900],
-              elevation: character.contains(RegExp(r'^[a-zA-Z]+$')) ? 2 : 0,
-              child: SizedBox(
-                width: cardWidth,
-                height: 30,
-                child: Center(
-                  child: Text(
-                    character, 
-                    style: TextStyle(
-                      color: Colors.grey[100],
-                      fontWeight: FontWeight.bold
-                    ),
+    double index = 0;
+    return FocusTraversalGroup(
+      policy: OrderedTraversalPolicy(),
+      child: Column(
+        children: getRows(context).map((line) => Row(
+          children: line.split('').map<Widget>((character) => Column(
+            children: [
+              Card(
+                margin: const EdgeInsets.only(),
+                color: character.contains(RegExp(r'^[a-zA-Z]+$')) ? Colors.grey[850] : Colors.grey[900],
+                elevation: character.contains(RegExp(r'^[a-zA-Z]+$')) ? 2 : 0,
+                child: SizedBox(
+                  width: cardWidth,
+                  height: 30,
+                  child: Center(
+                    child: Text(
+                      character, 
+                      style: TextStyle(
+                        color: Colors.grey[100],
+                        fontWeight: FontWeight.bold
+                      ),
+                    )
                   )
                 )
+              ),
+              const SizedBox(height: 5),
+              FocusTraversalOrder(
+                order: NumericFocusOrder(index++),
+                child: TextCard(character: character, focusedLetter: focusedLetter, textControllers: textControllers, textCards: textCards, focusNodes: focusNodes,)
               )
-            ),
-            const SizedBox(height: 5),
-            TextCard(character: character, focusedLetter: focusedLetter, textControllers: textControllers, textCards: textCards)
-          ],
+            ],
+          )).toList()
         )).toList()
-      )).toList()
+      ),
     );
   }
 
@@ -123,8 +170,15 @@ class TextCard extends StatefulWidget {
   final FocusedLetter focusedLetter;
   final Map textControllers;
   final Map textCards;
+  final List focusNodes;
 
-  const TextCard({super.key, required this.character, required this.focusedLetter, required this.textControllers, required this.textCards});
+  const TextCard({super.key, 
+    required this.character, 
+    required this.focusedLetter, 
+    required this.textControllers, 
+    required this.textCards, 
+    required this.focusNodes
+  });
 
   @override
   State<TextCard> createState() => _TextCardState();
@@ -134,12 +188,34 @@ class _TextCardState extends State<TextCard> {
 
   bool? borderRed;
   String? prevCharacter;
+  final FocusNode _focus = FocusNode();
 
   @override
   void initState() {
     super.initState();
     borderRed = false;
     prevCharacter = '';
+    widget.focusNodes.add(_focus);
+    _focus.addListener(_onFocusChange);
+  }
+
+  @override
+  void dispose() {
+    _focus.removeListener(_onFocusChange);
+    widget.focusNodes.remove(_focus);
+    _focus.dispose();
+    super.dispose();
+  }
+
+  void _onFocusChange() {
+    if (widget.focusedLetter.letter.contains(RegExp(r'^[a-zA-Z]+$'))) {
+      for (_TextCardState textCard in widget.textCards[widget.focusedLetter.letter]) {
+        textCard.callback();
+      }
+    }
+    for (_TextCardState textCard in widget.textCards[widget.character]) {
+      textCard.callback();
+    }
   }
 
   void callback() {
@@ -175,6 +251,7 @@ class _TextCardState extends State<TextCard> {
         height: 30,
         child: Center(
           child: TextField(
+            focusNode: _focus,
             controller: widget.textControllers.containsKey(widget.character) ? widget.textControllers[widget.character] : null,
             enabled: widget.character.contains(RegExp(r'^[a-zA-Z]+$')) ? true : false,
             showCursor: false,
@@ -222,16 +299,7 @@ class _TextCardState extends State<TextCard> {
                 }
               }
             },
-            onTap: () {
-              if (widget.focusedLetter.letter.contains(RegExp(r'^[a-zA-Z]+$'))) {
-                for (_TextCardState textCard in widget.textCards[widget.focusedLetter.letter]) {
-                  textCard.callback();
-                }
-              }
-              for (_TextCardState textCard in widget.textCards[widget.character]) {
-                textCard.callback();
-              }
-            }
+            onTap: _onFocusChange,
           )
         )
       )
