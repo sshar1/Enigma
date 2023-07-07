@@ -11,6 +11,14 @@ class CipherPage extends StatefulWidget {
 
 class _CipherPageState extends State<CipherPage> {
   Map data = {};
+  final Stopwatch stopwatch = Stopwatch();
+
+  @override
+  void initState() {
+    super.initState();
+    stopwatch.reset();
+    stopwatch.start();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,28 +51,16 @@ class _CipherPageState extends State<CipherPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: const Icon(Icons.access_time),
-                    title: const Text(
-                      "3:24",
-                      style: TextStyle(
-                        fontFamily: 'Ysabeau',
-                        fontSize: 20
-                      ),
-                    ),
-                    tileColor: Colors.transparent,
-                    iconColor: Colors.grey[100],
-                    textColor: Colors.grey[100],
-                  ),
+                  child: Timer(stopwatch: stopwatch)
                 ),
                 ElevatedButton(
                   style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
                   ),
-                  onPressed: () {
-                    _dialogBuilder(context);
+                  onPressed: () async {
+                    stopwatch.stop();
                     confettiController.play();
+                    _dialogBuilder(context, (stopwatch.elapsedMilliseconds / 1000).truncate());
                     // if (data['checkWin']()) {
                     //   _dialogBuilder(context);
                     //   print('won');
@@ -82,16 +78,16 @@ class _CipherPageState extends State<CipherPage> {
     );
   }
 
-  Future<void> _dialogBuilder(BuildContext context) {
+  Future<void> _dialogBuilder(BuildContext context, int seconds) {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.grey[900],
-          title: const Text(
-            'Solved in [time]',
-            style: TextStyle(
+          title: Text(
+            'Solved in $seconds seconds',
+            style: const TextStyle(
               color: Colors.white
             )
           ),
@@ -108,7 +104,7 @@ class _CipherPageState extends State<CipherPage> {
                   backgroundColor: MaterialStatePropertyAll<Color>(Colors.white),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.popUntil(context, ModalRoute.withName('/home'));
                 },
                 child: Text(
                   "Home",
@@ -175,6 +171,49 @@ class _ConfettiState extends State<Confetti> {
       ],
       numberOfParticles: 2,
       emissionFrequency: 1,
+    );
+  }
+}
+
+class Timer extends StatefulWidget {
+  final Stopwatch stopwatch;
+  String text = "Time";
+
+  Timer({super.key, required this.stopwatch});
+
+  @override
+  State<Timer> createState() => _TimerState();
+}
+
+class _TimerState extends State<Timer> {
+  @override
+  Widget build(BuildContext context) {
+
+    return MouseRegion(
+      onHover: ((event) {
+        setState(() {
+          widget.text = '${(widget.stopwatch.elapsedMilliseconds / 1000).truncate()}';
+        });
+      }),
+      onExit: (event) {
+        setState(() {
+          widget.text = "Time";
+        });
+      },
+      child: ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: const Icon(Icons.access_time),
+        title: Text(
+          widget.text,
+          style: const TextStyle(
+            fontFamily: 'Ysabeau',
+            fontSize: 20
+          ),
+        ),
+        tileColor: Colors.transparent,
+        iconColor: Colors.grey[100],
+        textColor: Colors.grey[100],
+      ),
     );
   }
 }
