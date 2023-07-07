@@ -177,34 +177,40 @@ class _ConfettiState extends State<Confetti> {
 
 class Timer extends StatefulWidget {
   final Stopwatch stopwatch;
-  String text = "Time";
 
-  Timer({super.key, required this.stopwatch});
+  const Timer({super.key, required this.stopwatch});
 
   @override
   State<Timer> createState() => _TimerState();
 }
 
 class _TimerState extends State<Timer> {
+  String? text;
+
+  @override
+  void initState() {
+    super.initState();
+    text = "Time";
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return MouseRegion(
       onHover: ((event) {
         setState(() {
-          widget.text = '${(widget.stopwatch.elapsedMilliseconds / 1000).truncate()}';
+          text = '${(widget.stopwatch.elapsedMilliseconds / 1000).truncate()}';
         });
       }),
       onExit: (event) {
         setState(() {
-          widget.text = "Time";
+          text = "Time";
         });
       },
       child: ListTile(
         contentPadding: EdgeInsets.zero,
         leading: const Icon(Icons.access_time),
         title: Text(
-          widget.text,
+          text!,
           style: const TextStyle(
             fontFamily: 'Ysabeau',
             fontSize: 20

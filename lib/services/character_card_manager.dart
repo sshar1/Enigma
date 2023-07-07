@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:myapp/services/ciphers/aristocrat_manager.dart';
 
 import 'character_list.dart';
@@ -17,6 +18,23 @@ class CharacterCardManager extends StatelessWidget {
   Widget build(BuildContext context) {
     focusedLetter.letter = '';
     addControllers();
+
+    // ignore: invalid_use_of_visible_for_testing_member
+    // TODO this is the starting code for auto focus with arrow keys, which I did not start
+    // ServicesBinding.instance.keyboard.clearState();
+    // ServicesBinding.instance.keyboard.addHandler((KeyEvent event) {
+    //   final key = event.logicalKey.keyLabel;
+
+    //   if (event is KeyDownEvent) {
+    //     if (key == 'Arrow Right') {
+    //       print('move right');
+    //     }
+    //     if (key == 'Arrow Left') {
+    //       print('move left');
+    //     }
+    //   }
+    //   return false;
+    // });
 
     return Column(
       children: getRows(context).map((line) => Row(
