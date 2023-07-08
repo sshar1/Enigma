@@ -7,8 +7,9 @@ class AristocratManager implements CipherManager {
   static final Map _key = {}; // Key: plaintext, Value: ciphertext
   static Map userKey = {}; // Key: plaintext, Value: list of ciphertexts
 
-  static String plaintext = "I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin, but by the content of their character.".toUpperCase();
+  static String _plaintext = "";
   static String ciphertext = "";
+  static String _title = "";
   static Map frequencies = {}; // Key: ciphertext letter, Value: its frequency in the plaintext
 
   static Future<void> next() async {
@@ -26,7 +27,8 @@ class AristocratManager implements CipherManager {
   }
 
   static void _randomizePlaintext() {
-    plaintext = "I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin, but by the content of their character.".toUpperCase();
+    _title = '[200 points] This is a sample aristocrat by Martin Luther King';
+    _plaintext = "I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin, but by the content of their character.".toUpperCase();
   }
 
   static void _randomizeKey() {
@@ -44,7 +46,7 @@ class AristocratManager implements CipherManager {
 
   static void _updateCiphertext() {
     ciphertext = "";
-    for (String letter in plaintext.split('')) {
+    for (String letter in _plaintext.split('')) {
       if (!_key.containsKey(letter)) {
         ciphertext += letter;
       }
@@ -81,6 +83,14 @@ class AristocratManager implements CipherManager {
       }
     }
     return true;
+  }
+
+  static String getTitle() {
+    return _title;
+  }
+
+  static String getPlaintext() {
+    return _plaintext;
   }
 
   // Converts plaintext to ciphertext

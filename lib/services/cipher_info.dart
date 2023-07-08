@@ -6,7 +6,16 @@ class CipherInfo {
   String description; // Description of cipher
   Color color; // Color for card
   Map pages; // Encode and decode pages
-  Function checkWin; // Manager for cipher
+  Function checkWin;
+  Function getPlaintext;
 
-  CipherInfo( {required this.name, required this.image, required this.description, required this.color, required this.pages, required this.checkWin} );
+  CipherInfo({
+    required this.name, 
+    required this.image, 
+    required this.description, 
+    required this.color, 
+    required this.pages, 
+    required this.checkWin, 
+    required this.getPlaintext
+  });
 }

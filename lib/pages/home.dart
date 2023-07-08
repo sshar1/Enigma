@@ -26,7 +26,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  // TODO temporariily everything has been given an AristocratManager win check function
+  // TODO temporariily everything has been given an AristocratManager instead of their own cipher manager
   List<CipherInfo> ciphers = [
     CipherInfo(
       name: 'Aristocrat', 
@@ -35,7 +35,8 @@ class _HomeState extends State<Home> {
       'A ciphertext letter cannot correspond to the same plaintext letter.', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const AristocratEncode(), CipherType.decode : const AristocratDecode()},
-      checkWin: AristocratManager.keysMatch
+      checkWin: AristocratManager.keysMatch,
+      getPlaintext: AristocratManager.getPlaintext
     ),
     CipherInfo(
       name: 'Patristocrat', 
@@ -44,7 +45,8 @@ class _HomeState extends State<Home> {
       'spaces in the plaintext. A space in the ciphertext is shown every 5 characters.', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const PatristocratEncode(), CipherType.decode : const PatristocratDecode()},
-      checkWin: AristocratManager.keysMatch
+      checkWin: AristocratManager.keysMatch,
+      getPlaintext: AristocratManager.getPlaintext
     ),
     CipherInfo(
       name: 'Xenocrypt', 
@@ -53,7 +55,8 @@ class _HomeState extends State<Home> {
       'letter: ñ', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const XenocryptEncode(), CipherType.decode : const XenocryptDecode()},
-      checkWin: AristocratManager.keysMatch
+      checkWin: AristocratManager.keysMatch,
+      getPlaintext: AristocratManager.getPlaintext
     ),
     CipherInfo(
       name: 'Pollux', 
@@ -62,7 +65,8 @@ class _HomeState extends State<Home> {
       'in morse code.', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const PolluxEncode(), CipherType.decode : const PolluxDecode()},
-      checkWin: AristocratManager.keysMatch
+      checkWin: AristocratManager.keysMatch,
+      getPlaintext: AristocratManager.getPlaintext
     ),
     CipherInfo(
       name: 'Morbit', 
@@ -70,7 +74,8 @@ class _HomeState extends State<Home> {
       description: 'The sample encryption patter as the pollux cipher, but each number corresponds to 2 morse characters (eg. x- or .-).', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const MorbitEncode(), CipherType.decode : const MorbitDecode()},
-      checkWin: AristocratManager.keysMatch
+      checkWin: AristocratManager.keysMatch,
+      getPlaintext: AristocratManager.getPlaintext
     ),
     CipherInfo(
       name: 'Hill', 
@@ -78,8 +83,9 @@ class _HomeState extends State<Home> {
       description: 'A cipher that is solved using a key 2x2 matrix. The rules are complex so read the sci oly wiki page for more info.', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const HillEncode(), CipherType.decode : const HillDecode()},
-      checkWin: AristocratManager.keysMatch
-      ),
+      checkWin: AristocratManager.keysMatch,
+      getPlaintext: AristocratManager.getPlaintext
+    ),
   ];
 
   bool _encoding = true;
@@ -141,7 +147,13 @@ class _HomeState extends State<Home> {
                   child: ListTile(
                     onTap: () {
                       Widget page = _encoding ? ciphers[index].pages[CipherType.encode] : ciphers[index].pages[CipherType.decode];
-                      Navigator.pushNamed(context, '/cipherpage', arguments: {'name' : ciphers[index].name, 'encoding' : _encoding, 'page' : page, 'checkWin' : ciphers[index].checkWin});
+                      Navigator.pushNamed(context, '/cipherpage', arguments: {
+                        'name' : ciphers[index].name, 
+                        'encoding' : _encoding, 
+                        'page' : page, 
+                        'checkWin' : ciphers[index].checkWin,
+                        'plaintext' : ciphers[index].getPlaintext,
+                      });
                     },
                     title: Text(
                       ciphers[index].name,

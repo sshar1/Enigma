@@ -15,11 +15,23 @@ class AristocratEncode extends StatelessWidget {
   Widget build(BuildContext context) {
     setupAristocrat();
 
-    return const Column(
+    return Column(
       children: [
-        CharacterCardManager(marginTotal: 100),
-        SizedBox(height: 50),
-        CharacterList()
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            AristocratManager.getTitle(),
+            style: TextStyle(
+              color: Colors.grey[100],
+              fontFamily: "Ysabeau",
+              fontSize: 17
+            )
+          ),
+        ),
+        const SizedBox(height: 20),
+        const CharacterCardManager(marginTotal: 100),
+        const SizedBox(height: 50),
+        const CharacterList()
       ],
     );
   }

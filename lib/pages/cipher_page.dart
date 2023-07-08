@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/services/ciphers/aristocrat_manager.dart';
 import 'package:confetti/confetti.dart';
 
 class CipherPage extends StatefulWidget {
@@ -92,7 +91,7 @@ class _CipherPageState extends State<CipherPage> {
             )
           ),
           content: Text(
-            breakText(AristocratManager.plaintext), // TODO change this to the current manager's plaintext
+            breakText(data['plaintext']()),
             style: const TextStyle(
               color: Colors.white
             )
