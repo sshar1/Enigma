@@ -16,10 +16,22 @@ class PatristocratManager implements CipherManager {
   static String _title = "";
   static Map frequencies = {}; // Key: ciphertext letter, Value: its frequency in the plaintext
 
+  static String _keyword = "";
+  static bool isK1 = true;
+
   static Future<void> next() async {
+    _random(0, 10) < 8 ? isK1 = true : isK1 = false; // 80% chance for being k1
     _resetUserKey();
     await _randomizePlaintext();
-    _randomizeKey();
+
+    if (isK1) {
+      _randomizeKeyword();
+      _randomizeK1Key(letters, getUniqueLetters(_keyword));
+      _title += ' It is encoded with a K1 alphabet';
+    } else {
+       _randomizeKey();
+    }
+
     _updateCiphertext();
     _updateFrequencies();
   }
@@ -28,6 +40,10 @@ class PatristocratManager implements CipherManager {
     for (String str in letters) {
       userKey[str] = [];
     }
+  }
+
+  static _randomizeKeyword() {
+    _keyword = "hello".toUpperCase();
   }
 
   static Future<Map> _getRandomPatristocrat() async {
@@ -58,6 +74,22 @@ class PatristocratManager implements CipherManager {
       }
     }
   }
+
+  static void _randomizeK1Key(List letters, List keyword) {
+    List temp = List.from(letters);
+    
+    int offset = _random(0, 26);
+    for (String letter in keyword) {
+      _key[letter] = letters[offset % 26];
+      temp.remove(letter);
+      offset++;
+    }
+    
+    for(String letter in temp) {
+      _key[letter] = letters[offset % 26];
+      offset++;
+    }
+}
 
   static void _updateCiphertext() {
     ciphertext = "";
@@ -115,6 +147,18 @@ class PatristocratManager implements CipherManager {
       }
     }
     return convertedPlaintext;
+  }
+
+  static List getUniqueLetters(String text) {
+    List uniqueLetters = [];
+    
+    for(String s in text.split('')) {
+      if (!uniqueLetters.contains(s)) {
+        uniqueLetters.add(s);
+      }
+    }
+    
+    return uniqueLetters;
   }
 
   static String getTitle() {
