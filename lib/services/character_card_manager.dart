@@ -122,7 +122,7 @@ class CharacterCardManager extends StatelessWidget {
   }
 
   List getRows(BuildContext context) {
-    String quote = ciphertext; // TODO add argument for getting the ciphertext, dont use aristocrat manager directly
+    String quote = ciphertext;
     int width = MediaQuery.of(context).size.width.toInt();
     int marginTotal = 100;
   

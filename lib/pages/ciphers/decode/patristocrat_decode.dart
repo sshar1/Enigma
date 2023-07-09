@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/services/ciphers/patristocrat_manager.dart';
+
+import '../../../services/character_card_manager.dart';
+import '../../../services/character_list.dart';
 
 class PatristocratDecode extends StatefulWidget {
   const PatristocratDecode({super.key});
@@ -10,6 +14,25 @@ class PatristocratDecode extends StatefulWidget {
 class _PatristocratDecodeState extends State<PatristocratDecode> {
   @override
   Widget build(BuildContext context) {
-    return const Text("This is the placeholder for Patristocrat decode");
+    print(PatristocratManager.ciphertext);
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            PatristocratManager.getTitle(),
+            style: TextStyle(
+              color: Colors.grey[100],
+              fontFamily: "Ysabeau",
+              fontSize: 17
+            )
+          ),
+        ),
+        const SizedBox(height: 20),
+        CharacterCardManager(marginTotal: 100, userKey: PatristocratManager.userKey, ciphertext: PatristocratManager.ciphertext),
+        const SizedBox(height: 50),
+        CharacterList(frequencies: PatristocratManager.frequencies, userKey: PatristocratManager.userKey,)
+      ],
+    );
   }
 }

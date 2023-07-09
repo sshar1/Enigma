@@ -12,6 +12,7 @@ import 'package:myapp/pages/ciphers/encode/patristocrat_encode.dart';
 import 'package:myapp/pages/ciphers/encode/pollux_encode.dart';
 import 'package:myapp/pages/ciphers/encode/xenocrypt_encode.dart';
 import 'package:myapp/services/cipher_type.dart';
+import 'package:myapp/services/ciphers/patristocrat_manager.dart';
 
 import '../services/cipher_info.dart';
 import '../services/ciphers/aristocrat_manager.dart';
@@ -26,7 +27,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  // TODO temporariily everything has been given an AristocratManager instead of their own cipher manager
+  // TODO temporarily everything has been given an AristocratManager instead of their own cipher manager
   List<CipherInfo> ciphers = [
     CipherInfo(
       name: 'Aristocrat', 
@@ -46,9 +47,9 @@ class _HomeState extends State<Home> {
       'spaces in the plaintext. A space in the ciphertext is shown every 5 characters.', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const PatristocratEncode(), CipherType.decode : const PatristocratDecode()},
-      checkWin: AristocratManager.keysMatch,
-      getPlaintext: AristocratManager.getPlaintext,
-      nextCipher: AristocratManager.next,
+      checkWin: PatristocratManager.keysMatch,
+      getPlaintext: PatristocratManager.getPlaintext,
+      nextCipher: PatristocratManager.next,
     ),
     CipherInfo(
       name: 'Xenocrypt', 
@@ -152,7 +153,7 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: ListTile(
                     onTap: () async {
-                      if (_encoding) await ciphers[index].nextCipher(); // TODO change this to !_encoding
+                      if (!_encoding) await ciphers[index].nextCipher();
                       Widget page = _encoding ? ciphers[index].pages[CipherType.encode] : ciphers[index].pages[CipherType.decode];
                       // ignore: use_build_context_synchronously
                       Navigator.pushNamed(context, '/cipherpage', arguments: {

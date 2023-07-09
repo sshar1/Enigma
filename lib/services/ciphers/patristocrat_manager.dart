@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 
 import '../cipher_manager.dart';
 
-class AristocratManager implements CipherManager {
+class PatristocratManager implements CipherManager {
   static const List letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   static final Map _key = {}; // Key: plaintext, Value: ciphertext
   static Map userKey = {}; // Key: plaintext, Value: list of ciphertexts
@@ -30,17 +30,17 @@ class AristocratManager implements CipherManager {
     }
   }
 
-  static Future<Map> _getRandomAristocrat() async {
-    final String response = await rootBundle.loadString('lib/json/aristocrat.json');
+  static Future<Map> _getRandomPatristocrat() async {
+    final String response = await rootBundle.loadString('lib/json/patristocrat.json');
     final aristocrats = await json.decode(response);
     
     return aristocrats[_random(0, aristocrats.length)];
   }
 
   static Future<void> _randomizePlaintext() async {
-    Map aristocrat = await _getRandomAristocrat();
+    Map aristocrat = await _getRandomPatristocrat();
     _plaintext = aristocrat['plaintext'];
-    _convertedPlaintext = _plaintext.toUpperCase();
+    _convertedPlaintext = convertText(_plaintext);
     _title = aristocrat['title'];
     print(_plaintext);
     print(_title);
@@ -98,6 +98,23 @@ class AristocratManager implements CipherManager {
       }
     }
     return true;
+  }
+
+  static String convertText(String plaintext) {
+    String convertedPlaintext = "";
+    plaintext = plaintext.toUpperCase();
+    int count = 0;
+
+    for (String s in plaintext.split('')) {
+      if (s.contains(RegExp(r'^[a-zA-Z]+$'))) {
+        if (count % 5 == 0 && count != 0) {
+          convertedPlaintext += ' ';
+        }
+        convertedPlaintext += s;
+        count++;
+      }
+    }
+    return convertedPlaintext;
   }
 
   static String getTitle() {
