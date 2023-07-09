@@ -3,7 +3,9 @@ import 'package:myapp/services/ciphers/aristocrat_manager.dart';
 
 
 class CharacterList extends StatelessWidget {
-  const CharacterList({super.key});
+  final Map frequencies;
+  final Map userKey;
+  const CharacterList({super.key, required this.frequencies, required this.userKey});
 
   static final Map replacementCardStates = {};
 
@@ -43,7 +45,7 @@ class CharacterList extends StatelessWidget {
                 height: 30,
                 child: Center(
                   child: Text(
-                    AristocratManager.frequencies[letter] == 0 ? '' : AristocratManager.frequencies[letter].toString(),
+                    frequencies[letter] == 0 ? '' : frequencies[letter].toString(),
                     style: TextStyle(
                       color: Colors.grey[100],
                       fontWeight: FontWeight.bold
@@ -52,7 +54,7 @@ class CharacterList extends StatelessWidget {
                 )
               )
           ),
-          Replacement(letter: letter)
+          Replacement(letter: letter, userKey: userKey)
         ],
       )).toList()
     );
@@ -67,7 +69,8 @@ class CharacterList extends StatelessWidget {
 
 class Replacement extends StatefulWidget {
   final String letter; // Ciphertext letter
-  const Replacement({super.key, required this.letter});
+  final Map userKey;
+  const Replacement({super.key, required this.letter, required this.userKey});
 
   @override
   State<Replacement> createState() => ReplacementState();
@@ -109,10 +112,10 @@ class ReplacementState extends State<Replacement> {
   }
 
   String getText() {
-    for (String plaintext in AristocratManager.userKey.keys) {
-      if (AristocratManager.userKey[plaintext].length == 0) continue;
+    for (String plaintext in widget.userKey.keys) {
+      if (widget.userKey[plaintext].length == 0) continue;
 
-      if (AristocratManager.userKey[plaintext][0] == widget.letter) {
+      if (widget.userKey[plaintext][0] == widget.letter) {
         return plaintext;
       }
     }

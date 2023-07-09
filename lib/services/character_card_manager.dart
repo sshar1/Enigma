@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:myapp/services/ciphers/aristocrat_manager.dart';
 
 import 'character_list.dart';
 
 class CharacterCardManager extends StatelessWidget {
   final int marginTotal;
-  const CharacterCardManager({super.key, required this.marginTotal});
+  final String ciphertext;
+  final Map userKey;
+  const CharacterCardManager({super.key, required this.marginTotal, required this.ciphertext, required this.userKey});
 
   static Map textControllers = {};
   static Map textCards = {};
@@ -93,7 +94,7 @@ class CharacterCardManager extends StatelessWidget {
               const SizedBox(height: 5),
               FocusTraversalOrder(
                 order: NumericFocusOrder(index++),
-                child: TextCard(character: character, focusedLetter: focusedLetter, textControllers: textControllers, textCards: textCards, focusNodes: focusNodes,)
+                child: TextCard(character: character, focusedLetter: focusedLetter, textControllers: textControllers, textCards: textCards, focusNodes: focusNodes, userKey: userKey,)
               )
             ],
           )).toList()
@@ -121,7 +122,7 @@ class CharacterCardManager extends StatelessWidget {
   }
 
   List getRows(BuildContext context) {
-    String quote = AristocratManager.ciphertext; // TODO add argument for getting the ciphertext, dont use aristocrat manager directly
+    String quote = ciphertext; // TODO add argument for getting the ciphertext, dont use aristocrat manager directly
     int width = MediaQuery.of(context).size.width.toInt();
     int marginTotal = 100;
   
@@ -160,13 +161,15 @@ class TextCard extends StatefulWidget {
   final Map textControllers;
   final Map textCards;
   final List focusNodes;
+  final Map userKey;
 
   const TextCard({super.key, 
     required this.character, 
     required this.focusedLetter, 
     required this.textControllers, 
     required this.textCards, 
-    required this.focusNodes
+    required this.focusNodes,
+    required this.userKey
   });
 
   @override
@@ -261,27 +264,27 @@ class _TextCardState extends State<TextCard> {
             onChanged: (characterEntered) {
               if (characterEntered == '') {
                 String? temp = prevCharacter;
-                AristocratManager.userKey[prevCharacter].remove(widget.character);
+                widget.userKey[prevCharacter].remove(widget.character);
                 CharacterList.replacementCardStates[widget.character].callback();
                 for (_TextCardState textCard in widget.textCards[widget.character]) {
                   textCard.prevCharacter = characterEntered;
                   textCard.redBorder(false);
                 }
-                if (AristocratManager.userKey[temp].length == 0) return;
-                CharacterList.replacementCardStates[AristocratManager.userKey[temp][0]].callback();
-                for (_TextCardState textCard in widget.textCards[AristocratManager.userKey[temp][0]]) {
+                if (widget.userKey[temp].length == 0) return;
+                CharacterList.replacementCardStates[widget.userKey[temp][0]].callback();
+                for (_TextCardState textCard in widget.textCards[widget.userKey[temp][0]]) {
                   textCard.redBorder(false);
                 }
                 return;
               }
 
-              AristocratManager.userKey[characterEntered].add(widget.character);
+              widget.userKey[characterEntered].add(widget.character);
               CharacterList.replacementCardStates[widget.character].callback();
               for (_TextCardState textCard in widget.textCards[widget.character]) {
                 textCard.prevCharacter = characterEntered;
               }
 
-              if (AristocratManager.userKey[characterEntered].length > 1) {
+              if (widget.userKey[characterEntered].length > 1) {
                 for (_TextCardState textCard in widget.textCards[widget.character]) {
                   textCard.prevCharacter = characterEntered;
                   textCard.redBorder(true);
