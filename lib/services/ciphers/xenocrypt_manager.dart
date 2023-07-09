@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 
 import '../cipher_manager.dart';
 
-class PatristocratManager implements CipherManager {
-  static const List letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+class XenocryptManager implements CipherManager {
+  static const List letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   static final Map _key = {}; // Key: plaintext, Value: ciphertext
   static Map userKey = {}; // Key: plaintext, Value: list of ciphertexts
 
@@ -30,7 +30,7 @@ class PatristocratManager implements CipherManager {
       while(_keyHasMatches(_key)) {
         _randomizeK1Key(letters, getUniqueLetters(_keyword));
       }
-      _title += ' It is encoded with a K1 alphabet.';
+      _title += ' It is encoded with a K1 alphabet and an English keyword.';
     } else {
        _randomizeKey();
     }
@@ -52,18 +52,18 @@ class PatristocratManager implements CipherManager {
     _keyword = keywords[_random(0, keywords.length)].toUpperCase();
   }
 
-  static Future<Map> _getRandomPatristocrat() async {
-    final String response = await rootBundle.loadString('lib/json/patristocrat.json');
-    final patristocrats = await json.decode(response);
+  static Future<Map> _getRandomXenocrypt() async {
+    final String response = await rootBundle.loadString('lib/json/xenocrypt.json');
+    final xenocrypts = await json.decode(response);
     
-    return patristocrats[_random(0, patristocrats.length)];
+    return xenocrypts[_random(0, xenocrypts.length)];
   }
 
   static Future<void> _randomizePlaintext() async {
-    Map patristocrat = await _getRandomPatristocrat();
-    _plaintext = patristocrat['plaintext'];
-    _convertedPlaintext = convertText(_plaintext);
-    _title = patristocrat['title'];
+    Map xenocrypt = await _getRandomXenocrypt();
+    _plaintext = xenocrypt['plaintext'];
+    _convertedPlaintext = _plaintext.toUpperCase();
+    _title = xenocrypt['title'];
     print(_plaintext);
     print(_title);
   }
@@ -84,15 +84,15 @@ class PatristocratManager implements CipherManager {
   static void _randomizeK1Key(List letters, List keyword) {
     List temp = List.from(letters);
     
-    int offset = _random(0, 26);
+    int offset = _random(0, 27);
     for (String letter in keyword) {
-      _key[letter] = letters[offset % 26];
+      _key[letter] = letters[offset % 27];
       temp.remove(letter);
       offset++;
     }
     
     for(String letter in temp) {
-      _key[letter] = letters[offset % 26];
+      _key[letter] = letters[offset % 27];
       offset++;
     }
 }
@@ -112,7 +112,7 @@ class PatristocratManager implements CipherManager {
   static void _updateFrequencies() {
     frequencies = {};
     for (String char in ciphertext.split('')) {
-      if (!char.contains(RegExp(r'^[a-zA-Z]+$'))) continue;
+      if (!char.contains(RegExp(r'^[a-zA-ZÑñ]+$'))) continue;
       if (!frequencies.containsKey(char)) {
         frequencies[char] = 1;
         continue;
@@ -155,7 +155,7 @@ class PatristocratManager implements CipherManager {
     int count = 0;
 
     for (String s in plaintext.split('')) {
-      if (s.contains(RegExp(r'^[a-zA-Z]+$'))) {
+      if (s.contains(RegExp(r'^[a-zA-ZÑñ]+$'))) {
         if (count % 5 == 0 && count != 0) {
           convertedPlaintext += ' ';
         }

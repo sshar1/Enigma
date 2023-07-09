@@ -16,6 +16,7 @@ import 'package:myapp/services/ciphers/patristocrat_manager.dart';
 
 import '../services/cipher_info.dart';
 import '../services/ciphers/aristocrat_manager.dart';
+import '../services/ciphers/xenocrypt_manager.dart';
 import 'ciphers/decode/xenocrypt_decode.dart';
 
 class Home extends StatefulWidget {
@@ -58,9 +59,9 @@ class _HomeState extends State<Home> {
       'letter: ñ', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const XenocryptEncode(), CipherType.decode : const XenocryptDecode()},
-      checkWin: AristocratManager.keysMatch,
-      getPlaintext: AristocratManager.getPlaintext,
-      nextCipher: AristocratManager.next,
+      checkWin: XenocryptManager.keysMatch,
+      getPlaintext: XenocryptManager.getPlaintext,
+      nextCipher: XenocryptManager.next,
     ),
     CipherInfo(
       name: 'Pollux', 

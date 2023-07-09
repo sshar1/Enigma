@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'character_list.dart';
+import 'ciphers/aristocrat_manager.dart';
+import 'ciphers/xenocrypt_manager.dart';
+import 'language.dart';
 
 class CharacterCardManager extends StatelessWidget {
   final int marginTotal;
   final String ciphertext;
   final Map userKey;
-  const CharacterCardManager({super.key, required this.marginTotal, required this.ciphertext, required this.userKey});
+  final Language language;
+  const CharacterCardManager({super.key, required this.marginTotal, required this.ciphertext, required this.userKey, required this.language});
 
   static Map textControllers = {};
   static Map textCards = {};
@@ -48,7 +52,9 @@ class CharacterCardManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     focusedLetter.letter = '';
-    addControllers();
+    RegExp validLetters = (language == Language.english) ? RegExp(r'^[a-zA-Z]+$') : RegExp(r'^[a-zA-ZÑñ]+$');
+    List letters = (language == Language.english) ? AristocratManager.letters : XenocryptManager.letters; 
+    addControllers(validLetters, letters);
 
     // ignore: invalid_use_of_visible_for_testing_member
     ServicesBinding.instance.keyboard.clearState();
@@ -75,8 +81,8 @@ class CharacterCardManager extends StatelessWidget {
             children: [
               Card(
                 margin: const EdgeInsets.only(),
-                color: character.contains(RegExp(r'^[a-zA-Z]+$')) ? Colors.grey[850] : Colors.grey[900],
-                elevation: character.contains(RegExp(r'^[a-zA-Z]+$')) ? 2 : 0,
+                color: character.contains(validLetters) ? Colors.grey[850] : Colors.grey[900],
+                elevation: character.contains(validLetters) ? 2 : 0,
                 child: SizedBox(
                   width: cardWidth,
                   height: 30,
@@ -94,7 +100,15 @@ class CharacterCardManager extends StatelessWidget {
               const SizedBox(height: 5),
               FocusTraversalOrder(
                 order: NumericFocusOrder(index++),
-                child: TextCard(character: character, focusedLetter: focusedLetter, textControllers: textControllers, textCards: textCards, focusNodes: focusNodes, userKey: userKey,)
+                child: TextCard(
+                  character: character, 
+                  focusedLetter: focusedLetter, 
+                  textControllers: textControllers, 
+                  textCards: textCards, 
+                  focusNodes: focusNodes, 
+                  userKey: userKey, 
+                  validLetters: validLetters,
+                )
               )
             ],
           )).toList()
@@ -103,12 +117,12 @@ class CharacterCardManager extends StatelessWidget {
     );
   }
 
-  static void addControllers() {
-    for (int i = 65; i <= 90; ++i) {
+  static void addControllers(RegExp validLetters, List letters) {
+    for (String letter in letters) {
       TextEditingController controller = TextEditingController();
 
       controller.addListener(() {
-        final String text = controller.text.contains(RegExp(r'^[a-zA-Z]+$')) ? controller.text.toUpperCase() : '';
+        final String text = controller.text.contains(validLetters) ? controller.text.toUpperCase() : '';
         controller.value = controller.value.copyWith(
           text: text,
           selection:
@@ -117,7 +131,7 @@ class CharacterCardManager extends StatelessWidget {
         );
       });
 
-      textControllers[String.fromCharCode(i)] = controller;
+      textControllers[letter] = controller;
     }
   }
 
@@ -162,6 +176,7 @@ class TextCard extends StatefulWidget {
   final Map textCards;
   final List focusNodes;
   final Map userKey;
+  final RegExp validLetters;
 
   const TextCard({super.key, 
     required this.character, 
@@ -169,7 +184,8 @@ class TextCard extends StatefulWidget {
     required this.textControllers, 
     required this.textCards, 
     required this.focusNodes,
-    required this.userKey
+    required this.userKey,
+    required this.validLetters
   });
 
   @override
@@ -200,7 +216,7 @@ class _TextCardState extends State<TextCard> {
   }
 
   void _onFocusChange() {
-    if (widget.focusedLetter.letter.contains(RegExp(r'^[a-zA-Z]+$'))) {
+    if (widget.focusedLetter.letter.contains(widget.validLetters)) {
       for (_TextCardState textCard in widget.textCards[widget.focusedLetter.letter]) {
         textCard.callback();
       }
@@ -235,8 +251,8 @@ class _TextCardState extends State<TextCard> {
   Widget build(BuildContext context) {
     Widget card = Card(
       margin: const EdgeInsets.only(bottom: 20),
-      color: widget.character.contains(RegExp(r'^[a-zA-Z]+$')) ? Colors.grey[850] : Colors.grey[900],
-      elevation: widget.character.contains(RegExp(r'^[a-zA-Z]+$')) ? 2 : 0,
+      color: widget.character.contains(widget.validLetters) ? Colors.grey[850] : Colors.grey[900],
+      elevation: widget.character.contains(widget.validLetters) ? 2 : 0,
       shape: widget.character == widget.focusedLetter.letter ? LinearBorder.bottom(side: BorderSide(color: getBorderColor())) : null,
       child: SizedBox(
         width: 25,
@@ -245,7 +261,7 @@ class _TextCardState extends State<TextCard> {
           child: TextField(
             focusNode: _focus,
             controller: widget.textControllers.containsKey(widget.character) ? widget.textControllers[widget.character] : null,
-            enabled: widget.character.contains(RegExp(r'^[a-zA-Z]+$')) ? true : false,
+            enabled: widget.character.contains(widget.validLetters) ? true : false,
             showCursor: false,
             textAlign: TextAlign.center,
             maxLength: 1,

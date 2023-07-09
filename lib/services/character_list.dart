@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/services/ciphers/aristocrat_manager.dart';
-
+import 'package:myapp/services/ciphers/xenocrypt_manager.dart';
+import 'package:myapp/services/language.dart';
 
 class CharacterList extends StatelessWidget {
   final Map frequencies;
   final Map userKey;
-  const CharacterList({super.key, required this.frequencies, required this.userKey});
+  final Language language;
+  const CharacterList({super.key, required this.frequencies, required this.userKey, required this.language});
 
   static final Map replacementCardStates = {};
 
   @override
   Widget build(BuildContext context) {
-    resetReplacementCards();
+    final List letters = (language == Language.english) ? AristocratManager.letters : XenocryptManager.letters;
+    resetReplacementCards(letters);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: AristocratManager.letters.map((letter) => Column(
+      children: letters.map((letter) => Column(
         children: [
           Card(
             shape: LinearBorder.bottom(side: BorderSide(color: Colors.grey[100]!)),
@@ -60,9 +63,9 @@ class CharacterList extends StatelessWidget {
     );
   }
 
-  static void resetReplacementCards() {
-    for (int i = 65; i <= 90; ++i) {
-      replacementCardStates[String.fromCharCode(i)] = '';
+  static void resetReplacementCards(List letters) {
+    for (String letter in letters) {
+      replacementCardStates[letter] = '';
     }
   }
 }

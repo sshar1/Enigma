@@ -3,6 +3,7 @@ import 'package:myapp/services/ciphers/patristocrat_manager.dart';
 
 import '../../../services/character_card_manager.dart';
 import '../../../services/character_list.dart';
+import '../../../services/language.dart';
 
 class PatristocratDecode extends StatefulWidget {
   const PatristocratDecode({super.key});
@@ -29,9 +30,9 @@ class _PatristocratDecodeState extends State<PatristocratDecode> {
           ),
         ),
         const SizedBox(height: 20),
-        CharacterCardManager(marginTotal: 100, userKey: PatristocratManager.userKey, ciphertext: PatristocratManager.ciphertext),
+        CharacterCardManager(marginTotal: 100, userKey: PatristocratManager.userKey, ciphertext: PatristocratManager.ciphertext, language: Language.english,),
         const SizedBox(height: 50),
-        CharacterList(frequencies: PatristocratManager.frequencies, userKey: PatristocratManager.userKey,)
+        CharacterList(frequencies: PatristocratManager.frequencies, userKey: PatristocratManager.userKey, language: Language.english)
       ],
     );
   }

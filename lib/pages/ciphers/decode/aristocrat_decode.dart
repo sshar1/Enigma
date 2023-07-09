@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/services/language.dart';
 
 import '../../../services/character_card_manager.dart';
 import '../../../services/character_list.dart';
@@ -28,9 +29,9 @@ class _AristocratDecodeState extends State<AristocratDecode> {
           ),
         ),
         const SizedBox(height: 20),
-        CharacterCardManager(marginTotal: 100, userKey: AristocratManager.userKey, ciphertext: AristocratManager.ciphertext),
+        CharacterCardManager(marginTotal: 100, userKey: AristocratManager.userKey, ciphertext: AristocratManager.ciphertext, language: Language.english,),
         const SizedBox(height: 50),
-        CharacterList(frequencies: AristocratManager.frequencies, userKey: AristocratManager.userKey,)
+        CharacterList(frequencies: AristocratManager.frequencies, userKey: AristocratManager.userKey, language: Language.english)
       ],
     );
   }
