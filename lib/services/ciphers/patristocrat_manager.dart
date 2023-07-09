@@ -25,8 +25,11 @@ class PatristocratManager implements CipherManager {
     await _randomizePlaintext();
 
     if (isK1) {
-      _randomizeKeyword();
+      await _randomizeKeyword();
       _randomizeK1Key(letters, getUniqueLetters(_keyword));
+      while(_keyHasMatches(_key)) {
+        _randomizeK1Key(letters, getUniqueLetters(_keyword));
+      }
       _title += ' It is encoded with a K1 alphabet';
     } else {
        _randomizeKey();
@@ -42,8 +45,11 @@ class PatristocratManager implements CipherManager {
     }
   }
 
-  static _randomizeKeyword() {
-    _keyword = "hello".toUpperCase();
+  static Future<void> _randomizeKeyword() async {
+    final String response = await rootBundle.loadString('lib/json/keywords.json');
+    final keywords = await json.decode(response);
+
+    _keyword = keywords[_random(0, keywords.length)].toUpperCase();
   }
 
   static Future<Map> _getRandomPatristocrat() async {
@@ -120,7 +126,8 @@ class PatristocratManager implements CipherManager {
       }
     }
   }
-
+ 
+  // Check if userkey is equal to the actual key
   static bool keysMatch() {
     for (String letter in _key.keys) {
       if (frequencies[_key[letter]] == 0) continue;
@@ -130,6 +137,16 @@ class PatristocratManager implements CipherManager {
       }
     }
     return true;
+  }
+
+  // Check if any plaintext corresponds to the same ciphertext
+  static bool _keyHasMatches(Map key) {
+    for (String plain in key.keys) {
+      if (key[plain] == plain) {
+        return true;
+      }
+    }
+    return false;
   }
 
   static String convertText(String plaintext) {
