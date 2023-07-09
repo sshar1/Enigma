@@ -8,6 +8,7 @@ class CipherInfo {
   Map pages; // Encode and decode pages
   Function checkWin;
   Function getPlaintext;
+  Function nextCipher;
 
   CipherInfo({
     required this.name, 
@@ -16,6 +17,7 @@ class CipherInfo {
     required this.color, 
     required this.pages, 
     required this.checkWin, 
-    required this.getPlaintext
+    required this.getPlaintext,
+    required this.nextCipher
   });
 }

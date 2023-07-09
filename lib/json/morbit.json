@@ -1,12 +1,30 @@
 [
-    "Some say life is the thing, but I prefer reading.",
-    "I wonder if you can refuse to inherit the world.",
-    "Life is just a game of Snakes and Ladders. Learn to befriend the snakes.",
-    "But the cure for most obstacles is, Be decisive.",
-    "You live but once; you might as well be amusing.",
-    "Imitation is the sincerest form of television.",
+    {
+        "plaintext" : "Some say life is the thing, but I prefer reading.",
+        "title" : "[125 points] A quote by Ruth Rendell has been encoded using the Morbit Cipher for you to decode."
+    },
+    {
+        "plaintext" : "I wonder if you can refuse to inherit the world.",
+        "title" : "[100 points] A quote from Bill Watterson has been encoded using the Morbit Cipher for you to decode."
+    },
+    {
+        "plaintext" : "Life is just a game of Snakes and Ladders. Learn to befriend the snakes.",
+        "title" : "[125 points] A quote by Tapan Ghosh has been encoded using the Morbit Cipher for you to decode."
+    },
+    {
+        "plaintext" : "But the cure for most obstacles is, Be decisive.",
+        "title" : "[125 points] A quote by George Weinberg has been encoded using the Morbit Cipher for you to decode."
+    },
+    {
+        "plaintext" : "You live but once; you might as well be amusing.",
+        "title" : "[125 points] A quote by Coco Chanel has been encoded using the Morbit Cipher for you to decode."
+    },
+    {
+        "plaintext" : "Imitation is the sincerest form of television.",
+        "title" : "[125 points] Solve this morbit by Fred Allen."
+    },
     {
         "plaintext" : "In the absence of justice what is sovereignty but organized robbery",
-        "title" : "[200 points] Solve this morbit by Saint Augustine"
+        "title" : "[200 points] Solve this morbit by Saint Augustine."
     }
 ]

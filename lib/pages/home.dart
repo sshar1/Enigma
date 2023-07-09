@@ -36,7 +36,8 @@ class _HomeState extends State<Home> {
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const AristocratEncode(), CipherType.decode : const AristocratDecode()},
       checkWin: AristocratManager.keysMatch,
-      getPlaintext: AristocratManager.getPlaintext
+      getPlaintext: AristocratManager.getPlaintext,
+      nextCipher: AristocratManager.next,
     ),
     CipherInfo(
       name: 'Patristocrat', 
@@ -46,7 +47,8 @@ class _HomeState extends State<Home> {
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const PatristocratEncode(), CipherType.decode : const PatristocratDecode()},
       checkWin: AristocratManager.keysMatch,
-      getPlaintext: AristocratManager.getPlaintext
+      getPlaintext: AristocratManager.getPlaintext,
+      nextCipher: AristocratManager.next,
     ),
     CipherInfo(
       name: 'Xenocrypt', 
@@ -56,7 +58,8 @@ class _HomeState extends State<Home> {
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const XenocryptEncode(), CipherType.decode : const XenocryptDecode()},
       checkWin: AristocratManager.keysMatch,
-      getPlaintext: AristocratManager.getPlaintext
+      getPlaintext: AristocratManager.getPlaintext,
+      nextCipher: AristocratManager.next,
     ),
     CipherInfo(
       name: 'Pollux', 
@@ -66,7 +69,8 @@ class _HomeState extends State<Home> {
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const PolluxEncode(), CipherType.decode : const PolluxDecode()},
       checkWin: AristocratManager.keysMatch,
-      getPlaintext: AristocratManager.getPlaintext
+      getPlaintext: AristocratManager.getPlaintext,
+      nextCipher: AristocratManager.next,
     ),
     CipherInfo(
       name: 'Morbit', 
@@ -75,7 +79,8 @@ class _HomeState extends State<Home> {
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const MorbitEncode(), CipherType.decode : const MorbitDecode()},
       checkWin: AristocratManager.keysMatch,
-      getPlaintext: AristocratManager.getPlaintext
+      getPlaintext: AristocratManager.getPlaintext,
+      nextCipher: AristocratManager.next,
     ),
     CipherInfo(
       name: 'Hill', 
@@ -84,7 +89,8 @@ class _HomeState extends State<Home> {
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const HillEncode(), CipherType.decode : const HillDecode()},
       checkWin: AristocratManager.keysMatch,
-      getPlaintext: AristocratManager.getPlaintext
+      getPlaintext: AristocratManager.getPlaintext,
+      nextCipher: AristocratManager.next,
     ),
   ];
 
@@ -145,8 +151,10 @@ class _HomeState extends State<Home> {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: ListTile(
-                    onTap: () {
+                    onTap: () async {
+                      if (_encoding) await ciphers[index].nextCipher(); // TODO change this to !_encoding
                       Widget page = _encoding ? ciphers[index].pages[CipherType.encode] : ciphers[index].pages[CipherType.decode];
+                      // ignore: use_build_context_synchronously
                       Navigator.pushNamed(context, '/cipherpage', arguments: {
                         'name' : ciphers[index].name, 
                         'encoding' : _encoding, 

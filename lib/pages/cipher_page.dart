@@ -57,13 +57,11 @@ class _CipherPageState extends State<CipherPage> {
                     backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
                   ),
                   onPressed: () async {
-                    stopwatch.stop();
-                    confettiController.play();
-                    _dialogBuilder(context, (stopwatch.elapsedMilliseconds / 1000).truncate());
-                    // if (data['checkWin']()) {
-                    //   _dialogBuilder(context);
-                    //   print('won');
-                    // }
+                    if (data['checkWin']()) {
+                      stopwatch.stop();
+                      confettiController.play();
+                      _dialogBuilder(context, (stopwatch.elapsedMilliseconds / 1000).truncate());
+                    }
                   },
                   child: const Text("Submit"),
                 )

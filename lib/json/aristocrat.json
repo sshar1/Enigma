@@ -1,41 +1,136 @@
 [
-    "But man has still another powerful resource: natural science with its strictly objective methods.",
-    "Here's to freedom, cheers to art. Here's to having an excellent adventure and may the stopping never start.",
-    "Too often, people get stuck in a state of over-thinking, the result is that they never reach a decision.",
-    "How grief and the passage of years can leave their mark. How the burden of duty can wear away the body's resilience",
-    "Do you think there are smartphones in the afterlife? Because if not, lots of people are going to be very miserable there.",
-    "How do you tell the psychiatrists from the patients in the hospital? The patients get better and leave.",
-    "I feel an almost overwhelming interest in the methods of daylight abduction employed by the modern youth.",
-    "The first civilized being is not the one who wore a suit, but the one who stood up and said, I'll correct myself.",
-    "Lace up those shoes, breathe deep, and get out there. You've got miracles to make happen today.",
-    "So early in my life, I had learned that if you want something, you had better make some noise.",
-    "If life throws you a few bad notes or vibrations, don't let them interrupt or alter your song.",
-    "Life is like a steering wheel, it only takes one small move to change your entire direction.",
-    "Science is what we understand well enough to explain to a computer. Art is everything else we do.",
-    "Where the facts themselves are highly interesting, the explanation of them must be still more so.",
-    "There is a looming chasm between what your brain knows and what your mind is capable of accessing.",
-    "In the action business, when you don't want to say you ran like a mouse, you call it 'taking cover.' It's more heroic.",
-    "Nothing in the universe can travel at the speed of light, they say, forgetful of the shadow`s speed.",
-    "A good book should leave you, slightly exhausted at the end. You live several lives while reading it.",
-    "Life's trail can double back and retrace its path several times but when it does you learn more. What is the same is also different.",
-    "It only takes a split second to smile and forget, yet to someone that needed it, it can last a lifetime.",
-    "Three things have a limited threshold: Time, pain, and death. While truth, love, and knowledge are boundless.",
-    "How ghastly for her, people actually thinking, with their brains, and right next door. Oh, the travesty of it all.",
-    "If people are good only because they fear punishment, and hope for reward, then we are a sorry lot indeed.",
-    "The right idea at the right time is like a dandelion...You may hack it down, but you only spread the seeds abroad.",
-    "The measure of greatness in a scientific idea is the extent to which it stimulates thought and opens up new lines of research.",
-    "Leaders cannot build a successful nation once they are yoked to these two evils, ignorance and greed.",
-    "If possible, try to avoid pushing each other over the edge, as that would cause me extra paperwork.",
-    "The backbone of the electrical grid is largely massive numbers of steam driven engines that turn electrical generators.",
-    "When a distinguished but elderly scientist states that something is possible, he is almost certainly right.",
-    "If God had wanted us to be concerned for the plight of the toads, he would have made them cute and furry.",
-    "An idealist is one who, on noticing that a rose smells better than a cabbage, concludes that it makes a better soup.",
-    "Most people overestimate what they can do in one year and underestimate what they can do in ten years.",
-    "Be who you are and say what you feel, because those who mind don't matter, and those who matter don't mind.",
-    "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
-    "Life is short. Focus on what really matters most. You have to change your priorities over time.",
-    "Success is only possible to those whose hearts are willing and ready to embrace hard work.",
-    "Success and failure come and go, but don't let them define you. It's who you are that matters.",
+    {
+        "plaintext" : "But man has still another powerful resource: natural science with its strictly objective methods.",
+        "title" : "[200 points] Timed question. Solve this quote from Ivan Pavlov which has been encoded as an Aristocrat."
+    },
+    {
+        "plaintext" : "Here's to freedom, cheers to art. Here's to having an excellent adventure and may the stopping never start.",
+        "title" : "[250 points] Solve this Aristocrat of a quote by Jason Mraz."
+    },
+    {
+        "plaintext" : "Too often, people get stuck in a state of over-thinking, the result is that they never reach a decision.",
+        "title" : "[200 points] A quote by Steve Backley has been encoded as an Aristocrat. What does it decode to?"
+    },
+    {
+        "plaintext" : "How grief and the passage of years can leave their mark. How the burden of duty can wear away the body's resilience",
+        "title" : "[250 points] Solve this Aristocrat which is a quote by Anne O'Brien."
+    },
+    {
+        "plaintext" : "How do you tell the psychiatrists from the patients in the hospital? The patients get better and leave.",
+        "title" : "[200 points] A quote by Lisa Scottoline has been encoded with an Aristocrat Cipher. What did she say?"
+    },
+    {
+        "plaintext" : "I feel an almost overwhelming interest in the methods of daylight abduction employed by the modern youth.",
+        "title" : "[300 points] A quote by Georgette Heyer has been encoded using the Aristocrat Cipher. What did he say?"
+    },
+    {
+        "plaintext" : "The first civilized being is not the one who wore a suit, but the one who stood up and said, I'll correct myself.",
+        "title" : "[300 points] Solve this quote by Abhijit Naskar which has been encoded as an Aristocrat."
+    },
+    {
+        "plaintext" : "Lace up those shoes, breathe deep, and get out there. You've got miracles to make happen today.",
+        "title" : "[250 points] Solve this Aristocrat which is a quote by Toni Sorenson that starts out with LACE UP."
+    },
+    {
+        "plaintext" : "So early in my life, I had learned that if you want something, you had better make some noise.",
+        "title" : "[300 points] Solve this Aristocrat which is a quote by Malcolm X. The second word is EARLY and the word THAT appears in it once."
+    },
+    {
+        "plaintext" : "If life throws you a few bad notes or vibrations, don't let them interrupt or alter your song.",
+        "title" : "[300 points] Solve this Aristocrat cipher which is advice from Suzy Kassem which has the word NOTES in it."
+    },
+    {
+        "plaintext" : "Life is like a steering wheel, it only takes one small move to change your entire direction.",
+        "title" : "[350 points] Solve this Aristocrat cipher from Kellie Elmore which ends with DIRECTION."
+    },
+    {
+        "plaintext" : "Science is what we understand well enough to explain to a computer. Art is everything else we do.",
+        "title" : "[200 points] Timed question. Solve this quote by Donald Knuth."
+    },
+    {
+        "plaintext" : "Where the facts themselves are highly interesting, the explanation of them must be still more so.",
+        "title" : "[250 points] Solve this Aristocrat which is a quote by Robert Evans Snodgrass that has the word FACTS in it once."
+    },
+    {
+        "plaintext" : "There is a looming chasm between what your brain knows and what your mind is capable of accessing.",
+        "title" : "[300 points] This quote by David Eagleman was encoded as an Aristocrat. What did he say?"
+    },
+    {
+        "plaintext" : "In the action business, when you don't want to say you ran like a mouse, you call it 'taking cover.' It's more heroic.",
+        "title" : "[325 points] Solve this Aristocrat which is a quote by Jim Butcher."
+    },
+    {
+        "plaintext" : "Nothing in the universe can travel at the speed of light, they say, forgetful of the shadow`s speed.",
+        "title" : "[200 points] Solve this quote by Howard Nemerov in which the word THE appears three times."
+    },
+    {
+        "plaintext" : "A good book should leave you, slightly exhausted at the end. You live several lives while reading it.",
+        "title" : "[350 points] Solve this quote by William Styron which has been encoded as an Aristocrat."
+    },
+    {
+        "plaintext" : "It only takes a split second to smile and forget, yet to someone that needed it, it can last a lifetime.",
+        "title" : "[225 points] This quote by Steve Maraboli was encoded as an Aristocrat. What does it say?"
+    },
+    {
+        "plaintext" : "Three things have a limited threshold: Time, pain, and death. While truth, love, and knowledge are boundless.",
+        "title" : "[250 points] A quote by Suzy Kassem has been encoded using the Aristocrat Cipher.  What did they say?"
+    },
+    {
+        "plaintext" : "How ghastly for her, people actually thinking, with their brains, and right next door. Oh, the travesty of it all.",
+        "title" : "[200 points] Timed question. Solve this Aristocrat which is a quote by Gail Carriger."
+    },
+    {
+        "plaintext" : "If people are good only because they fear punishment, and hope for reward, then we are a sorry lot indeed.",
+        "title" : "[225 points] A quote by Albert Einstein has been encoded using the Aristocrat Cipher.  What did he say?"
+    },
+    {
+        "plaintext" : "The right idea at the right time is like a dandelion...You may hack it down, but you only spread the seeds abroad.",
+        "title" : "[300 points] A quote by Mike Carey has been encoded using the Aristocrat Cipher for you to decode."
+    },
+    {
+        "plaintext" : "Leaders cannot build a successful nation once they are yoked to these two evils, ignorance and greed.",
+        "title" : "[200 points] Solve this Aristocrat which is a quote by Wayne Chirisa."
+    },
+    {
+        "plaintext" : "If possible, try to avoid pushing each other over the edge, as that would cause me extra paperwork.",
+        "title" : "[250 points] A quote attributed to Rick Riordan has been encoded as an Aristocrat. What does it say?"
+    },
+    {
+        "plaintext" : "When a distinguished but elderly scientist states that something is possible, he is almost certainly right.",
+        "title" : "[375 points] A quote by Arthur C. Clarke has been encoded as an Aristocrat. What does it say?"
+    },
+    {
+        "plaintext" : "If God had wanted us to be concerned for the plight of the toads, he would have made them cute and furry.",
+        "title" : "[275 points] An quote by Dave Barry has been encoded as an Aristocrat.  What does it say?"
+    },
+    {
+        "plaintext" : "An idealist is one who, on noticing that a rose smells better than a cabbage, concludes that it makes a better soup.",
+        "title" : "[225 points] Solve this Aristocrat which is a quote by H.L. Mencken."
+    },
+    {
+        "plaintext" : "Most people overestimate what they can do in one year and underestimate what they can do in ten years.",
+        "title" : "[200 points] Solve this Aristocrat which is a quote by Bill Gates that has the word THEY in it twice."
+    },
+    {
+        "plaintext" : "Be who you are and say what you feel, because those who mind don't matter, and those who matter don't mind.",
+        "title" : "[150 points] Solve this Aristocrat by Bernard Baruch."
+    },
+    {
+        "plaintext" : "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+        "title" : "[150 points] Solve this Aristocrat with a quote from Ralph Waldo Emerson about the future.  The word WHAT appears three times."
+    },
+    {
+        "plaintext" : "Life is short. Focus on what really matters most. You have to change your priorities over time.",
+        "title" : "[150 points] Solve this Aristocrat cipher which is advice from Roy T. Bennett which ends with the word TIME."
+    },
+    {
+        "plaintext" : "Success is only possible to those whose hearts are willing and ready to embrace hard work.",
+        "title" : "[150 points] Solve this Aristocrat cipher which is some good advice from Topsy Gift. The second word is IS."
+    },
+    {
+        "plaintext" : "Success and failure come and go, but don't let them define you. It's who you are that matters.",
+        "title" : "[300 points] Solve this Aristocrat cipher which is advice from Kamal Ravikant which has the word AND in it twice and ends with MATTERS."
+    },
     {
         "plaintext" : "The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart.",
         "title" : "[200 points] Timed question by Hellen Keller"

@@ -7,14 +7,8 @@ import '../../../services/character_list.dart';
 class AristocratEncode extends StatelessWidget {
   const AristocratEncode({super.key});
 
-  void setupAristocrat() async {
-    await AristocratManager.next();
-  }
-
   @override
   Widget build(BuildContext context) {
-    setupAristocrat();
-
     return Column(
       children: [
         Align(

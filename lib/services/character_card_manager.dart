@@ -16,34 +16,23 @@ class CharacterCardManager extends StatelessWidget {
   static const double cardWidth = 25;
 
   void nextNode(FocusNode current) {
-    if (!hasNextFocusableNode(current)) return;
-    FocusNode nextNode = focusNodes[focusNodes.indexOf(current)+1];
-    if (!nextNode.canRequestFocus) {
-      nextNode = focusNodes[focusNodes.indexOf(current)+2];
+    if (focusNodes.indexOf(current) == focusNodes.length) return;
+    for (int i = focusNodes.indexOf(current) + 1; i < focusNodes.length; ++i) {
+      if (focusNodes[i].canRequestFocus) {
+        focusNodes[i].requestFocus();
+        return;
+      }
     }
-    nextNode.requestFocus();
   }
 
   void previousNode(FocusNode current) {
-    if (!hasPreviousFocusableNode(current)) return;
-    FocusNode previousNode = focusNodes[focusNodes.indexOf(current)-1];
-    if (!previousNode.canRequestFocus) {
-      previousNode = focusNodes[focusNodes.indexOf(current)-2];
-    }
-    previousNode.requestFocus();
-  }
-
-  bool hasNextFocusableNode(FocusNode current) {
-    for (int i = focusNodes.indexOf(current); i < focusNodes.length; ++i) {
+    if (focusNodes.indexOf(current) == 0) return;
+    for (int i = focusNodes.indexOf(current) - 1; i >= 0; --i) {
       if (focusNodes[i].canRequestFocus) {
-        return true;
+        focusNodes[i].requestFocus();
+        return;
       }
     }
-    return false;
-  }
-
-  bool hasPreviousFocusableNode(FocusNode current) {
-    return (focusNodes.indexOf(current) != 0);
   }
 
   FocusNode getCurrentFocused() {
@@ -132,7 +121,7 @@ class CharacterCardManager extends StatelessWidget {
   }
 
   List getRows(BuildContext context) {
-    String quote = AristocratManager.ciphertext;
+    String quote = AristocratManager.ciphertext; // TODO add argument for getting the ciphertext, dont use aristocrat manager directly
     int width = MediaQuery.of(context).size.width.toInt();
     int marginTotal = 100;
   

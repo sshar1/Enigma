@@ -1,4 +1,7 @@
+import 'dart:convert';
 import 'dart:math';
+
+import 'package:flutter/services.dart';
 
 import '../cipher_manager.dart';
 
@@ -14,7 +17,7 @@ class AristocratManager implements CipherManager {
 
   static Future<void> next() async {
     _resetUserKey();
-    _randomizePlaintext();
+    await _randomizePlaintext();
     _randomizeKey();
     _updateCiphertext();
     _updateFrequencies();
@@ -26,9 +29,20 @@ class AristocratManager implements CipherManager {
     }
   }
 
-  static void _randomizePlaintext() {
-    _title = '[200 points] This is a sample aristocrat by Martin Luther King';
-    _plaintext = "I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin, but by the content of their character.".toUpperCase();
+  static Future<Map> _getRandomAristocrat() async {
+    final String response = await rootBundle.loadString('lib/json/aristocrat.json');
+    final aristocrats = await json.decode(response);
+    
+    return aristocrats[_random(0, aristocrats.length)];
+  }
+
+
+  static Future<void> _randomizePlaintext() async {
+    Map aristocrat = await _getRandomAristocrat();
+    _plaintext = aristocrat['plaintext'].toUpperCase();
+    _title = aristocrat['title'];
+    print(_plaintext);
+    print(_title);
   }
 
   static void _randomizeKey() {

@@ -1,6 +1,18 @@
 [
-    "Order is heaven's first law.",
-    "We convince by our presence.",
-    "Darkness feeds on apathy.",
-    "Start small and keep going."
+    {
+        "plaintext" : "Order is heaven's first law.",
+        "title" : "[150 points] Decode this quote by Alexander Pope which has been encoded with a HILL 2x2 Cipher."
+    },
+    {
+        "plaintext" : "We convince by our presence.",
+        "title" : "[200 points] Decode this quote by Walt Whitman which has been encoded using a Hill cipher."
+    },
+    {
+        "plaintext" : "Darkness feeds on apathy.",
+        "title" : "[150 points] Decode this quote by Dan Brown which has been encoded using a Hill cipher."
+    },
+    {
+        "plaintext" : "Start small and keep going.",
+        "title" : "[175 points] The following quote by Abhijit Naskar has been encoded using a Hill cipher."
+    }
 ]

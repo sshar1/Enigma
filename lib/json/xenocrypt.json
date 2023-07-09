@@ -1,11 +1,26 @@
 [
-    "La mayoria de las personas pueden aprender mucho más de lo que piensan. Se creen incapaces sin intentarlo",
-    "El mejor trabajo en equipo proviene de las personas que trabajan independientemente hacia una misma meta y al unisono",
-    "Se dice que no hay tal cosa como un almuerzo gratis. Pero el universo es el mejor almuerzo gratis.",
-    "Siempre recuerde a las personas que lo ayudaron en el camino, y no olvide levantar a alguien.",
-    "La Soledad Es Muy Hermosa… Cuando Se Tiene Alguien a Quien Decírselo",
+    {
+        "plaintext" : "La mayoria de las personas pueden aprender mucho más de lo que piensan. Se creen incapaces sin intentarlo",
+        "title" : "[600 points] Solve this Xenocrypt which is a quote by Elon Musk translated into Spanish."
+    },
+    {
+        "plaintext" : "El mejor trabajo en equipo proviene de las personas que trabajan independientemente hacia una misma meta y al unisono",
+        "title" : "[600 points] Solve this Xenocrypt which is a quote by James Cash Penney which has been translated into Spanish."
+    },
+    {
+        "plaintext" : "Se dice que no hay tal cosa como un almuerzo gratis. Pero el universo es el mejor almuerzo gratis.",
+        "title" : "[600 points] Solve this quote by Stephen Hawking which has been translated into Spanish."
+    },
+    {
+        "plaintext" : "Siempre recuerde a las personas que lo ayudaron en el camino, y no olvide levantar a alguien.",
+        "title" : "[500 points] The following quote by Roy T. Bennett has been translated into Spanish."
+    },
+    {
+        "plaintext" : "La Soledad Es Muy Hermosa… Cuando Se Tiene Alguien a Quien Decírselo",
+        "title" : "[500 points] Decrypt this xenocrypt by an anonymous person."
+    },
     {
         "plaintext" : "Las masas humanas mas peligrosas en cuyas venas ha sido inyectado el veneno del miedo... del miedo al cambio",
-        "title" : "[600 points] Decrypt this xenocrypt by Octavio Paz"
+        "title" : "[600 points] Decrypt this xenocrypt by Octavio Paz."
     }
 ]
