@@ -16,9 +16,25 @@ class AristocratManager implements CipherManager {
   static String _title = "";
   static Map frequencies = {}; // Key: ciphertext letter, Value: its frequency in the plaintext
 
+  static String _keyword = "";
+  static bool isK1 = true;
+
   static Future<void> next() async {
+    _random(0, 10) < 2 ? isK1 = true : isK1 = false; // 20% chance for being k1
     _resetUserKey();
     await _randomizePlaintext();
+
+    if (isK1) {
+      await _randomizeKeyword();
+      _randomizeK1Key(letters, getUniqueLetters(_keyword));
+      while(_keyHasMatches(_key)) {
+        _randomizeK1Key(letters, getUniqueLetters(_keyword));
+      }
+      _title += ' It is encoded with a K1 alphabet.';
+    } else {
+       _randomizeKey();
+    }
+
     _randomizeKey();
     _updateCiphertext();
     _updateFrequencies();
@@ -28,6 +44,13 @@ class AristocratManager implements CipherManager {
     for (String str in letters) {
       userKey[str] = [];
     }
+  }
+
+  static Future<void> _randomizeKeyword() async {
+    final String response = await rootBundle.loadString('lib/json/keywords.json');
+    final keywords = await json.decode(response);
+
+    _keyword = keywords[_random(0, keywords.length)].toUpperCase();
   }
 
   static Future<Map> _getRandomAristocrat() async {
@@ -56,6 +79,22 @@ class AristocratManager implements CipherManager {
         _key[letter] = temp.removeAt(_random(0, temp.length));
         temp.add(val);
       }
+    }
+  }
+
+  static void _randomizeK1Key(List letters, List keyword) {
+    List temp = List.from(letters);
+    
+    int offset = _random(0, 26);
+    for (String letter in keyword) {
+      _key[letter] = letters[offset % 26];
+      temp.remove(letter);
+      offset++;
+    }
+    
+    for(String letter in temp) {
+      _key[letter] = letters[offset % 26];
+      offset++;
     }
   }
 
@@ -98,6 +137,28 @@ class AristocratManager implements CipherManager {
       }
     }
     return true;
+  }
+
+  // Check if any plaintext corresponds to the same ciphertext
+  static bool _keyHasMatches(Map key) {
+    for (String plain in key.keys) {
+      if (key[plain] == plain) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  static List getUniqueLetters(String text) {
+    List uniqueLetters = [];
+    
+    for(String s in text.split('')) {
+      if (!uniqueLetters.contains(s)) {
+        uniqueLetters.add(s);
+      }
+    }
+    
+    return uniqueLetters;
   }
 
   static String getTitle() {

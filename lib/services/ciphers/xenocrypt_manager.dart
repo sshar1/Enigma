@@ -95,7 +95,7 @@ class XenocryptManager implements CipherManager {
       _key[letter] = letters[offset % 27];
       offset++;
     }
-}
+  }
 
   static void _updateCiphertext() {
     ciphertext = "";

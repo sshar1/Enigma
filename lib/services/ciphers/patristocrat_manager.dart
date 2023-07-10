@@ -95,7 +95,7 @@ class PatristocratManager implements CipherManager {
       _key[letter] = letters[offset % 26];
       offset++;
     }
-}
+  }
 
   static void _updateCiphertext() {
     ciphertext = "";
