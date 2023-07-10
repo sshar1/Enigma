@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
       name: 'Patristocrat', 
       image: 'cork2.png', 
       description: 'The same encryption pattern as the aristocrat cipher, but spaces in the ciphertext do not correspond to '
-      'spaces in the plaintext. A space in the ciphertext is shown every 5 characters.', 
+      'spaces in the plaintext. A space in the ciphertext is shown every 5 characters. Most are K1.', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const PatristocratEncode(), CipherType.decode : const PatristocratDecode()},
       checkWin: PatristocratManager.keysMatch,
@@ -56,7 +56,7 @@ class _HomeState extends State<Home> {
       name: 'Xenocrypt', 
       image: 'cork2.png', 
       description: 'The sample encryption pattern as the aristocrat cipher, but the plaintext is in Spanish. There is an additional '
-      'letter: ñ', 
+      'letter: ñ. Press \'1\' to enter it. Most are K1.', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const XenocryptEncode(), CipherType.decode : const XenocryptDecode()},
       checkWin: XenocryptManager.keysMatch,

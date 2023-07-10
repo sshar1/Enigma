@@ -52,7 +52,7 @@ class CharacterCardManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     focusedLetter.letter = '';
-    RegExp validLetters = (language == Language.english) ? RegExp(r'^[a-zA-Z]+$') : RegExp(r'^[a-zA-ZÑñ]+$');
+    RegExp validLetters = (language == Language.english) ? RegExp(r'^[a-zA-Z]+$') : RegExp(r'^[a-zA-ZÑñ1]+$');
     List letters = (language == Language.english) ? AristocratManager.letters : XenocryptManager.letters; 
     addControllers(validLetters, letters);
 
@@ -124,7 +124,7 @@ class CharacterCardManager extends StatelessWidget {
       controller.addListener(() {
         final String text = controller.text.contains(validLetters) ? controller.text.toUpperCase() : '';
         controller.value = controller.value.copyWith(
-          text: text,
+          text: text == '1' ? 'Ñ' : text,
           selection:
               TextSelection(baseOffset: text.length, extentOffset: text.length),
           composing: TextRange.empty,
