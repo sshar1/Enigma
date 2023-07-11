@@ -16,6 +16,7 @@ import 'package:myapp/services/ciphers/patristocrat_manager.dart';
 
 import '../services/cipher_info.dart';
 import '../services/ciphers/aristocrat_manager.dart';
+import '../services/ciphers/pollux_manager.dart';
 import '../services/ciphers/xenocrypt_manager.dart';
 import 'ciphers/decode/xenocrypt_decode.dart';
 
@@ -70,9 +71,9 @@ class _HomeState extends State<Home> {
       'in morse code.', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const PolluxEncode(), CipherType.decode : const PolluxDecode()},
-      checkWin: AristocratManager.keysMatch,
-      getPlaintext: AristocratManager.getPlaintext,
-      nextCipher: AristocratManager.next,
+      checkWin: PolluxManager.checkWin,
+      getPlaintext: PolluxManager.getPlaintext,
+      nextCipher: PolluxManager.next,
     ),
     CipherInfo(
       name: 'Morbit', 

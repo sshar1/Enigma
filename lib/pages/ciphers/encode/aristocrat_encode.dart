@@ -5,6 +5,24 @@ class AristocratEncode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("This is the placeholder for aristocrat decode");
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "Enter a plaintext",
+            style: TextStyle(
+              color: Colors.grey[100],
+              fontFamily: "Ysabeau",
+              fontSize: 17
+            )
+          ),
+        ),
+        const SizedBox(height: 20),
+        const TextField(
+
+        )
+      ],
+    );
   }
 }
