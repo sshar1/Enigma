@@ -12,6 +12,7 @@ import 'package:myapp/pages/ciphers/encode/patristocrat_encode.dart';
 import 'package:myapp/pages/ciphers/encode/pollux_encode.dart';
 import 'package:myapp/pages/ciphers/encode/xenocrypt_encode.dart';
 import 'package:myapp/services/cipher_type.dart';
+import 'package:myapp/services/ciphers/morbit_manager.dart';
 import 'package:myapp/services/ciphers/patristocrat_manager.dart';
 
 import '../services/cipher_info.dart';
@@ -81,9 +82,9 @@ class _HomeState extends State<Home> {
       description: 'The sample encryption patter as the pollux cipher, but each number corresponds to 2 morse characters (eg. x- or .-).', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const MorbitEncode(), CipherType.decode : const MorbitDecode()},
-      checkWin: AristocratManager.keysMatch,
-      getPlaintext: AristocratManager.getPlaintext,
-      nextCipher: AristocratManager.next,
+      checkWin: MorbitManager.checkWin,
+      getPlaintext: MorbitManager.getPlaintext,
+      nextCipher: MorbitManager.next,
     ),
     CipherInfo(
       name: 'Hill', 

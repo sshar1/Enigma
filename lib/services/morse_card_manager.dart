@@ -5,14 +5,13 @@ import 'package:myapp/services/ciphers/pollux_manager.dart';
 class MorseCardManager extends StatelessWidget {
   final int marginTotal;
   final String ciphertext;
-  const MorseCardManager({super.key, required this.marginTotal, required this.ciphertext});
+  final bool isMorbit;
+  const MorseCardManager({super.key, required this.marginTotal, required this.ciphertext, required this.isMorbit});
 
   static Map textControllers = {};
   static Map textCards = {};
   static List focusNodes = [];
   static FocusedNumber focusedNumber = FocusedNumber(number: '');
-
-  static const double cardWidth = 25;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class MorseCardManager extends StatelessWidget {
               color: Colors.grey[850],
               elevation: 2,
               child: SizedBox(
-                width: cardWidth,
+                width: isMorbit ? 40: 25,
                 height: 30,
                 child: Center(
                   child: Text(
@@ -55,6 +54,7 @@ class MorseCardManager extends StatelessWidget {
                 textCards: textCards, 
                 focusNodes: focusNodes, 
                 validLetters: validLetters,
+                isMorbit: isMorbit,
               )
             )
           ],
@@ -63,14 +63,14 @@ class MorseCardManager extends StatelessWidget {
     );
   }
 
-  static void addControllers(RegExp validLetters, List numbers) {
+  void addControllers(RegExp validLetters, List numbers) {
     for (String number in numbers) {
       TextEditingController controller = TextEditingController();
 
       controller.addListener(() {
-        final String text = controller.text;
+        final String text = isMorbit ? controller.text : convertText(controller.text);
         controller.value = controller.value.copyWith(
-          text: convertText(text),
+          text: text,
           selection:
               TextSelection(baseOffset: text.length, extentOffset: text.length),
           composing: TextRange.empty,
@@ -96,6 +96,7 @@ class TextCard extends StatefulWidget {
   final Map textCards;
   final List focusNodes;
   final RegExp validLetters;
+  final bool isMorbit;
 
   const TextCard({super.key, 
     required this.character, 
@@ -103,7 +104,8 @@ class TextCard extends StatefulWidget {
     required this.textControllers, 
     required this.textCards, 
     required this.focusNodes,
-    required this.validLetters
+    required this.validLetters,
+    required this.isMorbit
   });
 
   @override
@@ -157,16 +159,19 @@ class _TextCardState extends State<TextCard> {
       elevation: 2,
       shape: widget.character == widget.focusedNumber.number ? LinearBorder.bottom(side: const BorderSide(color: Colors.blue)) : null,
       child: SizedBox(
-        width: 25,
+        width: widget.isMorbit ? 40: 25,
         height: 30,
         child: Center(
           child: TextField(
+            inputFormatters: widget.isMorbit ? <TextInputFormatter>[
+              FilteringTextInputFormatter.allow(RegExp("[.xX-]")),
+            ] : null,
             focusNode: _focus,
             controller: widget.textControllers.containsKey(widget.character) ? widget.textControllers[widget.character] : null,
             enabled: true,
             showCursor: false,
             textAlign: TextAlign.center,
-            maxLength: 1,
+            maxLength: widget.isMorbit ? 2: 1,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               contentPadding: EdgeInsets.only(bottom: 15, left: 2), // padding of 2 because it doesn't center for some reason
@@ -178,6 +183,7 @@ class _TextCardState extends State<TextCard> {
             style: TextStyle(
               color: Colors.grey[100],
               fontWeight: FontWeight.bold,
+              letterSpacing: 4
             ),
             onChanged: (characterEntered) {
               for (_TextCardState textCard in widget.textCards[widget.character]) {

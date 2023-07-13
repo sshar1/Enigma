@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 
 import '../cipher_manager.dart';
 
-class PolluxManager implements CipherManager {
+class MorbitManager implements CipherManager {
   static const Map morse = { 
     'A' : '.-', 
     'B' : '-...',
@@ -36,9 +36,19 @@ class PolluxManager implements CipherManager {
     '\'': '',
     ' ' : ''
   };
-  static const List morseChars = ['.', '-', 'x'];
+  static const List morseChars = [
+    '..', 
+    '.-',
+    '.x',
+    '-.', 
+    '--',
+    '-x',
+    'x.',
+    'x-',
+    'xx'
+  ];
   static const List numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-  static final Map _key = {}; // Key: plaintext morse, Value: list of ciphertext numbers
+  static final Map _key = {}; // Key: plaintext morse, Value: ciphertext number
 
   static String _plaintext = ""; // String of plain english
   static String _convertedPlaintext = ""; // String of morse code
@@ -46,32 +56,32 @@ class PolluxManager implements CipherManager {
   static String _title = "";
   static String userAnswer = "";
 
-  static int numLength = 0;
+  static List usedNums = [];
   static final Map _givens = {};
 
   static Future<void> next() async {
     await _randomizePlaintext();
     _randomizeKey();
+    _updateCiphertext();
     _randomizeGivens();
     _title += "You are given that ";
     for (String num in _givens.keys) {
       _title += '$num = ${_givens[num]}  ';
     }
-    _updateCiphertext();
   }
 
-  static Future<Map> _getRandomPollux() async {
-    final String response = await rootBundle.loadString('lib/json/pollux.json');
-    final polluxes = await json.decode(response);
+  static Future<Map> _getRandomMorbit() async {
+    final String response = await rootBundle.loadString('lib/json/morbit.json');
+    final morbits = await json.decode(response);
     
-    return polluxes[_random(0, polluxes.length)];
+    return morbits[_random(0, morbits.length)];
   }
 
   static Future<void> _randomizePlaintext() async {
-    Map pollux = await _getRandomPollux();
-    _plaintext = pollux['plaintext'];
+    Map morbit = await _getRandomMorbit();
+    _plaintext = morbit['plaintext'];
     _convertedPlaintext = convertText(_plaintext);
-    _title = pollux['title'];
+    _title = morbit['title'];
     print(_plaintext);
     print(_title);
   }
@@ -80,31 +90,33 @@ class PolluxManager implements CipherManager {
     _key.clear();
 
     List temp = List.from(numbers);
-    numLength = _random(4, 10);
-
-    for (int i = 0; i < numLength; ++i) {
-      if (_key.containsKey(morseChars[i % 3])) {
-        _key[morseChars[i % 3]].add(temp.removeAt(_random(0, temp.length)));
-      }
-      else {
-        _key[morseChars[i % 3]] = [temp.removeAt(_random(0, temp.length)),];
-      }
+    for (String morseChar in morseChars) {
+      _key[morseChar] = temp.removeAt(_random(0, temp.length));
     }
   }
 
   static void _updateCiphertext() {
     ciphertext = "";
-    for (String char in _convertedPlaintext.split('')) {
-      ciphertext += _key[char][_random(0, _key[char].length)]; 
+    for (int i = 0; i < _convertedPlaintext.length; i += 2) {
+      String num = _key[_convertedPlaintext.substring(i, i + 2)];
+      ciphertext += num;
+      if (!usedNums.contains(num)) {
+        usedNums.add(num);
+      }
     }
   }
 
   static void _randomizeGivens() {
     _givens.clear();
-    int givenLength = (numLength / 2).round() - 1;
+    int givenLength = (usedNums.length / 2).round() - 1;
 
-    for (int i = 0; i < givenLength; ++i) {
-      _givens[_key[morseChars[i % 3]][(i / 3).truncate()]] = morseChars[i % 3];
+    int index = 0;
+    for (String morse in _key.keys) {
+      _givens[_key[morse]] = morse;
+      index++;
+      if (index >= givenLength) {
+        return;
+      }
     }
   }
 
@@ -117,7 +129,13 @@ class PolluxManager implements CipherManager {
         convertedPlaintext += '${morse[s]}x';
       }
     }
-    return convertedPlaintext.substring(0, convertedPlaintext.length-1);
+    convertedPlaintext = convertedPlaintext.substring(0, convertedPlaintext.length-1);
+    
+    if (convertedPlaintext.length % 2 == 1) {
+      convertedPlaintext += 'x';
+    }
+
+    return convertedPlaintext;
   }
 
   static bool checkWin() {
@@ -128,7 +146,7 @@ class PolluxManager implements CipherManager {
         allCapPlaintext += char.toUpperCase();
       }
     }
-
+    
     return userAnswer == allCapPlaintext;
   }
 

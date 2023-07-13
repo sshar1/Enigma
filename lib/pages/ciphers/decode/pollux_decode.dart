@@ -28,6 +28,12 @@ class _PolluxDecodeState extends State<PolluxDecode> {
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -43,7 +49,7 @@ class _PolluxDecodeState extends State<PolluxDecode> {
           ),
         ),
         const SizedBox(height: 20),
-        MorseCardManager(marginTotal: 100, ciphertext: PolluxManager.ciphertext,),
+        MorseCardManager(marginTotal: 100, ciphertext: PolluxManager.ciphertext, isMorbit: false),
         const SizedBox(height: 50),
         TextField(
           inputFormatters: <TextInputFormatter>[
