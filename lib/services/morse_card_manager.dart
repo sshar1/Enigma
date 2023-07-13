@@ -14,57 +14,12 @@ class MorseCardManager extends StatelessWidget {
 
   static const double cardWidth = 25;
 
-  void nextNode(FocusNode current) {
-    if (focusNodes.indexOf(current) == focusNodes.length) return;
-    for (int i = focusNodes.indexOf(current) + 1; i < focusNodes.length; ++i) {
-      if (focusNodes[i].canRequestFocus) {
-        focusNodes[i].requestFocus();
-        return;
-      }
-    }
-  }
-
-  void previousNode(FocusNode current) {
-    if (focusNodes.indexOf(current) == 0) return;
-    for (int i = focusNodes.indexOf(current) - 1; i >= 0; --i) {
-      if (focusNodes[i].canRequestFocus) {
-        focusNodes[i].requestFocus();
-        return;
-      }
-    }
-  }
-
-  FocusNode getCurrentFocused() {
-    for (FocusNode node in focusNodes) {
-      if (node.hasFocus) {
-        return node;
-      }
-    }
-    return focusNodes[0];
-  }
-
   @override
   Widget build(BuildContext context) {
     focusedNumber.number = '';
     RegExp validLetters = RegExp(r'^[.-x]+$');
     List numbers = PolluxManager.numbers;
     addControllers(validLetters, numbers);
-
-    // ignore: invalid_use_of_visible_for_testing_member
-    ServicesBinding.instance.keyboard.clearState();
-    ServicesBinding.instance.keyboard.addHandler((KeyEvent event) {
-      final key = event.logicalKey.keyLabel;
-
-      if (event is KeyDownEvent) {
-        if (key == 'Arrow Right') {
-          nextNode(getCurrentFocused());
-        }
-        if (key == 'Arrow Left') {
-          previousNode(getCurrentFocused());
-        }
-      }
-      return false;
-    });
 
     double index = 0;
     return FocusTraversalGroup(

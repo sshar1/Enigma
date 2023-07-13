@@ -121,7 +121,15 @@ class PolluxManager implements CipherManager {
   }
 
   static bool checkWin() {
-    return userAnswer.toUpperCase() == _plaintext.toUpperCase();
+    String allCapPlaintext = "";
+    
+    for (String char in _plaintext.toUpperCase().split('')) {
+      if (char == ' ' || char == '\'' || char.contains(RegExp(r'^[A-Z]+$'))) {
+        allCapPlaintext += char.toUpperCase();
+      }
+    }
+    
+    return userAnswer == allCapPlaintext;
   }
 
   static String getTitle() {
