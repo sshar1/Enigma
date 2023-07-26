@@ -17,6 +17,7 @@ import 'package:myapp/services/ciphers/patristocrat_manager.dart';
 
 import '../services/cipher_info.dart';
 import '../services/ciphers/aristocrat_manager.dart';
+import '../services/ciphers/hill_manager.dart';
 import '../services/ciphers/pollux_manager.dart';
 import '../services/ciphers/xenocrypt_manager.dart';
 import 'ciphers/decode/xenocrypt_decode.dart';
@@ -92,9 +93,9 @@ class _HomeState extends State<Home> {
       description: 'A cipher that is solved using a key 2x2 matrix. The rules are complex so read the sci oly wiki page for more info.', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const HillEncode(), CipherType.decode : const HillDecode()},
-      checkWin: AristocratManager.keysMatch,
-      getPlaintext: AristocratManager.getPlaintext,
-      nextCipher: AristocratManager.next,
+      checkWin: HillManager.keysMatch,
+      getPlaintext: HillManager.getPlaintext,
+      nextCipher: HillManager.next,
     ),
   ];
 

@@ -1,7 +1,7 @@
 [
     {
         "plaintext" : "Order is heaven's first law.",
-        "title" : "[150 points] Decode this quote by Alexander Pope which has been encoded with a HILL 2x2 Cipher."
+        "title" : "[150 points] Decode this quote by Alexander Pope which has been encoded using a Hill cipher."
     },
     {
         "plaintext" : "We convince by our presence.",
