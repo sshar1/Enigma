@@ -32,9 +32,8 @@ class _HillDecodeState extends State<HillDecode> {
             )
           ),
         ),
-        const SizedBox(height: 20),
-        HillCardManager(marginTotal: 100, ciphertext: HillManager.ciphertext),
         const SizedBox(height: 50),
+        HillCardManager(marginTotal: 100, ciphertext: HillManager.ciphertext),
       ],
     );
   }

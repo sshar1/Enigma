@@ -1,4 +1,7 @@
+import 'dart:convert';
 import 'dart:math';
+
+import 'package:flutter/services.dart';
 
 import '../cipher_manager.dart';
 
@@ -34,11 +37,10 @@ class HillManager implements CipherManager {
   }
 
   static Future<void> _randomizeKey() async {
-    // final String response = await rootBundle.loadString('lib/json/hill_keys.json');
-    // final keys = await json.decode(response);
+    final String response = await rootBundle.loadString('lib/json/hill_keys.json');
+    final keys = await json.decode(response);
 
-    // key = keys[_random(0, keys.length)].toUpperCase();
-    key = "wiki".toUpperCase();
+    key = keys[_random(0, keys.length)].toUpperCase();
   }
 
   static void _updateKeyMatrix() {
@@ -50,14 +52,10 @@ class HillManager implements CipherManager {
   }
 
   static Future<Map> _getRandomHill() async {
-    // final String response = await rootBundle.loadString('lib/json/hill.json');
-    // final hills = await json.decode(response);
+    final String response = await rootBundle.loadString('lib/json/hill.json');
+    final hills = await json.decode(response);
     
-    // return hills[_random(0, hills.length)];
-    return {
-        "plaintext" : "science olympiad",
-        "title" : "[150 points] Decode this quote by Alexander Pope which has been encoded using a Hill Cipher."
-    };
+    return hills[_random(0, hills.length)];
   }
 
   static Future<void> _randomizePlaintext() async {
