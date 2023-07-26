@@ -14,6 +14,8 @@ class HillManager implements CipherManager {
   static String ciphertext = "";
   static String _title = "";
 
+  static List userAnswer = [];
+
   static Future<void> next() async {
     await _randomizePlaintext();
     await _randomizeKey();
@@ -21,6 +23,14 @@ class HillManager implements CipherManager {
     _updateKeyMatrix();
     _title += " The key used to encode it is $key = ${keyMatrix.toString()}";
     _updateCiphertext();
+    _resetUserAnswer();
+  }
+
+  static void _resetUserAnswer() {
+    userAnswer = [];
+    for (int i = 0; i < _convertedPlaintext.length; ++i) {
+      userAnswer.add('');
+    }
   }
 
   static Future<void> _randomizeKey() async {
@@ -99,6 +109,11 @@ class HillManager implements CipherManager {
   }
 
   static bool keysMatch() {
+    for (int i = 0; i < userAnswer.length; ++i) {
+      if (userAnswer[i] != _convertedPlaintext.substring(i, i+1)) {
+        return false;
+      }
+    }
     return true;
   }
 

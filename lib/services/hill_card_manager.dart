@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'ciphers/hill_manager.dart';
+
 class HillCardManager extends StatelessWidget {
   final int marginTotal;
   final String ciphertext;
@@ -8,7 +10,7 @@ class HillCardManager extends StatelessWidget {
   const HillCardManager({super.key, required this.marginTotal, required this.ciphertext});
 
   static Map textControllers = {};
-  static Map textCards = {};
+  static List textCards = [];
   static List focusNodes = [];
 
   void nextNode(FocusNode current) {
@@ -42,6 +44,7 @@ class HillCardManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    textCards.clear();
     RegExp validLetters = RegExp(r'^[a-zA-Z]+$');
 
     // ignore: invalid_use_of_visible_for_testing_member
@@ -121,7 +124,7 @@ class HillCardManager extends StatelessWidget {
 
 class TextCard extends StatefulWidget {
   final String character;
-  final Map textCards;
+  final List textCards;
   final List focusNodes;
   final RegExp validLetters;
 
@@ -195,20 +198,14 @@ class _TextCardState extends State<TextCard> {
               letterSpacing: 4
             ),
             onChanged: (characterEntered) {
-              
+              HillManager.userAnswer[widget.textCards.indexOf(this)] = characterEntered;
             },
-            //onTap: _onFocusChange,
           )
         )
       )
     );
 
-    if (widget.textCards.containsKey(widget.character)) {
-      widget.textCards[widget.character].add(this);
-    }
-    else {
-      widget.textCards[widget.character] = [this,];
-    }
+    widget.textCards.add(this);
 
     return card;
   }
