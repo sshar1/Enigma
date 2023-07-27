@@ -40,36 +40,39 @@ class _CipherPageState extends State<CipherPage> {
         ),
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 50),
-        child: Column(
-          children: [
-            Confetti(confettiController: confettiController),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Timer(stopwatch: stopwatch)
-                ),
-                ElevatedButton(
-                  style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
+      body: SingleChildScrollView(
+        physics: const ScrollPhysics(),
+          child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 50),
+          child: Column(
+            children: [
+              if (!data['encoding']) Confetti(confettiController: confettiController),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: !data['encoding'] ? Timer(stopwatch: stopwatch) : const ListTile(tileColor: Colors.transparent,)
                   ),
-                  onPressed: () async {
-                    if (data['checkWin']()) {
-                      stopwatch.stop();
-                      confettiController.play();
-                      _dialogBuilder(context, (stopwatch.elapsedMilliseconds / 1000).truncate());
-                    }
-                  },
-                  child: const Text("Submit"),
-                )
-              ],
-            ),
-            const SizedBox(height: 20),
-            data['page']
-          ],
+                  ElevatedButton(
+                    style: const ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
+                    ),
+                    onPressed: () async {
+                      if (data['checkWin']()) {
+                        stopwatch.stop();
+                        confettiController.play();
+                        _dialogBuilder(context, (stopwatch.elapsedMilliseconds / 1000).truncate());
+                      }
+                    },
+                    child: const Text("Submit"),
+                  )
+                ],
+              ),
+              const SizedBox(height: 20),
+              data['page']
+            ],
+          )
         )
       )
     );
