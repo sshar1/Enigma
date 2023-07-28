@@ -31,6 +31,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  // TODO everything has temporarily been given an aristocrat manager encode function
   List<CipherInfo> ciphers = [
     CipherInfo(
       name: 'Aristocrat', 
@@ -42,6 +43,10 @@ class _HomeState extends State<Home> {
       checkWin: AristocratManager.keysMatch,
       getPlaintext: AristocratManager.getPlaintext,
       nextCipher: AristocratManager.next,
+      encode: AristocratManager.encode,
+      getEncodeCiphertext: AristocratManager.getEncodingCiphertext,
+      encodeReady: AristocratManager.encodeReady,
+      clearEncodingVariables: AristocratManager.clearEncodingVariables,
     ),
     CipherInfo(
       name: 'Patristocrat', 
@@ -53,6 +58,10 @@ class _HomeState extends State<Home> {
       checkWin: PatristocratManager.keysMatch,
       getPlaintext: PatristocratManager.getPlaintext,
       nextCipher: PatristocratManager.next,
+      encode: AristocratManager.encode,
+      getEncodeCiphertext: AristocratManager.getEncodingCiphertext,
+      encodeReady: AristocratManager.encodeReady,
+      clearEncodingVariables: AristocratManager.clearEncodingVariables,
     ),
     CipherInfo(
       name: 'Xenocrypt', 
@@ -64,6 +73,10 @@ class _HomeState extends State<Home> {
       checkWin: XenocryptManager.keysMatch,
       getPlaintext: XenocryptManager.getPlaintext,
       nextCipher: XenocryptManager.next,
+      encode: AristocratManager.encode,
+      getEncodeCiphertext: AristocratManager.getEncodingCiphertext,
+      encodeReady: AristocratManager.encodeReady,
+      clearEncodingVariables: AristocratManager.clearEncodingVariables,
     ),
     CipherInfo(
       name: 'Pollux', 
@@ -75,6 +88,10 @@ class _HomeState extends State<Home> {
       checkWin: PolluxManager.checkWin,
       getPlaintext: PolluxManager.getPlaintext,
       nextCipher: PolluxManager.next,
+      encode: AristocratManager.encode,
+      getEncodeCiphertext: AristocratManager.getEncodingCiphertext,
+      encodeReady: AristocratManager.encodeReady,
+      clearEncodingVariables: AristocratManager.clearEncodingVariables,
     ),
     CipherInfo(
       name: 'Morbit', 
@@ -85,6 +102,10 @@ class _HomeState extends State<Home> {
       checkWin: MorbitManager.checkWin,
       getPlaintext: MorbitManager.getPlaintext,
       nextCipher: MorbitManager.next,
+      encode: AristocratManager.encode,
+      getEncodeCiphertext: AristocratManager.getEncodingCiphertext,
+      encodeReady: AristocratManager.encodeReady,
+      clearEncodingVariables: AristocratManager.clearEncodingVariables,
     ),
     CipherInfo(
       name: 'Hill', 
@@ -95,6 +116,10 @@ class _HomeState extends State<Home> {
       checkWin: HillManager.keysMatch,
       getPlaintext: HillManager.getPlaintext,
       nextCipher: HillManager.next,
+      encode: AristocratManager.encode,
+      getEncodeCiphertext: AristocratManager.getEncodingCiphertext,
+      encodeReady: AristocratManager.encodeReady,
+      clearEncodingVariables: AristocratManager.clearEncodingVariables,
     ),
   ];
 
@@ -157,6 +182,7 @@ class _HomeState extends State<Home> {
                   child: ListTile(
                     onTap: () async {
                       if (!_encoding) await ciphers[index].nextCipher();
+                      if (_encoding) ciphers[index].clearEncodingVariables();
                       Widget page = _encoding ? ciphers[index].pages[CipherType.encode] : ciphers[index].pages[CipherType.decode];
                       // ignore: use_build_context_synchronously
                       Navigator.pushNamed(context, '/cipherpage', arguments: {
@@ -165,6 +191,9 @@ class _HomeState extends State<Home> {
                         'page' : page, 
                         'checkWin' : ciphers[index].checkWin,
                         'plaintext' : ciphers[index].getPlaintext,
+                        'encode' : ciphers[index].encode,
+                        'encodeCiphertext' : ciphers[index].getEncodeCiphertext,
+                        'encodeReady' : ciphers[index].encodeReady
                       });
                     },
                     title: Text(

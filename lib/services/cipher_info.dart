@@ -9,6 +9,10 @@ class CipherInfo {
   Function checkWin;
   Function getPlaintext;
   Function nextCipher;
+  Function encode;
+  Function getEncodeCiphertext;
+  Function encodeReady;
+  Function clearEncodingVariables;
 
   CipherInfo({
     required this.name, 
@@ -18,6 +22,10 @@ class CipherInfo {
     required this.pages, 
     required this.checkWin, 
     required this.getPlaintext,
-    required this.nextCipher
+    required this.nextCipher,
+    required this.encode,
+    required this.getEncodeCiphertext,
+    required this.encodeReady,
+    required this.clearEncodingVariables,
   });
 }

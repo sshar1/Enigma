@@ -59,10 +59,17 @@ class _CipherPageState extends State<CipherPage> {
                       backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
                     ),
                     onPressed: () async {
-                      if (data['checkWin']()) {
+                      if (data['encoding']) {
+                        if (data['encodeReady']()) {
+                          await data['encode']();
+                          // ignore: use_build_context_synchronously
+                          _dialogBuilder(context, (stopwatch.elapsedMilliseconds / 1000).truncate(), data['encodeCiphertext'](), true);
+                        }
+                      }
+                      else if (data['checkWin']()) {
                         stopwatch.stop();
                         confettiController.play();
-                        _dialogBuilder(context, (stopwatch.elapsedMilliseconds / 1000).truncate());
+                        _dialogBuilder(context, (stopwatch.elapsedMilliseconds / 1000).truncate(), data['plaintext'](), false);
                       }
                     },
                     child: const Text("Submit"),
@@ -78,7 +85,7 @@ class _CipherPageState extends State<CipherPage> {
     );
   }
 
-  Future<void> _dialogBuilder(BuildContext context, int seconds) {
+  Future<void> _dialogBuilder(BuildContext context, int seconds, String text, bool encoding) {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -86,13 +93,13 @@ class _CipherPageState extends State<CipherPage> {
         return AlertDialog(
           backgroundColor: Colors.grey[900],
           title: Text(
-            'Solved in $seconds seconds',
+            encoding ? 'Your Ciphertext:' : 'Solved in $seconds seconds',
             style: const TextStyle(
               color: Colors.white
             )
           ),
           content: Text(
-            breakText(data['plaintext']()),
+            encoding ? text : breakText(data['plaintext']()),
             style: const TextStyle(
               color: Colors.white
             )

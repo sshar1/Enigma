@@ -40,6 +40,7 @@ class AristocratEncode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController controller = TextEditingController();
     textCards.clear();
 
     // ignore: invalid_use_of_visible_for_testing_member
@@ -77,6 +78,7 @@ class AristocratEncode extends StatelessWidget {
           inputFormatters: <TextInputFormatter>[
             FilteringTextInputFormatter.allow(RegExp("[a-zA-Z' ,.]")),
           ],
+          controller: controller,
           keyboardType: TextInputType.multiline,
           minLines: 1,
           maxLines: null,
@@ -101,10 +103,10 @@ class AristocratEncode extends StatelessWidget {
           style: TextStyle(
             color: Colors.grey[100],
           ),
+          onChanged: (value) => AristocratManager.encodePlaintext = controller.text,
         ),
         const SizedBox(height: 20),
         KeyList(
-          usingKey: UsingKey(value: false),
           textCards: textCards,
           focusNodes: focusNodes
         )
@@ -114,10 +116,9 @@ class AristocratEncode extends StatelessWidget {
 }
 
 class KeyList extends StatefulWidget {
-  final UsingKey usingKey;
   final List textCards;
   final List focusNodes;
-  const KeyList({super.key, required this.usingKey, required this.textCards, required this.focusNodes});
+  const KeyList({super.key, required this.textCards, required this.focusNodes});
 
   @override
   State<KeyList> createState() => _KeyListState();
@@ -137,10 +138,30 @@ class _KeyListState extends State<KeyList> {
               fontSize: 20
             )
           ),
-          value: widget.usingKey.value, 
+          value: AristocratManager.usingCustomKey, 
           onChanged: (bool value) {
             setState(() {
-              widget.usingKey.value = value;
+              AristocratManager.usingCustomKey = value;
+            });
+          },
+          activeColor: Colors.grey[100],
+          activeTrackColor: Colors.grey[400],
+          inactiveThumbColor: Colors.grey[600],
+          inactiveTrackColor: Colors.grey[800],
+        ),
+        if (!AristocratManager.usingCustomKey) SwitchListTile(
+          title: Text(
+            "K1 encrypt",
+            style: TextStyle(
+              fontFamily: 'Ysabeau',
+              color: Colors.grey[100],
+              fontSize: 20
+            )
+          ),
+          value: AristocratManager.encodeK1, 
+          onChanged: (bool value) {
+            setState(() {
+              AristocratManager.encodeK1 = value;
             });
           },
           activeColor: Colors.grey[100],
@@ -149,7 +170,7 @@ class _KeyListState extends State<KeyList> {
           inactiveTrackColor: Colors.grey[800],
         ),
         const SizedBox(height: 20),
-        if (widget.usingKey.value) LetterList(textCards: widget.textCards, focusNodes: widget.focusNodes)
+        if (AristocratManager.usingCustomKey) LetterList(textCards: widget.textCards, focusNodes: widget.focusNodes)
       ],
     );
   }
@@ -202,7 +223,7 @@ class LetterList extends StatelessWidget {
               )
             )
           ),
-          LetterTextField(plaintext: letter,textCards: textCards, focusNodes: focusNodes),
+          LetterTextField(plaintext: letter, textCards: textCards, focusNodes: focusNodes),
           const SizedBox(width: 10,)
         ],
       )).toList()
@@ -277,6 +298,7 @@ class _LetterTextFieldState extends State<LetterTextField> {
               color: Colors.grey[100],
               fontWeight: FontWeight.bold,
             ),
+            onChanged: (value) => AristocratManager.encodeKey[widget.plaintext] = value,
           )
         )
       )
@@ -285,14 +307,5 @@ class _LetterTextFieldState extends State<LetterTextField> {
     widget.textCards.add(this,);
 
     return card;
-  }
-}
-
-class UsingKey {
-  bool value;
-  UsingKey({this.value = true});
-    
-  void set(bool b) {
-    value = b;
   }
 }
