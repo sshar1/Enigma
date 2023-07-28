@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/services/ciphers/aristocrat_manager.dart';
-import 'package:myapp/services/ciphers/xenocrypt_manager.dart';
-import 'package:myapp/services/language.dart';
+import 'package:enigma/services/ciphers/aristocrat_manager.dart';
+import 'package:enigma/services/ciphers/xenocrypt_manager.dart';
+import 'package:enigma/services/language.dart';
 
 class CharacterList extends StatelessWidget {
   final Map frequencies;

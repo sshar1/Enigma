@@ -1,16 +1,17 @@
-# myapp
+# Enigma
 
-My first Flutter project.
+An app to practice decoding ciphers for the Science Olympiad Codebusters event. Built with Flutter by Google.
 
-## Getting Started
+## Ciphers
+This app supports 6 different ciphers, including K1 variations:
+- Aristocrats
+- Xenocrypts
+- Patristocrats
+- Pollux
+- Morbit
+- Hill
 
-This project is a starting point for a Flutter application.
+You can both practice decoding and use the encoding tool to make your own ciphers. 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Solver
+An algorithm that can solve aristocrats. Work in progress.

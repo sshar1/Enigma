@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/services/encode_screen_manager.dart';
+import 'package:enigma/services/encode_screen_manager.dart';
 
 import '../../../services/ciphers/aristocrat_manager.dart';
 

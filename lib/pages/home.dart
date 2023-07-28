@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-import 'package:myapp/pages/ciphers/decode/aristocrat_decode.dart';
-import 'package:myapp/pages/ciphers/decode/hill_decode.dart';
-import 'package:myapp/pages/ciphers/decode/morbit_decode.dart';
-import 'package:myapp/pages/ciphers/decode/patristocrat_decode.dart';
-import 'package:myapp/pages/ciphers/decode/pollux_decode.dart';
-import 'package:myapp/pages/ciphers/encode/aristocrat_encode.dart';
-import 'package:myapp/pages/ciphers/encode/hill_encode.dart';
-import 'package:myapp/pages/ciphers/encode/morbit_encode.dart';
-import 'package:myapp/pages/ciphers/encode/patristocrat_encode.dart';
-import 'package:myapp/pages/ciphers/encode/pollux_encode.dart';
-import 'package:myapp/pages/ciphers/encode/xenocrypt_encode.dart';
-import 'package:myapp/services/cipher_type.dart';
-import 'package:myapp/services/ciphers/morbit_manager.dart';
-import 'package:myapp/services/ciphers/patristocrat_manager.dart';
+import 'package:enigma/pages/ciphers/decode/aristocrat_decode.dart';
+import 'package:enigma/pages/ciphers/decode/hill_decode.dart';
+import 'package:enigma/pages/ciphers/decode/morbit_decode.dart';
+import 'package:enigma/pages/ciphers/decode/patristocrat_decode.dart';
+import 'package:enigma/pages/ciphers/decode/pollux_decode.dart';
+import 'package:enigma/pages/ciphers/encode/aristocrat_encode.dart';
+import 'package:enigma/pages/ciphers/encode/hill_encode.dart';
+import 'package:enigma/pages/ciphers/encode/morbit_encode.dart';
+import 'package:enigma/pages/ciphers/encode/patristocrat_encode.dart';
+import 'package:enigma/pages/ciphers/encode/pollux_encode.dart';
+import 'package:enigma/pages/ciphers/encode/xenocrypt_encode.dart';
+import 'package:enigma/services/cipher_type.dart';
+import 'package:enigma/services/ciphers/morbit_manager.dart';
+import 'package:enigma/services/ciphers/patristocrat_manager.dart';
 
 import '../services/cipher_info.dart';
 import '../services/ciphers/aristocrat_manager.dart';

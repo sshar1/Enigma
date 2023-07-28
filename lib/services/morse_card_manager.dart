@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:myapp/services/ciphers/pollux_manager.dart';
+import 'package:enigma/services/ciphers/pollux_manager.dart';
 
 class MorseCardManager extends StatelessWidget {
   final int marginTotal;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/services/ciphers/patristocrat_manager.dart';
+import 'package:enigma/services/ciphers/patristocrat_manager.dart';
 
 import '../../../services/character_card_manager.dart';
 import '../../../services/character_list.dart';
