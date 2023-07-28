@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
-class PatristocratEncode extends StatefulWidget {
+import '../../../services/ciphers/patristocrat_manager.dart';
+import '../../../services/encode_screen_manager.dart';
+
+class PatristocratEncode extends StatelessWidget {
   const PatristocratEncode({super.key});
 
   @override
-  State<PatristocratEncode> createState() => _PatristocratEncodeState();
-}
-
-class _PatristocratEncodeState extends State<PatristocratEncode> {
-  @override
   Widget build(BuildContext context) {
-    return const Text("This is the placeholder for Patristocrat Encode");
+    return const EncodeScreenManager(
+      setEncodePlaintext: PatristocratManager.setEncodePlaintext,
+      getUsingCustomKey: PatristocratManager.getUsingCustomKey,
+      setUsingCustomKey: PatristocratManager.setUsingCustomKey,
+      getEncodeK1: PatristocratManager.getEncodeK1,
+      setEncodeK1: PatristocratManager.setEncodeK1,
+      appendToKey: PatristocratManager.appendToKey,
+    );
   }
 }
