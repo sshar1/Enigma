@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_getters_setters
+
 import 'dart:convert';
 import 'dart:math';
 
@@ -20,11 +22,11 @@ class AristocratManager implements CipherManager {
   static bool isK1 = true;
 
   // ENCODING VARIABLES
-  static String encodePlaintext = "";
+  static String _encodePlaintext = "";
   static String _encodeCiphertext = "";
-  static Map encodeKey = {}; // Key: plaintext, Value: ciphertext
-  static bool usingCustomKey = false;
-  static bool encodeK1 = false;
+  static Map _encodeKey = {}; // Key: plaintext, Value: ciphertext
+  static bool _usingCustomKey = false;
+  static bool _encodeK1 = false;
 
   static Future<void> next() async {
     _random(0, 10) < 2 ? isK1 = true : isK1 = false; // 20% chance for being k1
@@ -170,29 +172,29 @@ class AristocratManager implements CipherManager {
 
   // ENCODING FUNCTIONS
   static void clearEncodingVariables() {
-    encodePlaintext = "";
+    _encodePlaintext = "";
     _encodeCiphertext = "";
-    encodeKey.clear();
+    _encodeKey.clear();
   }
 
   static void encode() async {
-    if (!usingCustomKey) {
-      if (encodeK1) {
+    if (!_usingCustomKey) {
+      if (_encodeK1) {
         await _randomizeKeyword();
         _randomizeK1Key(getUniqueLetters(_keyword));
       }
       else {
         _randomizeKey();
       }
-      encodeKey = _key;
+      _encodeKey = _key;
     } 
     else if (!encodeKeyComplete()) {
       return;
     }
 
-    for (String char in encodePlaintext.toUpperCase().split('')) {
+    for (String char in _encodePlaintext.toUpperCase().split('')) {
       if (letters.contains(char)) {
-        _encodeCiphertext += encodeKey[char];
+        _encodeCiphertext += _encodeKey[char];
       }
       else {
         _encodeCiphertext += char;
@@ -201,7 +203,7 @@ class AristocratManager implements CipherManager {
   }
 
   static bool encodeReady() {
-    if (usingCustomKey) {
+    if (_usingCustomKey) {
       return encodeKeyComplete();
     }
     return true;
@@ -209,14 +211,26 @@ class AristocratManager implements CipherManager {
 
   // Key is invalid if letter corresponds to itself, plaintext does not have corresponding ciphertext, or there are duplicates
   static bool encodeKeyComplete() {
-    if (containsDuplicateValues(encodeKey)) return false;
+    if (containsDuplicateValues(_encodeKey)) return false;
 
     for (String letter in letters) {
-      if (!encodeKey.containsKey(letter) || !letters.contains(encodeKey[letter]) || encodeKey[letter] == letter) {
+      if (!_encodeKey.containsKey(letter) || !letters.contains(_encodeKey[letter]) || _encodeKey[letter] == letter) {
         return false;
       }
     }
     return true;
+  }
+
+  static setEncodePlaintext(String text) => _encodePlaintext = text;
+
+  static bool getUsingCustomKey() => _usingCustomKey;
+  static setUsingCustomKey(bool value) => _usingCustomKey = value;
+
+  static bool getEncodeK1() => _encodeK1;
+  static setEncodeK1(bool value) => _encodeK1 = value;
+
+  static void appendToKey(String plaintext, String ciphertext) {
+    _encodeKey[plaintext] = ciphertext;
   }
 
   static bool containsDuplicateValues(Map key) {
