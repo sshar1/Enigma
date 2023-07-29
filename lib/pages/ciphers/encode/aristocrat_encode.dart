@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:enigma/services/encode_screen_manager.dart';
 
 import '../../../services/ciphers/aristocrat_manager.dart';
+import '../../../services/language.dart';
 
 class AristocratEncode extends StatelessWidget {
   const AristocratEncode({super.key});
@@ -15,6 +16,7 @@ class AristocratEncode extends StatelessWidget {
       getEncodeK1: AristocratManager.getEncodeK1,
       setEncodeK1: AristocratManager.setEncodeK1,
       appendToKey: AristocratManager.appendToKey,
+      language: Language.english,
     );
   }
 }

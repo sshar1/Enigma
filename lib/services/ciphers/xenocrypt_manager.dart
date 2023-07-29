@@ -19,6 +19,13 @@ class XenocryptManager implements CipherManager {
   static String _keyword = "";
   static bool isK1 = true;
 
+  // ENCODING VARIABLES
+  static String _encodePlaintext = "";
+  static String _encodeCiphertext = "";
+  static Map _encodeKey = {}; // Key: plaintext, Value: ciphertext
+  static bool _usingCustomKey = false;
+  static bool _encodeK1 = false;
+
   static Future<void> next() async {
     _random(0, 10) < 8 ? isK1 = true : isK1 = false; // 80% chance for being k1
     _resetUserKey();
@@ -26,9 +33,9 @@ class XenocryptManager implements CipherManager {
 
     if (isK1) {
       await _randomizeKeyword();
-      _randomizeK1Key(letters, getUniqueLetters(_keyword));
+      _randomizeK1Key(getUniqueLetters(_keyword));
       while(_keyHasMatches(_key)) {
-        _randomizeK1Key(letters, getUniqueLetters(_keyword));
+        _randomizeK1Key(getUniqueLetters(_keyword));
       }
       _title += ' It is encoded with a K1 alphabet and an English keyword.';
     } else {
@@ -81,7 +88,7 @@ class XenocryptManager implements CipherManager {
     }
   }
 
-  static void _randomizeK1Key(List letters, List keyword) {
+  static void _randomizeK1Key(List keyword) {
     List temp = List.from(letters);
     
     int offset = _random(0, 27);
@@ -176,6 +183,77 @@ class XenocryptManager implements CipherManager {
     }
     
     return uniqueLetters;
+  }
+
+  // ENCODING FUNCTIONS
+  static void clearEncodingVariables() {
+    _encodePlaintext = "";
+    _encodeCiphertext = "";
+    _encodeKey.clear();
+  }
+
+  static void encode() async {
+    if (!_usingCustomKey) {
+      if (_encodeK1) {
+        await _randomizeKeyword();
+        _randomizeK1Key(getUniqueLetters(_keyword));
+      }
+      else {
+        _randomizeKey();
+      }
+      _encodeKey = _key;
+    } 
+    else if (!encodeKeyComplete()) {
+      return;
+    }
+
+    for (String char in _encodePlaintext.toUpperCase().split('')) {
+      if (letters.contains(char)) {
+        _encodeCiphertext += _encodeKey[char];
+      }
+      else {
+        _encodeCiphertext += char;
+      }
+    }
+  }
+
+  static bool encodeReady() {
+    if (_usingCustomKey) {
+      return encodeKeyComplete();
+    }
+    return true;
+  }
+
+  // Key is invalid if letter corresponds to itself, plaintext does not have corresponding ciphertext, or there are duplicates
+  static bool encodeKeyComplete() {
+    if (containsDuplicateValues(_encodeKey)) return false;
+
+    for (String letter in letters) {
+      if (!_encodeKey.containsKey(letter) || !letters.contains(_encodeKey[letter]) || _encodeKey[letter] == letter) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  static setEncodePlaintext(String text) => _encodePlaintext = text;
+
+  static bool getUsingCustomKey() => _usingCustomKey;
+  static setUsingCustomKey(bool value) => _usingCustomKey = value;
+
+  static bool getEncodeK1() => _encodeK1;
+  static setEncodeK1(bool value) => _encodeK1 = value;
+
+  static void appendToKey(String plaintext, String ciphertext) {
+    _encodeKey[plaintext] = ciphertext;
+  }
+
+  static bool containsDuplicateValues(Map key) {
+    return key.values.toSet().length != key.values.length;
+  }
+
+  static String getEncodingCiphertext() {
+    return _encodeCiphertext;
   }
 
   static String getTitle() {

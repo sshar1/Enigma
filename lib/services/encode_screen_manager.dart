@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../services/ciphers/aristocrat_manager.dart';
+import 'ciphers/xenocrypt_manager.dart';
+import 'language.dart';
 
 class EncodeScreenManager extends StatelessWidget {
   final Function setEncodePlaintext;
@@ -10,6 +12,7 @@ class EncodeScreenManager extends StatelessWidget {
   final Function getEncodeK1;
   final Function setEncodeK1;
   final Function appendToKey;
+  final Language language;
 
   const EncodeScreenManager({
     super.key, 
@@ -19,6 +22,7 @@ class EncodeScreenManager extends StatelessWidget {
     required this.getEncodeK1,
     required this.setEncodeK1,
     required this.appendToKey,
+    required this.language,
   });
 
   static List focusNodes = [];
@@ -54,6 +58,7 @@ class EncodeScreenManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RegExp validLetters = language == Language.english ? RegExp("[a-zA-Z' ,.?!:;]") : RegExp("[a-zA-ZÑñ' ,.?!:;]");
     final TextEditingController controller = TextEditingController();
 
     // ignore: invalid_use_of_visible_for_testing_member
@@ -89,7 +94,7 @@ class EncodeScreenManager extends StatelessWidget {
         const SizedBox(height: 20),
         TextField(
           inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.allow(RegExp("[a-zA-Z' ,.?!:;]")),
+            FilteringTextInputFormatter.allow(validLetters),
           ],
           controller: controller,
           keyboardType: TextInputType.multiline,
@@ -126,6 +131,7 @@ class EncodeScreenManager extends StatelessWidget {
           getEncodeK1: getEncodeK1,
           setEncodeK1: setEncodeK1,
           appendToKey: appendToKey,
+          language: language,
         )
       ],
     );
@@ -134,6 +140,7 @@ class EncodeScreenManager extends StatelessWidget {
 
 class KeyList extends StatefulWidget {
   final List focusNodes;
+  final Language language;
   final Function getUsingCustomKey;
   final Function setUsingCustomKey;
   final Function getEncodeK1;
@@ -148,6 +155,7 @@ class KeyList extends StatefulWidget {
     required this.getEncodeK1,
     required this.setEncodeK1,
     required this.appendToKey,
+    required this.language,
   });
 
   @override
@@ -200,7 +208,7 @@ class _KeyListState extends State<KeyList> {
           inactiveTrackColor: Colors.grey[800],
         ),
         const SizedBox(height: 20),
-        if (widget.getUsingCustomKey()) LetterList(focusNodes: widget.focusNodes, appendToKey: widget.appendToKey)
+        if (widget.getUsingCustomKey()) LetterList(focusNodes: widget.focusNodes, appendToKey: widget.appendToKey, language: widget.language)
       ],
     );
   }
@@ -209,14 +217,17 @@ class _KeyListState extends State<KeyList> {
 class LetterList extends StatelessWidget {
   final List focusNodes;
   final Function appendToKey;
-  const LetterList({super.key, required this.focusNodes, required this.appendToKey});
+  final Language language;
+  const LetterList({super.key, required this.focusNodes, required this.appendToKey, required this.language});
 
   @override
   Widget build(BuildContext context) {
 
+    List letters = (language == Language.english) ? AristocratManager.letters : XenocryptManager.letters;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: AristocratManager.letters.map((letter) => Column(
+      children: letters.map((letter) => Column(
         children: [
           Card(
             shape: const LinearBorder(),
@@ -253,7 +264,7 @@ class LetterList extends StatelessWidget {
               )
             )
           ),
-          LetterTextField(plaintext: letter, focusNodes: focusNodes, appendToKey: appendToKey),
+          LetterTextField(plaintext: letter, focusNodes: focusNodes, appendToKey: appendToKey, language: language),
           const SizedBox(width: 10,)
         ],
       )).toList()
@@ -264,8 +275,9 @@ class LetterList extends StatelessWidget {
 class LetterTextField extends StatefulWidget {
   final String plaintext;
   final List focusNodes;
+  final Language language;
   final Function appendToKey;
-  const LetterTextField({super.key, required this.plaintext, required this.focusNodes, required this.appendToKey});
+  const LetterTextField({super.key, required this.plaintext, required this.focusNodes, required this.appendToKey, required this.language});
 
   @override
   State<LetterTextField> createState() => _LetterTextFieldState();
@@ -282,9 +294,10 @@ class _LetterTextFieldState extends State<LetterTextField> {
     widget.focusNodes.add(_focus);
 
     controller.addListener(() {
-      final String text = controller.text.contains(RegExp(r'^[a-zA-Z]+$')) ? controller.text.toUpperCase() : '';
+      RegExp validLetters = widget.language == Language.english ? RegExp("[a-zA-Z]") : RegExp("[a-zA-ZÑñ1]");
+      final String text = controller.text.contains(validLetters) ? controller.text.toUpperCase() : '';
       controller.value = controller.value.copyWith(
-        text: text,
+        text: text == '1' && widget.language == Language.spanish ? 'Ñ' : text,
         selection:
             TextSelection(baseOffset: text.length, extentOffset: text.length),
         composing: TextRange.empty,

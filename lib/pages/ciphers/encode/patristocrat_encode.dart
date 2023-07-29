@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../services/ciphers/patristocrat_manager.dart';
 import '../../../services/encode_screen_manager.dart';
+import '../../../services/language.dart';
 
 class PatristocratEncode extends StatelessWidget {
   const PatristocratEncode({super.key});
@@ -15,6 +16,7 @@ class PatristocratEncode extends StatelessWidget {
       getEncodeK1: PatristocratManager.getEncodeK1,
       setEncodeK1: PatristocratManager.setEncodeK1,
       appendToKey: PatristocratManager.appendToKey,
+      language: Language.english,
     );
   }
 }
