@@ -17,10 +17,46 @@
     },
     {
         "plaintext" : "La Soledad Es Muy Hermosa… Cuando Se Tiene Alguien a Quien Decirselo",
-        "title" : "[500 points] Decrypt this xenocrypt by an anonymous person."
+        "title" : "[500 points] Decrypt this Xenocrypt by an anonymous person."
     },
     {
         "plaintext" : "Las masas humanas mas peligrosas en cuyas venas ha sido inyectado el veneno del miedo... del miedo al cambio",
-        "title" : "[600 points] Decrypt this xenocrypt by Octavio Paz."
+        "title" : "[600 points] Decrypt this Xenocrypt by Octavio Paz."
+    },
+    {
+        "plaintext" : "Si llegaste tan lejos en la prueba, te deseo suerte para terminar el resto de estos cifrados",
+        "title" : "[500 points] Solve this Xenocrypt."
+    },
+    {
+        "plaintext" : "Ninguna estas mujeres tiene el flow que tiene becky",
+        "title" : "[500 points] Solve this Xenocrypt by Becky G, whose first name is in the plaintext."
+    },
+    {
+        "plaintext" : "Tengo hits porque yo sente las base ya no tengo nada mas que decir",
+        "title" : "[550 points] Solve this lyric from Bizcochito by Rosalia."
+    },
+    {
+        "plaintext" : "La risa es una expresion de triunfo del cerebro. Si te ries por un chiste es porque lo entendiste.",
+        "title" : "[650 points] Solve this Xenocrypt encryping a quote by Chespirito about laughter."
+    },
+    {
+        "plaintext" : "Tu tiempo es limitado, asi que no lo desperdicies viviendo la vida de otra persona",
+        "title" : "[600 points] Solve this quote by Steve Jobs in Spanish."
+    },
+    {
+        "plaintext" : "La experanza no es algo que tienes. La esperanza es algo que creas con tus acciones. La esperanza es contagiosa.",
+        "title" : "[650 points] Solve this Xenocrypt which is a translation of a quote into Spanish."
+    },
+    {
+        "plaintext" : "Cada traduccion seria un acto de invencion, una genesis nueva con el uso de materiales que ya existen, como la construccion de una casa con materiales reciclados.",
+        "title" : "[450 points] Solve this Xenocrypt, which is a quote from a Princeton alumnus about the act of translation."
+    },
+    {
+        "plaintext" : "Algunas veces tienes que aceptar que no siempre puedes ganar.",
+        "title" : "[500 points] Decipher this Lionel Messi quote encoded as a Xenocrypt."
+    },
+    {
+        "plaintext" : "Mientras mas grande sea tu meta, mayor sera el sabor de la victoria",
+        "title" : "[450 points] Solve this Xenocrypt which is a phrase said by Kratos from God of War translated into Spanish."
     }
 ]

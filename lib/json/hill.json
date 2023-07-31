@@ -14,5 +14,73 @@
     {
         "plaintext" : "Start small and keep going.",
         "title" : "[175 points] The following quote by Abhijit Naskar has been encoded using a Hill cipher."
+    },
+    {
+        "plaintext" : "Wow that's amazing that he can bench two twenty five.",
+        "title" : "[300 points] Decode this Hill cipher."
+    },
+    {
+        "plaintext" : "Decrypting transposed text given arange for failts",
+        "title" : "[225 points] Solve this Hill cipher about the railfence cipher."
+    },
+    {
+        "plaintext" : "Tachistoscope",
+        "title" : "[100 points] Decode this Hill cipher."
+    },
+    {
+        "plaintext" : "Pochemuchka",
+        "title" : "[200 points] Decode this Hill cipher."
+    },
+    {
+        "plaintext" : "Eudaemonic",
+        "title" : "[200 points] Decode this Hill cipher."
+    },
+    {
+        "plaintext" : "Redox reaction",
+        "title" : "[200 points] Decode this Hill cipher."
+    },
+    {
+        "plaintext" : "Apartment complex",
+        "title" : "[250 points] Decode this Hill cipher."
+    },
+    {
+        "plaintext" : "Photosynthesis",
+        "title" : "[150 points] Decode this Hill cipher."
+    },
+    {
+        "plaintext" : "I never took a day off in my twenties not one",
+        "title" : "[200 points] Decode this phrase by Bill Gates."
+    },
+    {
+        "plaintext" : "Tigers roar",
+        "title" : "[150 points] Decode the following phrase."
+    },
+    {
+        "plaintext" : "In service of humanity",
+        "title" : "[200 points] Decode this phrase."
+    },
+    {
+        "plaintext" : "Expelliarmus",
+        "title" : "[200 points] Decode this Hill cipher."
+    },
+    {
+        "plaintext" : "It is noble and bright",
+        "title" : "[250 points] Decode this phrase with the Hill cipher."
+    },
+    {
+        "plaintext" : "The neutral signature",
+        "title" : "[250 points] Solve this Hill cipher explaining what opponenets might not expect in Brawlhalla."
+    },
+    {
+        "plaintext" : "A fun party game of coordination and speed",
+        "title" : "[300 points] Decode this Hill cipher describing the game Unrailed."
+    },
+    {
+        "plaintext" : "Professionals have standards",
+        "title" : "[300 points] Decode this quote from Team Fortress 2."
+    },
+    {
+        "plaintext" : "The only thing it could cost you is your life and you got that for free",
+        "title" : "[300 points] Decode this quote from an NPC from the indie horro game Earthbound."
     }
 ]

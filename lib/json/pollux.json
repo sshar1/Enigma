@@ -17,10 +17,58 @@
     },
     {
         "plaintext" : "The pendulum of life swings equally to both sides until friction is applied.",
-        "title" : "[200 points] Solve this pollux encoding a quote by by Shaun S. Lott."
+        "title" : "[200 points] Solve this Pollux encoding a quote by by Shaun S. Lott."
     },
     {
         "plaintext" : "A great artist is always before his time or behind it.",
-        "title" : "[170 points] Solve this pollux encoding a quote by philosopher George Moore."
+        "title" : "[170 points] Solve this Pollux encoding a quote by philosopher George Moore."
+    },
+    {
+        "plaintext" : "A healthy diet and consistent exercise is key to fitness.",
+        "title" : "[200 points] Solve this Pollux cipher."
+    },
+    {
+        "plaintext" : "I have great ideas but reality always manages to get in the way.",
+        "title" : "[150 points] A quote from Binky has been encoded with a Pollux cipher."
+    },
+    {
+        "plaintext" : "All our dreams can come true if we have the courage to pursue them.",
+        "title" : "[125 points] A quote has been encoded using the Pollux cipher for you to decode."
+    },
+    {
+        "plaintext" : "It always seems impossible until it's done",
+        "title" : "[200 points] Solve this quote from Nelson Mandela which has been encoded using the Pollux cipher."
+    },
+    {
+        "plaintext" : "And the voice ringing in the me gets louder with tears about to fall.",
+        "title" : "[150 points] A lyric from TikTok has been encoded using the Pollux Cipher for you to decode."
+    },
+    {
+        "plaintext" : "They are able because they think they are able.",
+        "title" : "[100 points] Solve this quote by ancient Roman poet Virgil which has been encoded with the Pollux cipher."
+    },
+    {
+        "plaintext" : "When you have no basis of argument abuse the plaintiff.",
+        "title" : "[150 points] Solve this quote which has been encoded with the Pollux cipher. The first four letters are WHEN."
+    },
+    {
+        "plaintext" : "Be kind for everyone you meet is fighting a harder battle.",
+        "title" : "[100 points] A quote has been encoded using the Pollux cipher for you to decode."
+    },
+    {
+        "plaintext" : "We should all start to live before we get too old. Fear is stupid, so are regrets.",
+        "title" : "[150 points] A quote has been encoded using the Pollux cipher for you to decode."
+    },
+    {
+        "plaintext" : "Friends are relatives you make for yourself.",
+        "title" : "[150 points] Solve this quote by Eustache Deschamps, which has been encoded using the Pollux Cipher."
+    },
+    {
+        "plaintext" : "A writer by definition is pathetic.",
+        "title" : "[150 points] A quote by filmmaker Ethan Coen has been encoded using the Pollux Cipher for you to decode."
+    },
+    {
+        "plaintext" : "Ah there is nothing like staying at home for real comfort.",
+        "title" : "[300 points] A quote from Emma by Jane Austen has been encoded using the Pollux Cipher. Decrypt it."
     }
 ]

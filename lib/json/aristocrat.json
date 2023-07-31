@@ -137,19 +137,19 @@
     },
     {
         "plaintext" : "Strength does not come from winning. Your struggles develop your strengths. When you go through hardships and decide not to surrender, that is strength.",
-        "title" : "[225 points] Solve this aristocrat from Arnold Schwarzenegger"
+        "title" : "[225 points] Solve this Aristocrat from Arnold Schwarzenegger"
     },
     {
         "plaintext" : "In this life, it's not what you hope for, it's not what you deserve - it's what you take!",
-        "title" : "[200 points] Solve this aristocrat by actor Tom Cruise"
+        "title" : "[200 points] Solve this Aristocrat by actor Tom Cruise"
     },
     {
         "plaintext" : "The real test is not whether you avoid this failure, because you won't. It's whether you let it harden or shame you into inaction, or whether you learn from it; whether you choose to persevere.",
-        "title" : "[250 points] Solve this aristocrat by Barack Obama"
+        "title" : "[250 points] Solve this Aristocrat by Barack Obama"
     },
     {
         "plaintext" : "Reading is the key that opens doors to many good things in life. Reading shaped my dreams, and more reading helped me make my dreams come true.",
-        "title" : "[325 points] Solve this aristocrat, which is a quote by the late Ruth Bader Ginsburg"
+        "title" : "[325 points] Solve this Aristocrat, which is a quote by the late Ruth Bader Ginsburg"
     },
     {
         "plaintext" : "Nintendo's video game platformer, super mario galaxy features black holes, comets, and planetoids in the mario universe",
@@ -161,6 +161,142 @@
     },
     {
         "plaintext" : "Eastern gray squierrels or fox squierrels sometimes have black fur due to a faulty gene. They're not a new species though.",
-        "title" : "[400 points] Solve this aristocrat. This is a fun fact about a type of animal."
+        "title" : "[400 points] Solve this Aristocrat. This is a fun fact about a type of animal."
+    },
+    {
+        "plaintext" : "Let the rain kiss you. Let the rain beat upon your head with silver liquid drops. Let the rain sing you a lullaby.",
+        "title" : "[400 points] Solve this Aristocrat once spoken by the great Langston Hughes."
+    },
+    {
+        "plaintext" : "Sometimes, the best things in life are the ones that pass you by in the blink of an eye.",
+        "title" : "[250 points] Solve this Aristocrat."
+    },
+    {
+        "plaintext" : "I'll put it simply: If you're goin' hard enough left, you'll find youself turnin' right.",
+        "title" : "[300 points] Timed question. Solve this Aristocrat."
+    },
+    {
+        "plaintext" : "What am I doing with my life right now I'm making solder soup.",
+        "title" : "[300 points] Solve this Aristocrat from a student."
+    },
+    {
+        "plaintext" : "Your present circumstances don't determine where you can go. They merely determine where you start.",
+        "title" : "[300 points] Timed question. A quote by Nido Qubein has been encoded as an Aristocrat. The phrase contains the word GO."
+    },
+    {
+        "plaintext" : "An optimist stays up until midnight to see the new year in. A pessimist stays up to make sure the old year leaves.",
+        "title" : "[250 points] Solve this Aristocrat by William E. Vaughan."
+    },
+    {
+        "plaintext" : "The question's not if we will weather this unknown, but how we will weather the unkown together.",
+        "title" : "[350 points] Solve this Aristocrat by Amanda Gorman. the phrase contains the word NOT."
+    },
+    {
+        "plaintext" : "If more of us valued food and cheer and song above hoarded gold, it would be a merrier world.",
+        "title" : "[300 points] Solve this Aristocrat encrypting a quote from J.R.R. Tolkien."
+    },
+    {
+        "plaintext" : "If I can inspire young people to dedicate themselves to the good of manking, I've accomplished something.",
+        "title" : "[300 points] Solve this Aristocrat which is a quote by John Glenn."
+    },
+    {
+        "plaintext" : "There are in fact two things, science and opinion; the former begets knowledge, the latter ignorance",
+        "title" : "[450 points] Solve this Aristocrat. It is a quote by Hippocrates."
+    },
+    {
+        "plaintext" : "Every great cause begins as a movement, becomes a business, and eventually degenerates into a racket.",
+        "title" : "[200 points] Timed question. Solve this quote by Eric Hoffer."
+    },
+    {
+        "plaintext" : "Music gives a soul to the universe, wings to the mind, flight to the imagination and life to everything.",
+        "title" : "[200 points] Solve this Aristocrat quote by Plato with the word MIND in it."
+    },
+    {
+        "plaintext" : "It is strange that only extraordinary men make the discoveries, which later appear so easy and simple.",
+        "title" : "[200 points] Solve this Aristocrat quote by Georg C. Litchenberg which ends with SIMPLE."
+    },
+    {
+        "plaintext" : "Philosophers say a great deal about what is absolutely necessary for science, and it is always, so far as one can see, rather naive, and probably wrong.",
+        "title" : "[200 points] Timed question. Solve this Aristocrat which encodes a quote by Richard Feynman."
+    },
+    {
+        "plaintext" : "Poetry is the utterance of deep and heartfelt truth. The true poet is very near the oracle.",
+        "title" : "[200 points] Solve the following Aristocrat, which is a quote relating to poetry."
+    },
+    {
+        "plaintext" : "To accomplish great things, we must not only act, but also dream; not only plan, but also believe.",
+        "title" : "[250 points] Solve this Aristocrat."
+    },
+    {
+        "plaintext" : "Happiness lies not in the mere possession of money. It lies in the joy of achievement, in the thrill of creative effort.",
+        "title" : "[300 points] Solve this Aristocrat which encodes a quote by Franklin D. Roosevelt."
+    },
+    {
+        "plaintext" : "My bounty is as boundless as the sea, my love as deep; the more I give to thee, the more I have, for both are infinite.",
+        "title" : "[250 points] Solve this Aristocrat which encoes a quote from Romeo and Juliet."
+    },
+    {
+        "plaintext" : "Of all forms of tyranny the least attractive and the most vulgar is the tyranny of mere wealth, the tyranny of plutocracy.",
+        "title" : "[350 points] Solve this Aristocrat which contains a quote by Theodore Roosevelt."
+    },
+    {
+        "plaintext" : "You can't stay in your corner of the forest waiting for others to come to you. You have to go to them sometimes.",
+        "title" : "[300 points] Timed question. Solve this Aristocrat which is a quote by Winnie the Pooh."
+    },
+    {
+        "plaintext" : "Lock up your libraries if you like; but there is no gate, no lock, no bolt that you can set upon the freedom of my mind.",
+        "title" : "[400 points] A quote by Virginia Woolf has been encoded as an Aristocrat for you to decode."
+    },
+    {
+        "plaintext" : "It takes ten times as long to put yourself back together as it does to fall apart",
+        "title" : "[200 points] Solve this Aristocrat which is a quote by Suzanne Collins and has the word TEN in it."
+    },
+    {
+        "plaintext" : "And the day came when the risk to remain tight in a bud was more painful than the risk it took to blossom.",
+        "title" : "[250 points] Solve this Aristocrat which is a quote by Anais Nin."
+    },
+    {
+        "plaintext" : "It is the unknown we fear when we look upon death and darkness, nothing more.",
+        "title" : "[250 points] Solve this Aristocrat which has the word MORE in it."
+    },
+    {
+        "plaintext" : "Friendships are fragile things, and require as much handling as any other fragile and precious thing.",
+        "title" : "[300 points] Timed question. Solve this Aristocrat which is a quote by Randolph Bourne."
+    },
+    {
+        "plaintext" : "Your reputation is more important than your paycheck, and your integrity is worth more than your career.",
+        "title" : "[300 points] Solve this Aristocrat, a quote by Ryan Freitas, co-founder of About.me."
+    },
+    {
+        "plaintext" : "Resilience is knowing that you are the only one that has the power and responsibility to pick yourself up.",
+        "title" : "[300 points] Solve this Aristocrat which is a quote by Mary Holloway."
+    },
+    {
+        "plaintext" : "Concern for man and his fate must always form the chief interest of all technical endeavors. Never forget this in the midst of your diagrams and equations.",
+        "title" : "[300 points] Timed question. Solve this Aristocrat which is a quote by Albert Einstein."
+    },
+    {
+        "plaintext" : "The world must be made safe for democracy. Its peace must be planted upon the tested foundations of political liberty.",
+        "title" : "[200 points] Solve this Aristocrat, a quote by President Woodrow Wilson. It contains the word SAFE."
+    },
+    {
+        "plaintext" : "Each time I see a split infinitive, an inconsistent tense structure or the unnecessary use of the passive voice, I blister.",
+        "title" : "[200 points] Solve this Aristocrat, a quote by Sonia Sotomayor."
+    },
+    {
+        "plaintext" : "Procrastination is the art of keeping up with yesterday and avoiding today.",
+        "title" : "[250 points] Solve this Aristocrat."
+    },
+    {
+        "plaintext" : "We are just an advanced breed of monkeys on a minor planet of a very average star. But we can understand the universe. That makes us something very special.",
+        "title" : "[300 points] The following Aristocrat is an encrypted quote by Stephen Hawking and you are told to decrypt it."
+    },
+    {
+        "plaintext" : "Your best and wisest refuge from all troubles in in your science.",
+        "title" : "[200 points] Decrypt this quote by Ada Lovelace encoded as an Aristocrat."
+    },
+    {
+        "plaintext" : "Open nets are the hardest mechanic. No other technique requires as much skill as shooting into an undefended goal.",
+        "title" : "[275 points] Solve this Aristocrat containing valuable insight about the car-soccer game Rocket League."
     }
 ]
