@@ -15,7 +15,6 @@ class PatristocratDecode extends StatefulWidget {
 class _PatristocratDecodeState extends State<PatristocratDecode> {
   @override
   Widget build(BuildContext context) {
-    print(PatristocratManager.ciphertext);
     return Column(
       children: [
         Align(

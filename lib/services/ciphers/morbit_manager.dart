@@ -87,8 +87,6 @@ class MorbitManager implements CipherManager {
     _plaintext = morbit['plaintext'];
     _convertedPlaintext = convertText(_plaintext);
     _title = morbit['title'];
-    print(_plaintext);
-    print(_title);
   }
 
   static void _randomizeKey() {

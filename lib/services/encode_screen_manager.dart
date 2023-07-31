@@ -138,7 +138,7 @@ class EncodeScreenManager extends StatelessWidget {
           appendToKey: appendToKey!,
           language: language,
         ),
-        if (hill) HillKeyField(),
+        if (hill) const HillKeyField(),
       ],
     );
   }

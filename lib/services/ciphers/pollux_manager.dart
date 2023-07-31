@@ -76,8 +76,6 @@ class PolluxManager implements CipherManager {
     _plaintext = pollux['plaintext'];
     _convertedPlaintext = convertText(_plaintext);
     _title = pollux['title'];
-    print(_plaintext);
-    print(_title);
   }
 
   static void _randomizeKey() {

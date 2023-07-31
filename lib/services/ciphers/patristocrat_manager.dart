@@ -71,8 +71,6 @@ class PatristocratManager implements CipherManager {
     _plaintext = patristocrat['plaintext'];
     _convertedPlaintext = convertText(_plaintext);
     _title = patristocrat['title'];
-    print(_plaintext);
-    print(_title);
   }
 
   static void _randomizeKey() {

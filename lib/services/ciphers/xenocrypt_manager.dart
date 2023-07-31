@@ -71,8 +71,6 @@ class XenocryptManager implements CipherManager {
     _plaintext = xenocrypt['plaintext'];
     _convertedPlaintext = _plaintext.toUpperCase();
     _title = xenocrypt['title'];
-    print(_plaintext);
-    print(_title);
   }
 
   static void _randomizeKey() {

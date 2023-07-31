@@ -68,8 +68,6 @@ class HillManager implements CipherManager {
     _plaintext = hill['plaintext'];
     _convertedPlaintext = convertText(_plaintext);
     _title = hill['title'];
-    print(_plaintext);
-    print(_title);
   }
 
   static String convertText(String text) {

@@ -74,8 +74,6 @@ class AristocratManager implements CipherManager {
     _plaintext = aristocrat['plaintext'];
     _convertedPlaintext = _plaintext.toUpperCase();
     _title = aristocrat['title'];
-    print(_plaintext);
-    print(_title);
   }
 
   static void _randomizeKey() {

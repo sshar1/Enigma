@@ -31,7 +31,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  // TODO everything has temporarily been given an aristocrat manager encode function
   List<CipherInfo> ciphers = [
     CipherInfo(
       name: 'Aristocrat', 
