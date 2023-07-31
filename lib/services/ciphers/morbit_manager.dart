@@ -59,7 +59,12 @@ class MorbitManager implements CipherManager {
   static List usedNums = [];
   static final Map _givens = {};
 
+  // ENCODING VARIABLES
+  static String _encodePlaintext = "";
+  static String _encodeCiphertext = "";
+
   static Future<void> next() async {
+    usedNums.clear();
     await _randomizePlaintext();
     _randomizeKey();
     _updateCiphertext();
@@ -129,7 +134,7 @@ class MorbitManager implements CipherManager {
         convertedPlaintext += '${morse[s]}x';
       }
     }
-    convertedPlaintext = convertedPlaintext.substring(0, convertedPlaintext.length-1);
+    convertedPlaintext = convertedPlaintext.isEmpty ? '' : convertedPlaintext.substring(0, convertedPlaintext.length-1);
     
     if (convertedPlaintext.length % 2 == 1) {
       convertedPlaintext += 'x';
@@ -150,12 +155,48 @@ class MorbitManager implements CipherManager {
     return userAnswer == allCapPlaintext;
   }
 
+  // ENCODING FUNCTIONS
+  static void clearEncodingVariables() {
+    _encodePlaintext = "";
+    _encodeCiphertext = "";
+  }
+
+  static void encode() async {
+    _randomizeKey();
+    String morsePlaintext = convertText(_encodePlaintext);
+
+    for (int i = 0; i < morsePlaintext.length; i += 2) {
+      String num = _key[morsePlaintext.substring(i, i + 2)];
+      _encodeCiphertext += num;
+    }
+  }
+
+  static bool encodeReady() {
+    return true;
+  }
+
+  static setEncodePlaintext(String text) => _encodePlaintext = convertPlaintext(text);
+
+  static convertPlaintext(String text) {
+    String result = "";
+    for (String char in text.trim().toUpperCase().split('')) {
+      if (char.contains(RegExp("[A-Z' ]"))) {
+        result += char;
+      }
+    }
+    return result;
+  }
+
   static String getTitle() {
     return _title;
   }
 
   static String getPlaintext() {
     return _plaintext;
+  }
+
+  static String getEncodingCiphertext() {
+    return _encodeCiphertext;
   }
 
   // From min to max-1
