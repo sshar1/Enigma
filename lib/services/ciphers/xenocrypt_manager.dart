@@ -156,23 +156,6 @@ class XenocryptManager implements CipherManager {
     return false;
   }
 
-  static String convertText(String plaintext) {
-    String convertedPlaintext = "";
-    plaintext = plaintext.toUpperCase();
-    int count = 0;
-
-    for (String s in plaintext.split('')) {
-      if (s.contains(RegExp(r'^[a-zA-ZÑñ]+$'))) {
-        if (count % 5 == 0 && count != 0) {
-          convertedPlaintext += ' ';
-        }
-        convertedPlaintext += s;
-        count++;
-      }
-    }
-    return convertedPlaintext;
-  }
-
   static List getUniqueLetters(String text) {
     List uniqueLetters = [];
     

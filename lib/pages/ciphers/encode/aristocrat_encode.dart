@@ -17,6 +17,7 @@ class AristocratEncode extends StatelessWidget {
       setEncodeK1: AristocratManager.setEncodeK1,
       appendToKey: AristocratManager.appendToKey,
       language: Language.english,
+      morse: false
     );
   }
 }

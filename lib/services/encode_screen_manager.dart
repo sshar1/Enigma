@@ -7,12 +7,13 @@ import 'language.dart';
 
 class EncodeScreenManager extends StatelessWidget {
   final Function setEncodePlaintext;
-  final Function getUsingCustomKey;
-  final Function setUsingCustomKey;
-  final Function getEncodeK1;
-  final Function setEncodeK1;
-  final Function appendToKey;
+  final Function? getUsingCustomKey;
+  final Function? setUsingCustomKey;
+  final Function? getEncodeK1;
+  final Function? setEncodeK1;
+  final Function? appendToKey;
   final Language language;
+  final bool morse;
 
   const EncodeScreenManager({
     super.key, 
@@ -23,6 +24,7 @@ class EncodeScreenManager extends StatelessWidget {
     required this.setEncodeK1,
     required this.appendToKey,
     required this.language,
+    required this.morse,
   });
 
   static List focusNodes = [];
@@ -100,7 +102,7 @@ class EncodeScreenManager extends StatelessWidget {
           keyboardType: TextInputType.multiline,
           minLines: 1,
           maxLines: null,
-          maxLength: 400,
+          maxLength: morse ? 200: 400,
           cursorColor: Colors.grey[100],
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
@@ -124,13 +126,13 @@ class EncodeScreenManager extends StatelessWidget {
           onChanged: (value) => setEncodePlaintext(controller.text)
         ),
         const SizedBox(height: 20),
-        KeyList(
+        if (!morse) KeyList(
           focusNodes: focusNodes,
-          getUsingCustomKey: getUsingCustomKey,
-          setUsingCustomKey: setUsingCustomKey,
-          getEncodeK1: getEncodeK1,
-          setEncodeK1: setEncodeK1,
-          appendToKey: appendToKey,
+          getUsingCustomKey: getUsingCustomKey!,
+          setUsingCustomKey: setUsingCustomKey!,
+          getEncodeK1: getEncodeK1!,
+          setEncodeK1: setEncodeK1!,
+          appendToKey: appendToKey!,
           language: language,
         )
       ],
@@ -341,7 +343,7 @@ class _LetterTextFieldState extends State<LetterTextField> {
               color: Colors.grey[100],
               fontWeight: FontWeight.bold,
             ),
-            onChanged: (value) => widget.appendToKey(widget.plaintext, value)//AristocratManager.encodeKey[widget.plaintext] = value,
+            onChanged: (value) => widget.appendToKey(widget.plaintext, value)
           )
         )
       )

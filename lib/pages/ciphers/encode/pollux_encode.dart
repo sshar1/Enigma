@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../services/ciphers/pollux_manager.dart';
+import '../../../services/encode_screen_manager.dart';
+import '../../../services/language.dart';
+
 class PolluxEncode extends StatefulWidget {
   const PolluxEncode({super.key});
 
@@ -10,6 +14,15 @@ class PolluxEncode extends StatefulWidget {
 class _PolluxEncodeState extends State<PolluxEncode> {
   @override
   Widget build(BuildContext context) {
-    return const Text("This is the placeholder for Pollux Encode");
+    return const EncodeScreenManager(
+      setEncodePlaintext: PolluxManager.setEncodePlaintext,
+      getUsingCustomKey: null,
+      setUsingCustomKey: null,
+      getEncodeK1: null,
+      setEncodeK1: null,
+      appendToKey: null,
+      language: Language.english,
+      morse: true
+    );
   }
 }

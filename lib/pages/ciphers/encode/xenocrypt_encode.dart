@@ -22,6 +22,7 @@ class _XenocryptEncodeState extends State<XenocryptEncode> {
       setEncodeK1: XenocryptManager.setEncodeK1,
       appendToKey: XenocryptManager.appendToKey,
       language: Language.spanish,
+      morse: false
     );
   }
 }

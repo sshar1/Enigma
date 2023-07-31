@@ -49,6 +49,10 @@ class PolluxManager implements CipherManager {
   static int numLength = 0;
   static final Map _givens = {};
 
+  // ENCODING VARIABLES
+  static String _encodePlaintext = "";
+  static String _encodeCiphertext = "";
+
   static Future<void> next() async {
     await _randomizePlaintext();
     _randomizeKey();
@@ -117,7 +121,7 @@ class PolluxManager implements CipherManager {
         convertedPlaintext += '${morse[s]}x';
       }
     }
-    return convertedPlaintext.substring(0, convertedPlaintext.length-1);
+    return convertedPlaintext.isEmpty ? '' : convertedPlaintext.substring(0, convertedPlaintext.length-1);
   }
 
   static bool checkWin() {
@@ -132,12 +136,47 @@ class PolluxManager implements CipherManager {
     return userAnswer == allCapPlaintext;
   }
 
+  // ENCODING FUNCTIONS
+  static void clearEncodingVariables() {
+    _encodePlaintext = "";
+    _encodeCiphertext = "";
+  }
+
+  static void encode() async {
+    _randomizeKey();
+    String morsePlaintext = convertText(_encodePlaintext);
+
+    for (String char in morsePlaintext.split('')) {
+      _encodeCiphertext += _key[char][_random(0, _key[char].length)]; 
+    }
+  }
+
+  static bool encodeReady() {
+    return true;
+  }
+
+  static setEncodePlaintext(String text) => _encodePlaintext = convertPlaintext(text);
+
+  static convertPlaintext(String text) {
+    String result = "";
+    for (String char in text.trim().toUpperCase().split('')) {
+      if (char.contains(RegExp("[A-Z' ]"))) {
+        result += char;
+      }
+    }
+    return result;
+  }
+
   static String getTitle() {
     return _title;
   }
 
   static String getPlaintext() {
     return _plaintext;
+  }
+
+  static String getEncodingCiphertext() {
+    return _encodeCiphertext;
   }
 
   // From min to max-1
