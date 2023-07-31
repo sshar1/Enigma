@@ -17,7 +17,8 @@ class PatristocratEncode extends StatelessWidget {
       setEncodeK1: PatristocratManager.setEncodeK1,
       appendToKey: PatristocratManager.appendToKey,
       language: Language.english,
-      morse: false
+      morse: false,
+      hill: false
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../services/ciphers/aristocrat_manager.dart';
+import 'ciphers/hill_manager.dart';
 import 'ciphers/xenocrypt_manager.dart';
 import 'language.dart';
 
@@ -14,6 +15,7 @@ class EncodeScreenManager extends StatelessWidget {
   final Function? appendToKey;
   final Language language;
   final bool morse;
+  final bool hill;
 
   const EncodeScreenManager({
     super.key, 
@@ -25,6 +27,7 @@ class EncodeScreenManager extends StatelessWidget {
     required this.appendToKey,
     required this.language,
     required this.morse,
+    required this.hill,
   });
 
   static List focusNodes = [];
@@ -126,7 +129,7 @@ class EncodeScreenManager extends StatelessWidget {
           onChanged: (value) => setEncodePlaintext(controller.text)
         ),
         const SizedBox(height: 20),
-        if (!morse) KeyList(
+        if (!morse && !hill) KeyList(
           focusNodes: focusNodes,
           getUsingCustomKey: getUsingCustomKey!,
           setUsingCustomKey: setUsingCustomKey!,
@@ -134,7 +137,8 @@ class EncodeScreenManager extends StatelessWidget {
           setEncodeK1: setEncodeK1!,
           appendToKey: appendToKey!,
           language: language,
-        )
+        ),
+        if (hill) HillKeyField(),
       ],
     );
   }
@@ -350,5 +354,56 @@ class _LetterTextFieldState extends State<LetterTextField> {
     );
 
     return card;
+  }
+}
+
+class HillKeyField extends StatelessWidget {
+  const HillKeyField({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final TextEditingController controller = TextEditingController();
+
+    controller.addListener(() {
+      final String text = controller.text.toUpperCase();
+      controller.value = controller.value.copyWith(
+        text: text,
+        selection:
+            TextSelection(baseOffset: text.length, extentOffset: text.length),
+        composing: TextRange.empty,
+      );
+    });
+
+    return TextField(
+      inputFormatters: <TextInputFormatter>[
+        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+      ],
+      controller: controller,
+      keyboardType: TextInputType.multiline,
+      minLines: 1,
+      maxLines: 1,
+      maxLength: 4,
+      cursorColor: Colors.grey[100],
+      decoration: InputDecoration(
+        border: const OutlineInputBorder(),
+        labelText: 'Enter Key',
+        labelStyle: TextStyle(
+          color: Colors.grey[100]
+        ),
+        counterStyle: TextStyle(
+          color: Colors.grey[100]
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey[100]!)
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey[800]!)
+        ),
+      ),
+      style: TextStyle(
+        color: Colors.grey[100],
+      ),
+      onChanged: (value) => HillManager.setEncodeKey(controller.text)
+    );
   }
 }

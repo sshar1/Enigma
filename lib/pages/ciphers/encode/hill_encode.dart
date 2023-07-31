@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../services/ciphers/hill_manager.dart';
+import '../../../services/encode_screen_manager.dart';
+import '../../../services/language.dart';
+
 class HillEncode extends StatefulWidget {
   const HillEncode({super.key});
 
@@ -10,6 +14,16 @@ class HillEncode extends StatefulWidget {
 class _HillEncodeState extends State<HillEncode> {
   @override
   Widget build(BuildContext context) {
-    return const Text("This is the placeholder for Hill Encode");
+    return const EncodeScreenManager(
+      setEncodePlaintext: HillManager.setEncodePlaintext,
+      getUsingCustomKey: null,
+      setUsingCustomKey: null,
+      getEncodeK1: null,
+      setEncodeK1: null,
+      appendToKey: null,
+      language: Language.english,
+      morse: true,
+      hill: true
+    );
   }
 }

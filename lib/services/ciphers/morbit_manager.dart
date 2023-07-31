@@ -137,7 +137,7 @@ class MorbitManager implements CipherManager {
     convertedPlaintext = convertedPlaintext.isEmpty ? '' : convertedPlaintext.substring(0, convertedPlaintext.length-1);
     
     if (convertedPlaintext.length % 2 == 1) {
-      convertedPlaintext += 'x';
+      convertedPlaintext += 'x'; 
     }
 
     return convertedPlaintext;

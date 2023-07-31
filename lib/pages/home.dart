@@ -116,10 +116,10 @@ class _HomeState extends State<Home> {
       checkWin: HillManager.keysMatch,
       getPlaintext: HillManager.getPlaintext,
       nextCipher: HillManager.next,
-      encode: AristocratManager.encode,
-      getEncodeCiphertext: AristocratManager.getEncodingCiphertext,
-      encodeReady: AristocratManager.encodeReady,
-      clearEncodingVariables: AristocratManager.clearEncodingVariables,
+      encode: HillManager.encode,
+      getEncodeCiphertext: HillManager.getEncodingCiphertext,
+      encodeReady: HillManager.encodeReady,
+      clearEncodingVariables: HillManager.clearEncodingVariables,
     ),
   ];
 

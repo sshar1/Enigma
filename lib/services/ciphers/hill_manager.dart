@@ -19,11 +19,16 @@ class HillManager implements CipherManager {
 
   static List userAnswer = [];
 
+  // ENCODING VARIABLES
+  static String _encodePlaintext = "";
+  static String _encodeCiphertext = "";
+  static String _encodeKey = "";
+
   static Future<void> next() async {
     await _randomizePlaintext();
     await _randomizeKey();
     _updatePlaintextMatrix();
-    _updateKeyMatrix();
+    _updateKeyMatrix(key);
     _title += " The key used to encode it is $key = ${keyMatrix.toString()}";
     _updateCiphertext();
     _resetUserAnswer();
@@ -43,7 +48,7 @@ class HillManager implements CipherManager {
     key = keys[_random(0, keys.length)].toUpperCase();
   }
 
-  static void _updateKeyMatrix() {
+  static void _updateKeyMatrix(String key) {
     List wordLetters = key.split('');
     keyMatrix = [
       [letters.indexOf(wordLetters[0]), letters.indexOf(wordLetters[1])],
@@ -69,7 +74,7 @@ class HillManager implements CipherManager {
 
   static String convertText(String text) {
     String converted = "";
-    for (String char in _plaintext.toUpperCase().split('')) {
+    for (String char in text.toUpperCase().split('')) {
       if (char.contains(RegExp(r'^[A-Z]+$'))) {
         converted += char;
       }
@@ -113,6 +118,34 @@ class HillManager implements CipherManager {
       }
     }
     return true;
+  }
+
+  // ENCODING FUNCTIONS
+  static void clearEncodingVariables() {
+    _encodePlaintext = "";
+    _encodeCiphertext = "";
+    _encodeKey = "";
+  }
+
+  static void encode() async {
+    _convertedPlaintext = convertText(_encodePlaintext);
+    
+    _updateKeyMatrix(_encodeKey);
+    _updatePlaintextMatrix();
+    _updateCiphertext();
+
+    _encodeCiphertext = ciphertext;
+  }
+
+  static bool encodeReady() {
+    return _encodeKey.length == 4;
+  }
+
+  static setEncodePlaintext(String text) => _encodePlaintext = text;
+  static setEncodeKey(String text) => _encodeKey = text;
+
+  static String getEncodingCiphertext() {
+    return _encodeCiphertext;
   }
 
   static String getTitle() {

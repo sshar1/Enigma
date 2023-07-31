@@ -22,7 +22,8 @@ class _PolluxEncodeState extends State<PolluxEncode> {
       setEncodeK1: null,
       appendToKey: null,
       language: Language.english,
-      morse: true
+      morse: true,
+      hill: false
     );
   }
 }
