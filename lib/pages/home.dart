@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
   List<CipherInfo> ciphers = [
     CipherInfo(
       name: 'Aristocrat', 
-      image: 'cork2.png', 
+      icon: Icons.sort_by_alpha_rounded,
       description: 'A simple monoalphabetic substitution cipher where each ciphertext letter corresponds to a plaintext letter. '
       'A ciphertext letter cannot correspond to the same plaintext letter.', 
       color: Colors.grey[850]!,
@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
     ),
     CipherInfo(
       name: 'Patristocrat', 
-      image: 'cork2.png', 
+      icon: Icons.join_full_rounded,
       description: 'The same encryption pattern as the aristocrat cipher, but spaces in the ciphertext do not correspond to '
       'spaces in the plaintext. A space in the ciphertext is shown every 5 characters. Most are K1.', 
       color: Colors.grey[850]!,
@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
     ),
     CipherInfo(
       name: 'Xenocrypt', 
-      image: 'cork2.png', 
+      icon: Icons.language_rounded,
       description: 'The sample encryption pattern as the aristocrat cipher, but the plaintext is in Spanish. There is an additional '
       'letter: ñ. Press \'1\' to enter it. Most are K1.', 
       color: Colors.grey[850]!,
@@ -79,7 +79,7 @@ class _HomeState extends State<Home> {
     ),
     CipherInfo(
       name: 'Pollux', 
-      image: 'cork2.png', 
+      icon: Icons.more_horiz,
       description: 'A cipher in which the plaintext is converted into a string of numbers 0-9. Each number corresponds to x, ., or - '
       'in morse code.', 
       color: Colors.grey[850]!,
@@ -94,7 +94,7 @@ class _HomeState extends State<Home> {
     ),
     CipherInfo(
       name: 'Morbit', 
-      image: 'cork2.png', 
+      icon: Icons.cancel_rounded,
       description: 'The sample encryption patter as the pollux cipher, but each number corresponds to 2 morse characters (eg. x- or .-).', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const MorbitEncode(), CipherType.decode : const MorbitDecode()},
@@ -108,7 +108,7 @@ class _HomeState extends State<Home> {
     ),
     CipherInfo(
       name: 'Hill', 
-      image: 'cork2.png', 
+      icon: Icons.filter_hdr_rounded,
       description: 'A cipher that is solved using a key 2x2 matrix. The rules are complex so read the sci oly wiki page for more info.', 
       color: Colors.grey[850]!,
       pages: {CipherType.encode : const HillEncode(), CipherType.decode : const HillDecode()},
@@ -211,8 +211,10 @@ class _HomeState extends State<Home> {
                         fontFamily: 'Ysabeau'
                       )
                     ),
-                    leading: CircleAvatar(
-                      backgroundImage: AssetImage('assets/${ciphers[index].image}')
+                    leading: Icon(
+                      ciphers[index].icon,
+                      color: Colors.grey[100],
+                      size: 40,
                     ),
                     tileColor: ciphers[index].color,
                     shape: const RoundedRectangleBorder(
@@ -222,6 +224,42 @@ class _HomeState extends State<Home> {
                   ),
                 );
               }
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: ListTile(
+                onTap: () {
+                  Navigator.pushNamed(context, '/solver');
+                },
+                title: Text(
+                  'Aristocrat Solver',
+                  style: TextStyle(
+                    color: Colors.grey[100],
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    fontFamily: 'Ysabeau'
+                  )
+                ),
+                subtitle: Text(
+                  'Enter a ciphertext and this monoalphabetic substitution solver algorithm will do its best to solve it. '
+                  'It may make some mistakes. The longer the ciphertext, the more accurate the plaintext will be. '
+                  'A score of 95-105 indicates a likely solution.',
+                  style: TextStyle(
+                    color: Colors.grey[100],
+                    fontFamily: 'Ysabeau'
+                  )
+                ),
+                leading: Icon(
+                  Icons.attractions_outlined,
+                  color: Colors.grey[100],
+                  size: 40,
+                ),
+                tileColor: Colors.grey[850],
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                ),
+                isThreeLine: true,
+              ),
             ),
           ],
         ),

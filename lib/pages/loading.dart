@@ -10,9 +10,9 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
-  // This literally does nothing but wait 3 seconds so you can see a cool loading screen. Thats it
+  // This literally does nothing but wait 8 seconds so you can see a cool loading screen. Thats it
   Future<void> loadDummy() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 8));
     if (context.mounted) Navigator.pushReplacementNamed(context, '/home');
   }
 
@@ -27,9 +27,25 @@ class _LoadingState extends State<Loading> {
     return Scaffold(
       backgroundColor: Colors.grey[900],
       body: const Center(
-        child: SpinKitDualRing(
-          color: Colors.white,
-          size: 50.0,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SpinKitSpinningLines(
+              color: Colors.white,
+              size: 100,
+            ),
+            SizedBox(height: 10),
+            Text(
+              'ENIGMA',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 70,
+                fontFamily: 'Ysabeau'
+              )
+            )
+          ]
         )
       )
     );

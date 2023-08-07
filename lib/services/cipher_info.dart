@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CipherInfo {
   String name; // Name of cipher
-  String image; // Path to get image
+  IconData icon; // Icon of cipher
   String description; // Description of cipher
   Color color; // Color for card
   Map pages; // Encode and decode pages
@@ -16,7 +16,7 @@ class CipherInfo {
 
   CipherInfo({
     required this.name, 
-    required this.image, 
+    required this.icon, 
     required this.description, 
     required this.color, 
     required this.pages, 
