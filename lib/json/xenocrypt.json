@@ -58,5 +58,81 @@
     {
         "plaintext" : "Mientras mas grande sea tu meta, mayor sera el sabor de la victoria",
         "title" : "[450 points] Solve this Xenocrypt which is a phrase said by Kratos from God of War translated into Spanish."
+    },
+    {
+        "plaintext" : "Es viernes santo en sevilla / La niña de los peines esta en los balcones ataviada con la mantilla",
+        "title" : "[550 points] Decode these Estrella Morente lyrics that have been encoded using the Xenocrypt cipher."
+    },
+    {
+        "plaintext" : "La ventura va guiando nuestras cosas mejor de lo que acertaramos a desear; porque ves alli, amigo Sancho Panza, donde se descubren treinta, o pocos mas, desaforados gigantes, con quien pienso hacer batalla y quitarles a todos las vidas, con cuyos depojos comenzaremos a enriquecer; que esta es buena guerra, y es gran servicio de dios quitar tan mala simiente de sobre la faz de la tierra.",
+        "title" : "[500 points] Solve the following excerpt in Spanish from Miguel de Cervante's novel Don Quixote."
+    },
+    {
+        "plaintext" : "Billy la bufanda fue al restaurante para comer espaguetis, su favorito.",
+        "title" : "[450 points] Solve this Xenocrypt which is from a song about a scarf."
+    },
+    {
+        "plaintext" : "El sabio siempre quiere aprender, el ignorante siempre quiere enseñar.",
+        "title" : "[600 points] Solve this Xenocrypt, which is a Spanish saying that has been encoded."
+    },
+    {
+        "plaintext" : "Canta canta guitarra canta guitarra mia canta guitarra siempre que en tus notas pongo mi vida.",
+        "title" : "[400 points] Solve this Xenocrypt."
+    },
+    {
+        "plaintext" : "Todos tenemos posibilidades que no conocemos. Podemos hacer cosas ni siquiera soñamos que podemos hacer.",
+        "title" : "[600 points] Solve this Xenocrypt, which was created with Google Translate."
+    },
+    {
+        "plaintext" : "Si realmente quieres entender algo, intenta cambiando.",
+        "title" : "[450 points] Solve this Xenocrypt which is a Google Translated quote by Kurt Lewin."
+    },
+    {
+        "plaintext" : "Yo prefiero ser un fracaso en algo que me gusta, que un exito en algo que odio",
+        "title" : "[350 points] Solve this Xenocrypt."
+    },
+    {
+        "plaintext" : "En la vida, algunas veces se gana otras veces se aprende.",
+        "title" : "[600 points] Solve the following Xenocrypt."
+    },
+    {
+        "plaintext" : "Aprendimos hace mucho años que los ricos pueden tener dinero, pero los pobres tienen tiempo.",
+        "title" : "[500 points] Solve this Xenocrypt."
+    },
+    {
+        "plaintext" : "La muerte no existe, la gente solo muere cuando la olvidan; si puedes recordarme siempre estare contigo.",
+        "title" : "[600 points] Decode this quote which has been encoded as a Xenocrypt."
+    },
+    {
+        "plaintext" : "Cuando deseas algo, todo el universo conspira para que realices tus sueños.",
+        "title" : "[400 points] Solve the following Spanish Aristocrat."
+    },
+    {
+        "plaintext" : "No importa lo que alguien hace, sino lo que se convierte en ser.",
+        "title" : "[500 points] Solve this Xenocrypt quote by J.K. Rowling, which has been translated into Spanish."
+    },
+    {
+        "plaintext" : "De aqui para alla, de aqui para alla, hay cosas divertidas en todas partes.",
+        "title" : "[350 points] Solve this quote by Dr. Seuss, which has been encoded into Spanish."
+    },
+    {
+        "plaintext" : "El mundo es un lugar cruel. Y aprenderas eso incluso si duele.",
+        "title" : "[400 points] Decode this Spanish quote from Pan's Labyrinth."
+    },
+    {
+        "plaintext" : "No sigas los caminos que otros hacen. Abre tu propio camino en la vida y descubriras muchas cosas nuevas.",
+        "title" : "[500 points] Solve this inspirational Xenocrypt from an anonymous source that has been translated into Spanish."
+    },
+    {
+        "plaintext" : "¿Prefiero ser temido o amado? Facil ambos. Quiero que la gente tenga miedo de cuanto me quieren.",
+        "title" : "[550 points] This quote from Michael Scott about fear and love needs to be decoded in Spanish."
+    },
+    {
+        "plaintext" : "La vida no es la que no vivio, sino la que uno recuerda y como la recuerda para contarla.",
+        "title" : "[550 points] Solve this Xenocrypt which is a quote by Gabriel García Márquez."
+    },
+    {
+        "plaintext" : "No necesito que sea facil, necesito que valga la pena.",
+        "title" : "[500 points] Solve this Xenocrypt."
     }
 ]

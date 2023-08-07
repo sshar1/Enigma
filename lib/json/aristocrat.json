@@ -153,7 +153,7 @@
     },
     {
         "plaintext" : "Nintendo's video game platformer, super mario galaxy features black holes, comets, and planetoids in the mario universe",
-        "title" : "[300 points] Timed question"
+        "title" : "[300 points] Timed question. Solve this Aristocrat."
     },
     {
         "plaintext" : "Computer engineering studies digital circuits, a hybrid of analog circuits and binary numbers in software",
@@ -298,5 +298,125 @@
     {
         "plaintext" : "Open nets are the hardest mechanic. No other technique requires as much skill as shooting into an undefended goal.",
         "title" : "[275 points] Solve this Aristocrat containing valuable insight about the car-soccer game Rocket League."
+    },
+    {
+        "plaintext" : "I like to read a couple books at once. I was reading the princess Diana book. Now I'm reading a book about Chicago and the mob.",
+        "title" : "[300 points] Timed question. Decode this Heidi Montag quote that has been encoded using the Aristocrat cipher."
+    },
+    {
+        "plaintext" : "You are not unlovable. There is always something to love. Even in a stupid, stupid universe where we have hot dogs for fingers, we get very good with our feet.",
+        "title" : "[200 points] Decode this quote from Everything Everywhere All At Once that has been encoded using the Aristocrat cipher."
+    },
+    {
+        "plaintext" : "Life, too, is senseless unless you know who you are, what you want, and which way the wind blows.",
+        "title" : "[200 points] Decode this Ellen Raskin quote that has been encoded using the Aristocrat cipher."
+    },
+    {
+        "plaintext" : "How long did i have to survive for? Would I ever be able to live without constantly trying to survive?",
+        "title" : "[200 points] Decode this Sayaka Murata quote that has been encoded with the Aristocrat cipher."
+    },
+    {
+        "plaintext" : "There's a safety in thinking in a diner. You can have your coffee or your milkshake, and you can go off into strange dark areas, and always come back to the safety of the diner.",
+        "title" : "[300 points] Decode this David Lynch quote that has been encoded with the Aristocrat cipher."
+    },
+    {
+        "plaintext" : "A charge of one coulomb is at the center of a unit cube. What is the electric flux through one of its faces?",
+        "title" : "[250 points] Decode this problem from my physics p-set that has been encoded with the Aristocrat cipher."
+    },
+    {
+        "plaintext" : "Whatever in creation exists without my knowledge exists without my consent.",
+        "title" : "[275 points] Decode this Cormac McCarthy quote that has been encoded with the Aristocrat cipher."
+    },
+    {
+        "plaintext" : "Well, technically chemistry is the study of matter. But I prefer to see it as the study of change.",
+        "title" : "[100 points] Solve the following quote from a character in a television show."
+    },
+    {
+        "plaintext" : "Whatever nightmares the future holds are dreams compared ot what's behind me.",
+        "title" : "[200 points] Solve the following quote from Zoe Saldana."
+    },
+    {
+        "plaintext" : "You are not in Kansas anymore. You are on Pandora, ladies and gentlemen. Respect that fact every second of every day. Out beyond that fence every living thing that crawls, flies or squats in the mud wants to kill you and eat your eyes for jujubes.",
+        "title" : "[200 points] Solve the following quote from a very commercially successful film."
+    },
+    {
+        "plaintext" : "Perfection is the enemy of perfectly adequate",
+        "title" : "[400 points] Solve the following quote from a character in a television show that's been encoded as an Aristocrat."
+    },
+    {
+        "plaintext" : "Success is not final; failure is not fatal: It is the courage to continue that counts.",
+        "title" : "[250 points] Timed question. Solve this Aristocrat which is a quote by Winston Churchill."
+    },
+    {
+        "plaintext" : "When someone leaves your life, those exits are not made equal. Some are beautiful and poetic and satisfying. Ohter are abrupt and unfair. But most are unremarkable, unintentional, clumsy.",
+        "title" : "[300 points] Solve this Aristocrat which is a quote by Griffin Mcelroy."
+    },
+    {
+        "plaintext" : "Music is the one incorporal entrance into the higher world of knowledge which comprehends mankind, but which mankind cannot comprehend.",
+        "title" : "[300 points] Solve this Aristocrat which is a quote by Ludwig Van Beethoven."
+    },
+    {
+        "plaintext" : "A table, a chair, a bowl of fruit and a violin; what else does a man need to be happy?",
+        "title" : "[150 points] Solve this Aristocrat which is a quote by Albert Einstein."
+    },
+    {
+        "plaintext" : "People who think they know everything are a great annoyance to those of us who do.",
+        "title" : "[300 points] Timed question. Solve this Aristocrat which is a quote attributed to Isaac Asimov."
+    },
+    {
+        "plaintext" : "I was taught that the human brain was the crowning glory of evolution so far, but I think it's a very poor scheme for survival.",
+        "title" : "[300 points] Solve this Aristocrat, which is a quote from Kurt Vonnegut."
+    },
+    {
+        "plaintext" : "What's the difference between bird flu and swine flu? One requires tweetmen and the other oinkment.",
+        "title" : "[300 points] Solve this Aristocrat."
+    },
+    {
+        "plaintext" : "Of all the inventions in the last century, the dry erase board is the most remarkable.",
+        "title" : "[300 points] Timed question. Solve this Aristocrat."
+    },
+    {
+        "plaintext" : "Knowledge is like underwear. It is useful to have it, but not necessary to show it off.",
+        "title" : "[200 points] The following is a quote from Bill Murray. Solve this Aristocrat to figure out what it says."
+    },
+    {
+        "plaintext" : "Everything happens for a reason. But sometimes the reason is that you're stupid and you make decisions.",
+        "title" : "[250 points] Solve this Aristocrat."
+    },
+    {
+        "plaintext" : "P.S. I was going to include ten dollars with this letter, but had already sealted the envelope. Sorry.",
+        "title" : "[300 points] The following was at the end of a letter from my mom. What does it say?"
+    },
+    {
+        "plaintext" : "I got you to look after me, and you got me to look after you, and that's why.",
+        "title" : "[350 points] Solve this Aristocrat."
+    },
+    {
+        "plaintext" : "I decode therefore I am.",
+        "title" : "[400 points] Decode the following Aristocrat."
+    },
+    {
+        "plaintext" : "If we shadows have offended, think but this, and all is mended- that you have but slumbered here while these visions did appear.",
+        "title" : "[500 points] Solve the following Aristocrat."
+    },
+    {
+        "plaintext" : "Ambition must be made to counteract ambition.",
+        "title" : "[450 points] Timed question. Decrypt this code from James Madison."
+    },
+    {
+        "plaintext" : "Science is a way of thinking much more than it is a way of knowledge.",
+        "title" : "[350 points] Decrypt this quote by Carl Sagan."
+    },
+    {
+        "plaintext" : "Mathematics reveals its secrets only to those who approach it with pure love, for its own beauty.",
+        "title" : "[300 points] Decrypt this quote by Archimedes using an Aristocrat."
+    },
+    {
+        "plaintext" : "The fabric of the American Empire ought to rest on the solid bases of the consent of the people.",
+        "title" : "[300 points] Decrypt this quote from Alexander Hamilton."
+    },
+    {
+        "plaintext" : "I have described myself as always having been imbued with a fervent longing to penetrate the secrets of nature.",
+        "title" : "[400 points] Decrypt this quote from Frankenstein."
     }
 ]

@@ -82,5 +82,37 @@
     {
         "plaintext" : "The only thing it could cost you is your life and you got that for free",
         "title" : "[300 points] Decode this quote from an NPC from the indie horro game Earthbound."
+    },
+    {
+        "plaintext" : "The world is my country, all mankind are my brethren, and to do good is my religion.",
+        "title" : "[400 points] The following quote from Thomas Paine needs to be decoded with the Hill cipher."
+    },
+    {
+        "plaintext" : "The newspaper of utopia he had long ago decided would be terribly dull.",
+        "title" : "[400 points] The following quote from 2001: A Space Odyssey was encoded with the Hill Cipher; decode it."
+    },
+    {
+        "plaintext" : "A wise man can play the part of a clown but a clown can't play the part of a wise man.",
+        "title" : "[500 points] Decode the following quote from Malcolm X which was encoded with the Hill cipher."
+    },
+    {
+        "plaintext" : "Basketball",
+        "title" : "[200 points] Decode the ciphertext using the Hill cipher."
+    },
+    {
+        "plaintext" : "Squeezabilities",
+        "title" : "[175 points] Decode the ciphertext using the Hill cipher."
+    },
+    {
+        "plaintext" : "Vernacularization",
+        "title" : "[250 points] Decode the ciphertext using the Hill cipher."
+    },
+    {
+        "plaintext" : "Cats",
+        "title" : "[100 points] Use the Hill cipher to decode the ciphertext."
+    },
+    {
+        "plaintext" : "Jabba The Hutt",
+        "title" : "[100 points] Use the Hill cipher to decode the ciphertext."
     }
 ]

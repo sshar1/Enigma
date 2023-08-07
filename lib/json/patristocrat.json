@@ -118,5 +118,65 @@
     {
         "plaintext" : "You know what I hate more than anything else? Bunnies. That's right bunnies.",
         "title" : "[450 points] Solve this Patristocrat which is a quote from the hit indie game Omori."
+    },
+    {
+        "plaintext" : "The answer is dreams. Dreaming on and on. Entering the world of dreams and never coming out. Living in dreams for the rest of time.",
+        "title" : "[450 points] Decode this Haruki Murakami quote that has been encoded using the Patristocrat cipher. The word DREAM appears four times."
+    },
+    {
+        "plaintext" : "Nobody every saw a dog make a fair and deliberate exchange of one bone for another with another dog.",
+        "title" : "[450 points] Decode this Adam Smith quote that has been encoded with the Patristocrat cipher. The final word decodes to DOG."
+    },
+    {
+        "plaintext" : "All of old. Nothing else ever. Ever tried. Ever failed. No matter. Try again. Fail again. Fail better.",
+        "title" : "[400 points] Decode this Samuel Beckett quote that has been encoded with the Patristocrat cipher. The word EVER appears three times."
+    },
+    {
+        "plaintext" : "You, your joys and your sorrows, your memories and your ambitions, your sense of personal identity and free will, are in fact no more than the behavior of a vast assembly of nerve cells and their associated molecules.",
+        "title" : "[300 points] Solve the following Patristocrat which has the word YOUR in it five times."
+    },
+    {
+        "plaintext" : "The world is a dangerous place to live not because of the people who are evil but because of the people who don't do anything about it.",
+        "title" : "[500 points] Solve the following Patristocrat quote from Albert Einstein about the world."
+    },
+    {
+        "plaintext" : "Of puns it has been said that those who most dislike them are those who are least able to utter them.",
+        "title" : "[550 points] Solve this Patristocrat which is a quote by Edgar Allan Poe about puns. The first letters of the quote are OFPUNS"
+    },
+    {
+        "plaintext" : "How wonderful it is that nobody need wait a single moment before starting to improve the world.",
+        "title" : "[500 points] Solve this Patristocrat which is a quote by Anne Frank."
+    },
+    {
+        "plaintext" : "Then the Grinch thought of something he hadn't before! What if Christmas, he thought, doesn't come from a store. What is Christmas...perhaps...means a little bit more!",
+        "title" : "[650 points] Solve this Patristocrat which is from a Dr. Seuss book. CHRISTMAS appears twice in this quote."
+    },
+    {
+        "plaintext" : "The saddest aspect of life right now is that science gathers knowledge faster than society gathers wisdom.",
+        "title" : "[400 points] Solve this Patristocrat quote by Isaac Asimov, which contains the word SCIENCE."
+    },
+    {
+        "plaintext" : "If I had asked people what they wanted they would have said faster horses.",
+        "title" : "[400 points] Solve this Patristocrat which is a quote by Hentry Ford and begins with IF."
+    },
+    {
+        "plaintext" : "Learn from the mistakes of others. You can never live long enough to make them all yourself.",
+        "title" : "[500 points] The following good advice from Groucho Marx has been encoded as a Patristocrat. What does it say?"
+    },
+    {
+        "plaintext" : "When beggars die, there are not comets seen; the heavens themselves blaze forth the death of princes.",
+        "title" : "[400 points] Solve this Patristocrat."
+    },
+    {
+        "plaintext" : "There are too many problems in the world for us to focus on turtles for a week.",
+        "title" : "[400 points] Solve this Patristocrat."
+    },
+    {
+        "plaintext" : "The highest form of pure thought is in mathematics.",
+        "title" : "[450 points] Decrypt this quote by Plato."
+    },
+    {
+        "plaintext" : "Imagine trying to explain to the founding fathers what a computer is.",
+        "title" : "[450 points] Solve this Patristocrat."
     }
 ]

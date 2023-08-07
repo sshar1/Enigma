@@ -86,5 +86,37 @@
     {
         "plaintext" : "I used to have dreams but then a green speedrunner took them away from me",
         "title" : "[250 points] A qoute has been encoded using the Morbit cipher for you to decode."
+    },
+    {
+        "plaintext" : "Tact is the art of making a point without making an enemy.",
+        "title" : "[250 points] A quote by Isaac Newton has been encoded using the Morbit cipher for you to decode."
+    },
+    {
+        "plaintext" : "Monsters are real, ghosts are too. They live inside of us and sometimes they win.",
+        "title" : "[150 points] A quote from The Shining has been encoded using the Morbit cipher for you to decode."
+    },
+    {
+        "plaintext" : "the more powerful and original a mind, the more it will incine towards the religion of solitude.",
+        "title" : "[225 points] A quote from Aldous Huxley has been encoded using the Morbit cipher for you to decode."
+    },
+    {
+        "plaintext" : "You win some and you lose some",
+        "title" : "[200 points] A quote has been encoded using the Morbit cipher for you to decode."
+    },
+    {
+        "plaintext" : "Thoughts without content are empty. Intuitions without concepts are blind.",
+        "title" : "[150 points] A quote by Immanuel Kant has been encoded using the Morbit cipher for you to decode."
+    },
+    {
+        "plaintext" : "The probability that we may fail in the struggle ought not to deter us from support of a cause we believe to be just.",
+        "title" : "[150 points] A quote by Abraham Lincoln has been encoded using the Morbit cipher for you to decode."
+    },
+    {
+        "plaintext" : "It is impossible for a man to learn what he thinks he already knows.",
+        "title" : "[150 points] A quote from Epicetus has been encoded using the Morbit cipher for you to decode."
+    },
+    {
+        "plaintext" : "I try not to think it interferes with being nuts.",
+        "title" : "[200 points] Decrypt this quote from Leo Valdez, a fictional character using the Morbit cipher."
     }
 ]

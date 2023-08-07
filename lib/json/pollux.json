@@ -70,5 +70,33 @@
     {
         "plaintext" : "Ah there is nothing like staying at home for real comfort.",
         "title" : "[300 points] A quote from Emma by Jane Austen has been encoded using the Pollux Cipher. Decrypt it."
+    },
+    {
+        "plaintext" : "I have had a most rare vision. I have had a dream past the wit of man to say what dream it was.",
+        "title" : "[200 points] A quote from Midsummer Night's Dream has been encoded using the Pollux cipher for you to decode."
+    },
+    {
+        "plaintext" : "I have discovered a truly marvelous demonstration of this proposition that this margin is too narrow to contain.",
+        "title" : "[300 points] A quote from Pierre de Fermat has been encoded using the Pollux Cipher for you to decode."
+    },
+    {
+        "plaintext" : "It is not possible to produce a set of rules purporting to describe what a man should do in every conceivable set of circumstances.",
+        "title" : "[275 points] A quote from Alan Turing has been encoded using the Pollux cipher for you to decode."
+    },
+    {
+        "plaintext" : "I think therefore I am",
+        "title" : "[200 points] A quote has been encoded using the Pollux cipher for you to decode."
+    },
+    {
+        "plaintext" : "You got to take a deep breath and give up. The system is figged against you.",
+        "title" : "[175 points] A quote by Bo Burnham has been encoded using the Pollux cipher for you to decode."
+    },
+    {
+        "plaintext" : "I believe that a scientist looking at nonscientific problems is just as dumb as the next guy.",
+        "title" : "[100 points] The following is a quote by Richard Feynman encoded using Pollux."
+    },
+    {
+        "plaintext" : "Your best and wisest refuge from all troubles is in your science.",
+        "title" : "[250 points] Decrypt this quote from Ada Lovelace using the Pollux cipher."
     }
 ]
