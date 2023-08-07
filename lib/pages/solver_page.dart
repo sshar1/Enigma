@@ -62,7 +62,7 @@ class SolverPage extends StatelessWidget {
               cursorColor: Colors.grey[100],
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
-                labelText: 'Enter Plaintext',
+                labelText: 'Enter Ciphertext',
                 labelStyle: TextStyle(
                   color: Colors.grey[100]
                 ),
